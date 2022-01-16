@@ -1,0 +1,44 @@
+.btn {
+  border: 0.25em solid var(--purpleLightColor);
+  padding: 1em 3em;
+  color: var(--purpleLightColor);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--purpleDarkColor);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--purpleLightColor),
+    0 0 4em 1em var(--purpleColor),
+    inset 0 0 0.75em 0.25em var(--purpleLightColor);
+  text-shadow: 0 0 0.5em var(--purpleLightColor);
+  position: relative;
+  transition: all 0.3s;
+
+  &::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--purpleColor);
+    filter: blur(2em);
+    opacity: 0.7;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+  }
+
+  &:hover {
+    color: var(--purpleDarkColor);
+    background-color: var(--purpleLightColor);
+    box-shadow: 0 0 1em 0.25em var(--purpleLightColor),
+      0 0 4em 2em var(--purpleColor),
+      inset 0 0 0.75em 0.25em var(--purpleLightColor);
+  }
+
+  &:active {
+    box-shadow: 0 0 0.6em 0.25em var(--purpleLightColor),
+      0 0 2.5em 2em var(--purpleColor),
+      inset 0 0 0.5em 0.25em var(--purpleLightColor);
+  }
+}
