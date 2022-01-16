@@ -1,7 +1,7 @@
 import React from "react";
 
-const auth = () => {
+const Auth = () => {
   return <div>this is all about signin and singout</div>;
 };
 
-export default auth;
+export default Auth;
