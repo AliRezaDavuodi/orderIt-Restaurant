@@ -1,7 +1,10 @@
 import React from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const FoodsDetails = () => {
-  return <div>this will render each foods details</div>;
+  const params = useParams();
+
+  return <div>this will render each foods details = {params.foodID}</div>;
 };
 
 export default FoodsDetails;

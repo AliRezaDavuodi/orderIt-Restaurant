@@ -1,0 +1,116 @@
+.food {
+  width: 50rem;
+  border: 1px solid #ccc;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  transition: all 0.35s;
+
+  &:hover {
+    transform: scale(1.003) translateY(-0.2rem);
+  }
+}
+
+.img {
+  height: 25rem;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+.info {
+  padding: 1rem;
+  &-title {
+    h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 25rem;
+      margin: 0 auto;
+    }
+  }
+  &-description {
+    .more {
+      color: #ccc;
+      transition: all 0.35s;
+      margin-left: 1rem;
+      border-bottom: 1px solid transparent;
+
+      span {
+        transition: all 0.35s;
+      }
+
+      &:hover {
+        color: #000;
+        border-bottom-color: #000;
+
+        span {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem;
+
+  .like {
+    height: 5rem;
+
+    img {
+      height: 100%;
+      cursor: pointer;
+      margin: 0 1rem;
+    }
+  }
+
+  .order {
+    button {
+      background-image: linear-gradient(
+        45deg,
+        #ff512f 0%,
+        #f09819 51%,
+        #ff512f 100%
+      );
+      padding: 0.7rem 1.8rem;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      border-radius: 0.5rem;
+      border: 0px;
+      font-weight: 700;
+      box-shadow: 0px 0px 14px -7px #f09819;
+
+      &:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    input {
+      text-align: center;
+      margin: 0 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+    }
+
+    span {
+      font-family: var(--SairaCondensedFonts);
+    }
+  }
+}
