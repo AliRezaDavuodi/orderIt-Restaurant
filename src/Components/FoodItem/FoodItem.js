@@ -6,12 +6,21 @@ import message from "../../assests/message.png";
 
 import css from "./FoodItem.module.scss";
 import { Link, useHistory } from "react-router-dom";
+import Button from "../Button/Button";
 
 const FoodItem = (props) => {
   const [likeBtn, setLikeBtn] = useState(false);
+  const history = useHistory();
 
   const changeLikeHandler = () => {
     setLikeBtn((like) => !like);
+  };
+
+  const showDetailHandler = () => {
+    history.push(`/foods/${props.id}`);
+  };
+  const addCommentHandler = () => {
+    history.push(`/foods/${props.id}/comments`);
   };
 
   return (
@@ -20,31 +29,24 @@ const FoodItem = (props) => {
         <img src={props.img} alt={props.description} />
       </div>
       <div className={css.info}>
-        <div className={css["info-title"]}>
+        <div className={css.header}>
           <h3> {props.title} </h3>
+          <div className={css.like}>
+            <img
+              src={likeBtn ? like : unlike}
+              onClick={changeLikeHandler}
+              alt="like it"
+            />
+          </div>
         </div>
-        <div className={css["info-description"]}>
-          <p>
-            {props.description}
-            <Link to={`/foods/${props.id}`} className={css.more}>
-              More <span>&rarr;</span>
-            </Link>
-          </p>
+        <div className={css.description}>
+          <p>{props.description}</p>
         </div>
-      </div>
-      <div className={css.actions}>
-        <div className={css.like}>
-          <img
-            src={likeBtn ? like : unlike}
-            onClick={changeLikeHandler}
-            alt="like it"
-          />
-          <img src={message} alt="leave a comment" />
-        </div>
-        <div className={css.order}>
-          <button> add to cart </button>
-          <input type="number" min="0" max="5" defaultValue="0" />
-          <span> {props.price} </span>
+        <div className={css.actions}>
+          <p className={css.price}> {props.price} </p>
+          <Button>Add To Card</Button>
+          <Button onClick={showDetailHandler}>see details</Button>
+          <Button onClick={addCommentHandler}>leave comment</Button>
         </div>
       </div>
     </li>

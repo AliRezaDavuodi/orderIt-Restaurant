@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Cart from "../../assests/cart.png";
 import Like from "../../assests/heart.png";
@@ -14,19 +14,23 @@ const Navigation = () => {
       </div>
       <ul className={css.list}>
         <li className={css.item}>
-          <Link to="/" className={css.link}>
+          <NavLink activeClassName={css.active} to="/" className={css.link}>
             Home
-          </Link>
+          </NavLink>
         </li>
         <li className={css.item}>
-          <Link to="/foods" className={css.link}>
+          <NavLink
+            activeClassName={css.active}
+            to="/foods"
+            className={css.link}
+          >
             Foods
-          </Link>
+          </NavLink>
         </li>
         <li className={css.item}>
-          <Link to="/auth" className={css.link}>
+          <NavLink activeClassName="active" to="/auth" className={css.link}>
             sign up
-          </Link>
+          </NavLink>
         </li>
       </ul>
       <div className={css.personal}>
