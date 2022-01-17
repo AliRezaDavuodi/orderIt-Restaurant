@@ -3,9 +3,9 @@ import FavoditeFoods from "../Components/FavoditeFoods/FavoditeFoods";
 
 const Favorite = () => {
   return (
-    <>
+    <div className="fadeIn">
       <FavoditeFoods />
-    </>
+    </div>
   );
 };
 

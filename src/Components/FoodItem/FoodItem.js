@@ -19,8 +19,10 @@ const FoodItem = (props) => {
     history.push(`/foods/${props.id}`);
   };
 
+  const foodItemClass = `fadeIn ${css.food}`;
+
   return (
-    <li className={css.food}>
+    <li className={foodItemClass}>
       <div className={css.img}>
         <img src={props.img} alt={props.description} />
       </div>

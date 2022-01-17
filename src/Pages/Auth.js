@@ -3,9 +3,9 @@ import Authentication from "../Components/Authentication/Authentication";
 
 const Auth = () => {
   return (
-    <>
+    <div className="fadeIn">
       <Authentication />
-    </>
+    </div>
   );
 };
 

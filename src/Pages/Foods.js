@@ -4,7 +4,7 @@ import SearchFood from "../Components/SearchFood/SearchFood";
 
 const Foods = () => {
   return (
-    <div>
+    <div className="fadeIn">
       <SearchFood />
       <FoodsList />
     </div>

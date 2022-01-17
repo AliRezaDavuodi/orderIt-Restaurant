@@ -9,10 +9,6 @@
     rgba(#1f51ff, 0.1) 0px 2px 4px 0px, rgba(#fff, 0.05) 0px 0px 0px 1px inset;
   transition: all 0.35s;
 
-  // fade in
-  opacity: 0;
-  animation: fadeIn 0.5s linear forwards;
-
   &:not(:last-child) {
     margin-bottom: 3.5rem;
   }
@@ -79,23 +75,5 @@
     font-family: var(--SairaCondensedFonts);
     font-size: 3rem;
     margin-right: auto;
-  }
-}
-
-// animations
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  50% {
-    opacity: 0.3;
-    transform: scale(0.95);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
   }
 }
