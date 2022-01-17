@@ -8,8 +8,11 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Hero = () => {
   const history = useHistory();
 
-  const clickHandler = () => {
+  const clickSignupHandler = () => {
     history.push("/auth");
+  };
+  const clickOrderHandler = () => {
+    history.push("/foods");
   };
 
   return (
@@ -27,8 +30,8 @@ const Hero = () => {
       </div>
 
       <div className={css.actions}>
-        <Button>Let's Order </Button>
-        <Button onClick={clickHandler}>Signup </Button>
+        <Button onClick={clickOrderHandler}>Let's Order </Button>
+        <Button onClick={clickSignupHandler}>Signup </Button>
       </div>
     </header>
   );
