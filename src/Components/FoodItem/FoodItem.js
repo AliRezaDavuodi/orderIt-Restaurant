@@ -24,6 +24,7 @@ const FoodItem = (props) => {
       <div className={css.img}>
         <img src={props.img} alt={props.description} />
       </div>
+
       <div className={css.info}>
         <div className={css.header}>
           <h3> {props.title} </h3>
@@ -35,9 +36,11 @@ const FoodItem = (props) => {
             />
           </div>
         </div>
+
         <div className={css.description}>
           <p>{props.description}</p>
         </div>
+
         <div className={css.actions}>
           <p className={css.price}> {props.price} </p>
           <Button>Add To Cart</Button>

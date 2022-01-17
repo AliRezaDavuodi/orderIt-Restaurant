@@ -1,7 +1,12 @@
 import React from "react";
+import FavoditeFoods from "../Components/FavoditeFoods/FavoditeFoods";
 
 const Favorite = () => {
-  return <div>this page will render the favorite foods of user</div>;
+  return (
+    <>
+      <FavoditeFoods />
+    </>
+  );
 };
 
 export default Favorite;
