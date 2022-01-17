@@ -1,7 +1,12 @@
 import React from "react";
+import Authentication from "../Components/Authentication/Authentication";
 
 const Auth = () => {
-  return <div>this is all about signin and singout</div>;
+  return (
+    <>
+      <Authentication />
+    </>
+  );
 };
 
 export default Auth;
