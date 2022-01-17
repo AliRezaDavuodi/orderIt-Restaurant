@@ -1,0 +1,22 @@
+import React from "react";
+
+import Button from "../Button/Button";
+import Form from "../Form/Form";
+import Input from "../Input/Input";
+
+import Search from "../../assests/transparency.png";
+
+const SearchFood = () => {
+  return (
+    <Form>
+      <Input
+        placeholder="what do you want"
+        label="what do you want"
+        id="search"
+      />
+      <Button>Search</Button>
+    </Form>
+  );
+};
+
+export default SearchFood;
