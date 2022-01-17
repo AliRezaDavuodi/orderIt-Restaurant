@@ -1,27 +1,12 @@
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .food {
   display: flex;
   width: 100%;
   padding: 1rem;
   border-radius: 0.8rem;
-  background-color: #212121;
-  color: #fff;
+  background-color: var(--darkLighter);
+  color: var(--white);
   box-shadow: rgba(#1f51ff, 0.2) 0px 12px 28px 0px,
-    rgba(#1f51ff, 0.1) 0px 2px 4px 0px,
-    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    rgba(#1f51ff, 0.1) 0px 2px 4px 0px, rgba(#fff, 0.05) 0px 0px 0px 1px inset;
   transition: all 0.35s;
 
   // fade in
@@ -30,10 +15,6 @@
 
   &:not(:last-child) {
     margin-bottom: 3.5rem;
-  }
-
-  &:hover {
-    transform: translateY(-0.5rem) scale(1.03);
   }
 }
 
@@ -51,6 +32,7 @@
 
 .info {
   padding: 1rem;
+  padding-left: 2rem;
 }
 
 .header {
@@ -67,7 +49,7 @@
   .like {
     width: 5rem;
     height: 5rem;
-    background-color: #fff;
+    background-color: var(--white);
     position: relative;
     border-radius: 50%;
   }
@@ -85,7 +67,7 @@
 .description {
   padding-right: 5rem;
   p {
-    color: #ccc;
+    color: var(--gray);
   }
 }
 
@@ -97,5 +79,23 @@
     font-family: var(--SairaCondensedFonts);
     font-size: 3rem;
     margin-right: auto;
+  }
+}
+
+// animations
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

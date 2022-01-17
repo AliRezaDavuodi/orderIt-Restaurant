@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 import unlike from "../../assests/unlike.png";
 import like from "../../assests/like.png";
-import message from "../../assests/message.png";
 
 import css from "./FoodItem.module.scss";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "../Button/Button";
 
 const FoodItem = (props) => {
@@ -18,9 +17,6 @@ const FoodItem = (props) => {
 
   const showDetailHandler = () => {
     history.push(`/foods/${props.id}`);
-  };
-  const addCommentHandler = () => {
-    history.push(`/foods/${props.id}/comments`);
   };
 
   return (
@@ -44,9 +40,8 @@ const FoodItem = (props) => {
         </div>
         <div className={css.actions}>
           <p className={css.price}> {props.price} </p>
-          <Button>Add To Card</Button>
-          <Button onClick={showDetailHandler}>see details</Button>
-          <Button onClick={addCommentHandler}>leave comment</Button>
+          <Button>Add To Cart</Button>
+          <Button onClick={showDetailHandler}>See More</Button>
         </div>
       </div>
     </li>

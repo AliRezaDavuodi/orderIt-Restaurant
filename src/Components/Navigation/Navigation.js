@@ -14,7 +14,12 @@ const Navigation = () => {
       </div>
       <ul className={css.list}>
         <li className={css.item}>
-          <NavLink activeClassName={css.active} to="/" className={css.link}>
+          <NavLink
+            activeClassName={css.active}
+            to="/"
+            exact
+            className={css.link}
+          >
             Home
           </NavLink>
         </li>
@@ -28,7 +33,7 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li className={css.item}>
-          <NavLink activeClassName="active" to="/auth" className={css.link}>
+          <NavLink activeClassName={css.active} to="/auth" className={css.link}>
             sign up
           </NavLink>
         </li>

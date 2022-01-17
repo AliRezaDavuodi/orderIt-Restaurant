@@ -23,6 +23,21 @@
 
   // red
   --redLightColor: #af4261;
+
+  // blue
+  --blue: #1f51ff;
+
+  // orange
+  --orange: #f09819;
+  --orangeDark: #ff512f;
+
+  // light
+  --white: #fff;
+  --gray: #ccc;
+
+  // dark
+  --dark: #000;
+  --darkLighter: #212121;
 }
 
 * {
@@ -51,17 +66,17 @@ a {
 
 input {
   font: inherit;
-}
 
-input:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 button {
   cursor: pointer;
   font: inherit;
-}
 
-button:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
