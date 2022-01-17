@@ -1,12 +1,13 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import Hero from "./Components/Hero/Hero";
+
 import Navigation from "./Components/Navigation/Navigation";
 import Auth from "./Pages/Auth";
 import Cart from "./Pages/Cart";
 import Favorite from "./Pages/Favorite";
 import Foods from "./Pages/Foods";
 import FoodsDetails from "./Pages/FoodsDetails";
+import Home from "./Pages/Home";
 
 function App() {
   const { pathname } = useLocation();
@@ -17,7 +18,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/" exact>
-            <Hero />
+            <Home />
           </Route>
           <Route path="/foods" exact>
             <Foods />

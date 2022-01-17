@@ -40,6 +40,11 @@
   --darkLighter: #212121;
 }
 
+::selection {
+  background-color: var(--orangeDark);
+  color: var(--white);
+}
+
 * {
   padding: 0;
   margin: 0;
