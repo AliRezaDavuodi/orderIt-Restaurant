@@ -34,3 +34,21 @@
 .btn:active {
   transform: scale(0.95);
 }
+
+.searchBtn {
+  position: absolute;
+  top: 50%;
+  right: 0rem;
+  transform: translateY(-50%);
+  padding: 1rem 5rem;
+  border-radius: 10rem;
+
+  &:hover {
+    right: 3rem;
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(1);
+    right: 3rem;
+  }
+}

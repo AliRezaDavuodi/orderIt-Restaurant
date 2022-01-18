@@ -35,7 +35,11 @@ const Navigation = (props) => {
           </NavLink>
         </li>
         <li className={css.item}>
-          <NavLink activeClassName={css.active} to="/auth" className={css.link}>
+          <NavLink
+            activeClassName={css.active}
+            to="/auth/signup"
+            className={css.link}
+          >
             sign up
           </NavLink>
         </li>

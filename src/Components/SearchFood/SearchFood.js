@@ -12,7 +12,7 @@ const SearchFood = () => {
         label="what do you want"
         id="search"
       />
-      <Button>Search</Button>
+      <Button searchBtn={true}>Search</Button>
     </Form>
   );
 };
