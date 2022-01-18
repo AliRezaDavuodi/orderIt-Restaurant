@@ -6,6 +6,7 @@ import like from "../../assests/like.png";
 import css from "./FoodItem.module.scss";
 import { useHistory } from "react-router-dom";
 import Button from "../Button/Button";
+import Card from "../Card/Card";
 
 const FoodItem = (props) => {
   const [likeBtn, setLikeBtn] = useState(false);
@@ -43,11 +44,11 @@ const FoodItem = (props) => {
           <p>{props.description}</p>
         </div>
 
-        <div className={css.actions}>
+        <Card className="btnCard">
           <p className={css.price}> {props.price} </p>
           <Button>Add To Cart</Button>
           <Button onClick={showDetailHandler}>See More</Button>
-        </div>
+        </Card>
       </div>
     </li>
   );

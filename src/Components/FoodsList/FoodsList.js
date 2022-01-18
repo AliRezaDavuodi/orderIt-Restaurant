@@ -1,6 +1,5 @@
 import React from "react";
 
-import FoodItem from "../FoodItem/FoodItem";
 import List from "../List/List";
 
 const DUMMY__DATA = [
@@ -46,19 +45,8 @@ const DUMMY__DATA = [
   },
 ];
 
-const foods = DUMMY__DATA.map((food) => (
-  <FoodItem
-    id={food.id}
-    title={food.title}
-    description={food.description}
-    key={food.id}
-    img={food.image}
-    price={food.price}
-  />
-));
-
 const FoodsList = () => {
-  return <List>{foods}</List>;
+  return <List foods={DUMMY__DATA} />;
 };
 
 export default FoodsList;

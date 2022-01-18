@@ -13,10 +13,12 @@ const Authentication = () => {
 
   const authClasses = `${css.auth} fadeIn`;
 
+  const title = location.pathname === "/auth" ? "Signup" : "Signin";
+
   return (
     <section className={authClasses}>
       <div className={css.form}>
-        <h3 className={css.title}> Signup </h3>
+        <h3 className={css.title}> {title} </h3>
         {location.pathname === "/auth" && <Signup />}
         {location.pathname === "/auth/signin" && <Signin />}
       </div>

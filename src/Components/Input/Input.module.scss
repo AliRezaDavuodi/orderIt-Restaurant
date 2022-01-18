@@ -19,9 +19,14 @@
     }
 
     &:focus {
-      border: 1px solid var(--orangeDark);
-      box-shadow: 0 0.2rem 1rem rgba(#f09819, 0.4);
+      border: 1px solid var(--blue);
+      box-shadow: 0 0.2rem 1rem rgba(#1f51ff, 0.4);
     }
+  }
+
+  input.search:focus {
+    border: 1px solid var(--orangeDark);
+    box-shadow: 0 0.2rem 1rem rgba(#ff512f, 0.4);
   }
 
   label {
@@ -37,6 +42,17 @@
   input:placeholder-shown + label {
     top: 50%;
     left: 4.5rem;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+  }
+
+  label.search {
+    left: 9rem;
+  }
+
+  input:placeholder-shown + label.search {
+    top: 50%;
+    left: 10.5rem;
     transform: translateY(-50%);
     font-size: 1.8rem;
   }

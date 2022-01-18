@@ -1,6 +1,5 @@
 import React from "react";
 
-import FoodItem from "../FoodItem/FoodItem";
 import List from "../List/List";
 
 import css from "./FavoditeFoods.module.scss";
@@ -48,22 +47,11 @@ const DUMMY__DATA = [
   },
 ];
 
-const favoditeFoods = DUMMY__DATA.map((food) => (
-  <FoodItem
-    id={food.id}
-    title={food.title}
-    description={food.description}
-    key={food.id}
-    img={food.image}
-    price={food.price}
-  />
-));
-
 const FavoditeFoods = () => {
   return (
     <section>
-      <h2 className={css.title}> Foods You Like Them </h2>
-      <List>{favoditeFoods}</List>
+      <h2 className={css.title}> Favorite Foods </h2>
+      <List foods={DUMMY__DATA} />
     </section>
   );
 };

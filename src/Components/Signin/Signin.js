@@ -4,8 +4,8 @@ import Input from "../Input/Input";
 import Form from "../Form/Form";
 import Button from "../Button/Button";
 
-import css from "./Signin.module.scss";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Card from "../Card/Card";
 
 const Signin = () => {
   const history = useHistory();
@@ -29,10 +29,10 @@ const Signin = () => {
           placeholder="pass"
         />
 
-        <div className={css.actions}>
+        <Card className="btnCard">
           <Button onClick={signinFormHandler}>Signin</Button>
           <Button onClick={goToSignupFormHandler}>Signup</Button>
-        </div>
+        </Card>
       </Form>
     </div>
   );

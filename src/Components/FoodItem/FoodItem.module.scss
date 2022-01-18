@@ -67,13 +67,8 @@
   }
 }
 
-.actions {
-  display: flex;
-  padding-top: 1rem;
-
-  .price {
-    font-family: var(--SairaCondensedFonts);
-    font-size: 3rem;
-    margin-right: auto;
-  }
+.price {
+  font-family: var(--SairaCondensedFonts);
+  font-size: 3rem;
+  margin-right: auto;
 }
