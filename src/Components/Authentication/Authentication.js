@@ -11,8 +11,10 @@ import css from "./Authentication.module.scss";
 const Authentication = () => {
   const location = useLocation();
 
+  const authClasses = `${css.auth} fadeIn`;
+
   return (
-    <section className={css.auth}>
+    <section className={authClasses}>
       <div className={css.form}>
         <h3 className={css.title}> Signup </h3>
         {location.pathname === "/auth" && <Signup />}

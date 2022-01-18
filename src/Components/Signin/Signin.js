@@ -19,20 +19,22 @@ const Signin = () => {
   };
 
   return (
-    <Form>
-      <Input id="email" label="enter your email" placeholder="email" />
-      <Input
-        id="password"
-        type="password"
-        label="enter your password"
-        placeholder="pass"
-      />
+    <div className="fadeIn">
+      <Form>
+        <Input id="email" label="enter your email" placeholder="email" />
+        <Input
+          id="password"
+          type="password"
+          label="enter your password"
+          placeholder="pass"
+        />
 
-      <div className={css.actions}>
-        <Button onClick={signinFormHandler}>Signin</Button>
-        <Button onClick={goToSignupFormHandler}>Signup</Button>
-      </div>
-    </Form>
+        <div className={css.actions}>
+          <Button onClick={signinFormHandler}>Signin</Button>
+          <Button onClick={goToSignupFormHandler}>Signup</Button>
+        </div>
+      </Form>
+    </div>
   );
 };
 
