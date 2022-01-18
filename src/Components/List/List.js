@@ -16,6 +16,7 @@ const List = (props) => {
             key={food.id}
             img={food.image}
             price={food.price}
+            cart={props.cart}
           />
         ))}
       </ul>

@@ -31,13 +31,22 @@ const FoodItem = (props) => {
       <div className={css.info}>
         <div className={css.header}>
           <h3> {props.title} </h3>
-          <div className={css.like}>
-            <img
-              src={likeBtn ? like : unlike}
-              onClick={changeLikeHandler}
-              alt="like it"
-            />
-          </div>
+          {!props.cart && (
+            <div className={css.like}>
+              <img
+                src={likeBtn ? like : unlike}
+                onClick={changeLikeHandler}
+                alt="like it"
+              />
+            </div>
+          )}
+          {props.cart && (
+            <div className={css.amount}>
+              <Button small>+</Button>
+              <span> 5X </span>
+              <Button small>-</Button>
+            </div>
+          )}
         </div>
 
         <div className={css.description}>
@@ -46,8 +55,10 @@ const FoodItem = (props) => {
 
         <Card className="btnCard">
           <p className={css.price}> {props.price} </p>
-          <Button>Add To Cart</Button>
-          <Button onClick={showDetailHandler}>See More</Button>
+          <Button> {props.cart ? "Remove" : "Add To Cart"}</Button>
+          <Button onClick={showDetailHandler}>
+            {props.cart ? "Order" : "See More"}
+          </Button>
         </Card>
       </div>
     </li>
