@@ -2,8 +2,6 @@ import React from "react";
 
 import List from "../List/List";
 
-import css from "./FavoditeFoods.module.scss";
-
 const DUMMY__DATA = [
   {
     id: 716429,
@@ -50,7 +48,6 @@ const DUMMY__DATA = [
 const FavoditeFoods = () => {
   return (
     <section>
-      <h2 className={css.title}> Favorite Foods </h2>
       <List foods={DUMMY__DATA} />
     </section>
   );

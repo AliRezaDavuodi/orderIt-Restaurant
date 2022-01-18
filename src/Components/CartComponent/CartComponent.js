@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../Button/Button";
+import Card from "../Card/Card";
 
 import List from "../List/List";
 
@@ -48,10 +50,15 @@ const DUMMY__DATA = [
 ];
 
 const CartComponent = () => {
+  const classes = `container ${css.pay}`;
+
   return (
     <section>
-      <h2 className={css.title}> Cart </h2>
       <List foods={DUMMY__DATA} cart />
+      <Card className={classes}>
+        <h2 className="title"> Total Amount : 25$ </h2>
+        <Button> Order </Button>
+      </Card>
     </section>
   );
 };

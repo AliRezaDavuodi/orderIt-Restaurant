@@ -22,16 +22,3 @@
     object-fit: cover;
   }
 }
-
-.title {
-  text-align: center;
-  padding: 2rem 0;
-  font-family: var(--MochiyPopFonts);
-  background-image: linear-gradient(
-    30deg,
-    var(--goldColor),
-    var(--redLightColor)
-  );
-  background-clip: text;
-  color: transparent;
-}

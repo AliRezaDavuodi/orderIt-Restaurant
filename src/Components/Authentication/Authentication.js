@@ -18,7 +18,7 @@ const Authentication = () => {
   return (
     <section className={authClasses}>
       <div className={css.form}>
-        <h3 className={css.title}> {title} </h3>
+        <h3 className="title"> {title} </h3>
         {location.pathname === "/auth" && <Signup />}
         {location.pathname === "/auth/signin" && <Signin />}
       </div>

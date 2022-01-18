@@ -12,6 +12,14 @@ const FoodItem = (props) => {
   const [likeBtn, setLikeBtn] = useState(false);
   const history = useHistory();
 
+  const removeHandler = () => {
+    alert("remove");
+  };
+
+  const addHandler = () => {
+    alert("add");
+  };
+
   const changeLikeHandler = () => {
     setLikeBtn((like) => !like);
   };
@@ -55,10 +63,11 @@ const FoodItem = (props) => {
 
         <Card className="btnCard">
           <p className={css.price}> {props.price} </p>
-          <Button> {props.cart ? "Remove" : "Add To Cart"}</Button>
-          <Button onClick={showDetailHandler}>
-            {props.cart ? "Order" : "See More"}
+          <Button onClick={props.cart ? removeHandler : addHandler}>
+            {" "}
+            {props.cart ? "Remove" : "Add To Cart"}
           </Button>
+          <Button onClick={showDetailHandler}>See More</Button>
         </Card>
       </div>
     </li>
