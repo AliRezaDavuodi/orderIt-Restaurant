@@ -4,7 +4,13 @@ import css from "./Button.module.scss";
 
 const Button = (props) => {
   const buttonClasses = `${css.btn} ${
-    props.searchBtn ? css.searchBtn : props.small ? css.small : ""
+    props.searchBtn
+      ? css.searchBtn
+      : props.small
+      ? css.small
+      : props.full
+      ? css.full
+      : ""
   }`;
 
   return (

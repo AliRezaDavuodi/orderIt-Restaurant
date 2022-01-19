@@ -64,7 +64,6 @@ const FoodItem = (props) => {
         <Card className="btnCard">
           <p className={css.price}> {props.price} </p>
           <Button onClick={props.cart ? removeHandler : addHandler}>
-            {" "}
             {props.cart ? "Remove" : "Add To Cart"}
           </Button>
           <Button onClick={showDetailHandler}>See More</Button>

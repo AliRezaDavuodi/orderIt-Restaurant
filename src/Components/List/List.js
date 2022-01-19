@@ -5,9 +5,10 @@ import FoodItem from "../FoodItem/FoodItem";
 import css from "./List.module.scss";
 
 const List = (props) => {
+  const classes = `${css.list} ${props.cart ? css.cart : ""}`;
   return (
-    <Card className="container">
-      <ul className={css.list}>
+    <Card className="full">
+      <ul className={classes}>
         {props.foods.map((food) => (
           <FoodItem
             id={food.id}

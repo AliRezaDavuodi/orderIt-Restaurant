@@ -50,14 +50,17 @@ const DUMMY__DATA = [
 ];
 
 const CartComponent = () => {
-  const classes = `container ${css.pay}`;
-
   return (
-    <section>
-      <List foods={DUMMY__DATA} cart />
-      <Card className={classes}>
-        <h2 className="title"> Total Amount : 25$ </h2>
-        <Button> Order </Button>
+    <section className={css.cart}>
+      <Card className={`container ${css.pay}`}>
+        <div className={css.cartTitlte}>
+          <h2> My Cart </h2>
+          <span> $125 </span>
+        </div>
+        <List foods={DUMMY__DATA} cart />
+        <Card className={`btnCard ${css.cartFooter}`}>
+          <Button full> checkOut </Button>
+        </Card>
       </Card>
     </section>
   );
