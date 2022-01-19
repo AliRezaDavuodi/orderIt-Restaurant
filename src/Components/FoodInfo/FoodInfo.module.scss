@@ -1,0 +1,42 @@
+.info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 20rem 10rem;
+  grid-gap: 3rem;
+}
+
+.img {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+}
+
+.detail {
+  text-transform: capitalize;
+  color: var(--white);
+
+  p {
+    color: var(--gray);
+  }
+}
+
+.btn {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comments {
+  margin-top: 5rem;
+  color: var(--white);
+  font-family: var(--SairaCondensedFonts);
+  text-transform: capitalize;
+}

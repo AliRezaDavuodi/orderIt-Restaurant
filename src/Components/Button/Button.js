@@ -10,6 +10,8 @@ const Button = (props) => {
       ? css.small
       : props.full
       ? css.full
+      : props.center
+      ? css.center
       : ""
   }`;
 

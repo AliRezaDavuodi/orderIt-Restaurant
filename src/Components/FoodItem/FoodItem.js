@@ -66,7 +66,7 @@ const FoodItem = (props) => {
           <Button onClick={props.cart ? removeHandler : addHandler}>
             {props.cart ? "Remove" : "Add To Cart"}
           </Button>
-          <Button onClick={showDetailHandler}>See More</Button>
+          <Button onClick={showDetailHandler}>Comments</Button>
         </Card>
       </div>
     </li>
