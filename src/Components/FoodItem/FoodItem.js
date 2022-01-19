@@ -50,9 +50,9 @@ const FoodItem = (props) => {
           )}
           {props.cart && (
             <div className={css.amount}>
-              <Button small>+</Button>
+              <Button small="true">+</Button>
               <span> 5X </span>
-              <Button small>-</Button>
+              <Button small="true">-</Button>
             </div>
           )}
         </div>

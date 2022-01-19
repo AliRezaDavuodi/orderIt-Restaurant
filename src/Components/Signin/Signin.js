@@ -20,7 +20,7 @@ const Signin = () => {
 
   return (
     <div className="fadeIn">
-      <Form>
+      <Form center>
         <Input id="email" label="enter your email" placeholder="email" />
         <Input
           id="password"

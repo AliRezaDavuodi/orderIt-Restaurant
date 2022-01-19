@@ -20,7 +20,7 @@ const Signup = () => {
 
   return (
     <div className="fadeIn">
-      <Form>
+      <Form center>
         <Input id="name" label="enter your name" placeholder="name" />
         <Input id="email" label="enter your email" placeholder="email" />
         <Input

@@ -16,7 +16,7 @@ const DUMMY__DATA = [
     price: "$25.0",
   },
   {
-    id: 716429,
+    id: 7164291,
     title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
     image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
     description:
@@ -24,7 +24,7 @@ const DUMMY__DATA = [
     price: "$25.0",
   },
   {
-    id: 716429,
+    id: 71642911,
     title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
     image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
     description:
@@ -32,7 +32,7 @@ const DUMMY__DATA = [
     price: "$25.0",
   },
   {
-    id: 716429,
+    id: 71642922,
     title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
     image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
     description:
@@ -40,7 +40,7 @@ const DUMMY__DATA = [
     price: "$25.0",
   },
   {
-    id: 716429,
+    id: 71642912,
     title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
     image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
     description:
@@ -51,18 +51,18 @@ const DUMMY__DATA = [
 
 const CartComponent = () => {
   return (
-    <section className={css.cart}>
+    <Card className="full">
       <Card className={`container ${css.pay}`}>
         <div className={css.cartTitlte}>
-          <h2> My Cart </h2>
+          <h2> My Cart (5 items)</h2>
           <span> $125 </span>
         </div>
-        <List foods={DUMMY__DATA} cart />
+        <List foods={DUMMY__DATA} cart="true" />
         <Card className={`btnCard ${css.cartFooter}`}>
-          <Button full> checkOut </Button>
+          <Button full="true"> checkOut </Button>
         </Card>
       </Card>
-    </section>
+    </Card>
   );
 };
 

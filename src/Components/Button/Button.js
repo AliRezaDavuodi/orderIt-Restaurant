@@ -4,7 +4,7 @@ import css from "./Button.module.scss";
 
 const Button = (props) => {
   const buttonClasses = `${css.btn} ${
-    props.searchBtn
+    props.searchbtn
       ? css.searchBtn
       : props.small
       ? css.small
