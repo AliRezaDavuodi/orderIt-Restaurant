@@ -1,3 +1,5 @@
+@import "../../Scss/mixin.scss";
+
 .btn {
   font-family: var(--MochiyPopFonts);
   font-size: 1.3rem;
@@ -19,6 +21,13 @@
     var(--orange) 51%,
     var(--orangeDark) 100%
   );
+
+  @include media("medium") {
+    margin: 1rem;
+  }
+  @include media("small") {
+    margin: 1rem;
+  }
 
   &:hover {
     background-position: right center;

@@ -4,10 +4,12 @@ import Navigation from "../Components/Navigation/Navigation";
 
 const Home = () => {
   return (
-    <div className="fadeIn">
-      <Navigation homePage={true} />
-      <Hero />
-    </div>
+    <>
+      <Navigation />
+      <div className="fadeIn">
+        <Hero />
+      </div>
+    </>
   );
 };
 

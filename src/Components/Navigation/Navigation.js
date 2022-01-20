@@ -6,11 +6,9 @@ import Like from "../../assests/heart.png";
 
 import css from "./Navigation.module.scss";
 
-const Navigation = (props) => {
-  const navbarClassName = `${css.nav} ${props.homePage ? css.home : ""}`;
-
+const Navigation = () => {
   return (
-    <nav className={navbarClassName}>
+    <nav className={css.nav}>
       <div className={css["nav__logo"]}>
         <h2> Order It </h2>
       </div>
