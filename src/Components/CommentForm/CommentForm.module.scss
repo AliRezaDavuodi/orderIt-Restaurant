@@ -1,3 +1,5 @@
+@import "../../Scss/mixin.scss";
+
 .area {
   margin: 3rem auto;
   width: 100%;
@@ -15,4 +17,13 @@
 
 .area + button {
   align-self: flex-end;
+
+  @include media("medium") {
+    align-self: center;
+    width: 80%;
+  }
+  @include media("small") {
+    align-self: center;
+    width: 100%;
+  }
 }
