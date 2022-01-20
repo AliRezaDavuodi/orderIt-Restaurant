@@ -7,18 +7,18 @@ import CommentsList from "../CommentsList/CommentsList";
 
 import css from "./FoodInfo.module.scss";
 import CommentForm from "../CommentForm/CommentForm";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const FoodInfo = (props) => {
+  const location = useLocation();
   const history = useHistory();
 
-  console.log(history.location.search);
-
   const clickCommentHandler = () => {
-    history.push(`${history.location.pathname}?comments=show`);
+    history.push(`${location.pathname}?comments=show`);
   };
 
   const clickCloseCommentHandler = () => {
-    history.push(history.location.pathname);
+    history.push(location.pathname);
   };
 
   return (
@@ -38,18 +38,18 @@ const FoodInfo = (props) => {
               <Button
                 center="true"
                 onClick={
-                  !history.location.search
+                  !location.search
                     ? clickCommentHandler
                     : clickCloseCommentHandler
                 }
               >
-                {!history.location.search ? "leave a comment" : "Cancel"}
+                {!location.search ? "leave a comment" : "Cancel"}
               </Button>
             </Card>
           </div>
         </div>
 
-        {history.location.search && <CommentForm />}
+        {location.search && <CommentForm />}
 
         <CommentsList />
       </Card>
