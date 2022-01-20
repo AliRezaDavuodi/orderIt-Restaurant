@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import FoodInfo from "../Components/FoodInfo/FoodInfo";
+import Navigation from "../Components/Navigation/Navigation";
 
 const DUMMY__DATA = [
   {
@@ -55,9 +56,12 @@ const FoodsDetails = () => {
   // find the correct food and display it
 
   return (
-    <div className="fadeIn">
-      <FoodInfo food={food} />
-    </div>
+    <>
+      <Navigation />
+      <div className="fadeIn">
+        <FoodInfo food={food} />
+      </div>
+    </>
   );
 };
 

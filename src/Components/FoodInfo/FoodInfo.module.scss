@@ -2,7 +2,7 @@
 
 .info {
   display: flex;
-  align-items: center;
+  align-items: stretch;
 
   @include media("medium") {
     flex-direction: column;

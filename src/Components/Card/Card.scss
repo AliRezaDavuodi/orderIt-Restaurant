@@ -17,16 +17,19 @@
   margin: auto;
   position: relative;
   padding: 2rem;
+  padding-top: 5rem;
   background-color: rgba(#fff, 0.1);
   border-radius: 1rem;
   border: 1px solid var(--orange);
 
   @include media("medium") {
     width: 100%;
+    padding-top: 5rem;
   }
   @include media("small") {
     width: 100%;
     padding: 1rem;
+    padding-top: 5rem;
   }
 }
 

@@ -1,7 +1,5 @@
 import { Redirect, Route, Switch } from "react-router-dom";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-import Navigation from "./Components/Navigation/Navigation";
 import Auth from "./Pages/Auth";
 import Cart from "./Pages/Cart";
 import Favorite from "./Pages/Favorite";
@@ -10,11 +8,8 @@ import FoodsDetails from "./Pages/FoodsDetails";
 import Home from "./Pages/Home";
 
 function App() {
-  const { pathname } = useLocation();
-
   return (
     <>
-      {pathname !== "/" && <Navigation />}
       <main>
         <Switch>
           <Route path="/" exact>

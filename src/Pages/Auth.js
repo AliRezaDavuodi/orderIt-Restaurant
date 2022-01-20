@@ -1,11 +1,15 @@
 import React from "react";
 import Authentication from "../Components/Authentication/Authentication";
+import Navigation from "../Components/Navigation/Navigation";
 
 const Auth = () => {
   return (
-    <div className="fadeIn">
-      <Authentication />
-    </div>
+    <>
+      <Navigation />
+      <div className="fadeIn">
+        <Authentication />
+      </div>
+    </>
   );
 };
 
