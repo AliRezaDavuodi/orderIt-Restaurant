@@ -56,6 +56,25 @@
     transform: translateY(-50%) scale(1);
     right: 3rem;
   }
+
+  @include media("medium") {
+    margin: 0;
+    padding: 1.2rem 3rem;
+
+    &:hover,
+    &:active {
+      right: 0;
+    }
+  }
+  @include media("small") {
+    margin: 0;
+    padding: 1.2rem 3rem;
+
+    &:hover,
+    &:active {
+      right: 0;
+    }
+  }
 }
 
 .small {

@@ -1,3 +1,5 @@
+@import "../../Scss/mixin.scss";
+
 .food {
   display: flex;
   width: 100%;
@@ -8,8 +10,14 @@
   border: 1px solid var(--orange);
   box-shadow: rgba(#ff512f, 0.12) 0px 4px 6px 0px,
     rgba(#ff512f, 0.32) 0px 6px 20px 0px;
-
   transition: all 0.35s;
+
+  @include media("medium") {
+    flex-direction: column;
+  }
+  @include media("small") {
+    flex-direction: column;
+  }
 
   &:not(:last-child) {
     margin-bottom: 3.5rem;
@@ -17,14 +25,28 @@
 }
 
 .img {
-  width: 30rem;
+  min-width: 20rem;
   height: 100%;
+
+  @include media("medium") {
+    width: 100%;
+  }
+  @include media("small") {
+    width: 100%;
+  }
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 0.5rem;
     margin-right: 3rem;
+
+    @include media("medium") {
+      margin: 0;
+    }
+    @include media("small") {
+      margin: 0;
+    }
   }
 }
 
@@ -36,6 +58,14 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  @include media("medium") {
+    margin: 1rem 0;
+  }
+  @include media("small") {
+    margin: 1rem 0;
+  }
 
   h3 {
     text-overflow: ellipsis;
@@ -52,6 +82,11 @@
     border-radius: 50%;
     transition: all 0.35s;
 
+    @include media("small") {
+      width: 3rem;
+      height: 3rem;
+    }
+
     &:hover {
       transform: scale(1.15);
     }
@@ -64,20 +99,40 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @include media("small") {
+      width: 2rem;
+    }
   }
 
   .amount {
     display: flex;
+    align-items: center;
 
     span {
       margin: 0 1rem;
       font-family: var(--SairaCondensedFonts);
+
+      @include media("medium") {
+        margin: 0;
+      }
+      @include media("small") {
+        margin: 0;
+      }
     }
   }
 }
 
 .description {
   padding-right: 5rem;
+
+  @include media("medium") {
+    padding: 1rem;
+  }
+  @include media("small") {
+    padding: 1rem;
+  }
+
   p {
     color: var(--gray);
   }
@@ -87,4 +142,8 @@
   font-family: var(--SairaCondensedFonts);
   font-size: 3rem;
   margin-right: auto;
+
+  @include media("small") {
+    margin: auto;
+  }
 }

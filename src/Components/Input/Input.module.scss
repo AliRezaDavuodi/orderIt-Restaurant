@@ -1,6 +1,12 @@
+@import "../../Scss/mixin.scss";
+
 .controller {
   width: 90%;
   position: relative;
+
+  @include media("small") {
+    width: 100%;
+  }
 
   &:not(:last-child) {
     margin-bottom: 2rem;

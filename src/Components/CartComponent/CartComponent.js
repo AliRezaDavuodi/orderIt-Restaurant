@@ -54,7 +54,7 @@ const CartComponent = () => {
     <Card className="full">
       <Card className={`container ${css.pay}`}>
         <div className={css.cartTitlte}>
-          <h2> My Cart (5 items)</h2>
+          <h2>5 items</h2>
           <span> $125 </span>
         </div>
         <List foods={DUMMY__DATA} cart="true" />

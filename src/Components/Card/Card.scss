@@ -1,9 +1,15 @@
+@import "../../Scss/mixin.scss";
+
 .btnCard {
   width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+
+  @include media("small") {
+    flex-direction: column;
+  }
 }
 
 .container {
@@ -14,9 +20,23 @@
   background-color: rgba(#fff, 0.1);
   border-radius: 1rem;
   border: 1px solid var(--orange);
+
+  @include media("medium") {
+    width: 100%;
+  }
+  @include media("small") {
+    width: 100%;
+  }
 }
 
 .full {
   width: 100%;
   padding: 3rem 0;
+
+  @include media("medium") {
+    padding-bottom: 0;
+  }
+  @include media("small") {
+    padding-bottom: 0;
+  }
 }

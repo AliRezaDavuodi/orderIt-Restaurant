@@ -1,6 +1,12 @@
+@import "../../Scss/mixin.scss";
+
 .form {
   position: relative;
   padding-right: 2rem;
+
+  @include media("small") {
+    padding: 0;
+  }
 }
 
 .center {
