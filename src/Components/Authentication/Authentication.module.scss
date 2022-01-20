@@ -1,8 +1,15 @@
+@import "../../Scss/mixin.scss ";
+
 .auth {
-  height: 84vh;
+  min-height: 85vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include media("small") {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
 }
 
 .form {
@@ -13,10 +20,24 @@
   border-radius: 0.6rem;
   background-color: var(--darkLighter);
   box-shadow: rgba(#ff512f, 0.35) 0px 5px 15px;
+
+  @include media("medium") {
+    width: 50%;
+    margin: 2rem auto;
+  }
+  @include media("small") {
+    margin: 2rem auto;
+    width: 90%;
+  }
 }
 
 .img {
   width: 50%;
+
+  @include media("small") {
+    width: 100%;
+    order: -1;
+  }
   img {
     width: 100%;
     object-fit: cover;

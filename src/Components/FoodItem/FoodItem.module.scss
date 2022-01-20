@@ -12,9 +12,6 @@
     rgba(#ff512f, 0.32) 0px 6px 20px 0px;
   transition: all 0.35s;
 
-  @include media("medium") {
-    flex-direction: column;
-  }
   @include media("small") {
     flex-direction: column;
   }
@@ -83,8 +80,8 @@
     transition: all 0.35s;
 
     @include media("small") {
-      width: 3rem;
-      height: 3rem;
+      width: 4rem;
+      height: 4rem;
     }
 
     &:hover {
@@ -101,7 +98,7 @@
     transform: translate(-50%, -50%);
 
     @include media("small") {
-      width: 2rem;
+      width: 3rem;
     }
   }
 
