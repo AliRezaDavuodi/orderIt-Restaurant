@@ -53,3 +53,20 @@
     font-size: 1.8rem;
   }
 }
+
+.invalid {
+  input {
+    border: 1px solid $redColor;
+    box-shadow: 0 0.2rem 1rem rgba($redColor, 0.4);
+
+    &:focus {
+      border: 1px solid $redColor;
+      box-shadow: 0 0.2rem 1rem rgba($redColor, 0.4);
+    }
+  }
+
+  label {
+    background-color: $redColor;
+    color: $white;
+  }
+}

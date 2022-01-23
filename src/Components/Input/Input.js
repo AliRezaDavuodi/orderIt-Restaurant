@@ -4,7 +4,7 @@ import css from "./Input.module.scss";
 
 const Input = (props) => {
   return (
-    <div className={css.controller}>
+    <div className={`${css.controller} ${props.invalid ? css.invalid : ""}`}>
       <input
         id={props.id}
         className={props.id === "search" ? css.search : ""}

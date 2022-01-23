@@ -1,14 +1,22 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import Input from "../Input/Input";
 import Form from "../Form/Form";
 import Button from "../Button/Button";
-
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Card from "../Card/Card";
+
+import useInput from "../../Hooks/form-validation/use-input";
+import {
+  validateEmail,
+  validateLength,
+} from "../../Hooks/form-validation/helper";
 
 const Signin = () => {
   const history = useHistory();
+
+  const email = useInput(validateEmail);
+  const password = useInput(validateLength);
 
   const signinFormHandler = () => {
     // send request to server for login
@@ -21,12 +29,24 @@ const Signin = () => {
   return (
     <div className="fadeIn">
       <Form center>
-        <Input id="email" label="enter your email" placeholder="email" />
+        <Input
+          id="email"
+          label="enter your email"
+          placeholder="email"
+          onChange={email.inputChangeHandler}
+          onBlur={email.inputBlurHandler}
+          invalid={email.hasErr}
+          value={email.enteredValue}
+        />
         <Input
           id="password"
           type="password"
           label="enter your password"
           placeholder="pass"
+          onChange={password.inputChangeHandler}
+          onBlur={password.inputBlurHandler}
+          invalid={password.hasErr}
+          value={password.enteredValue}
         />
 
         <Card className="btnCard">
