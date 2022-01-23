@@ -11,7 +11,7 @@ const Navigation = () => {
   const [toggle, settoggle] = useState(false);
 
   return (
-    <Card className="full">
+    <section>
       <nav className={`${css.nav} ${toggle ? css.show : ""}`}>
         <div className={css["nav__logo"]}>
           <h2> Order It </h2>
@@ -65,7 +65,7 @@ const Navigation = () => {
       >
         <span></span>
       </div>
-    </Card>
+    </section>
   );
 };
 

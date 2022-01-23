@@ -47,11 +47,7 @@ const DUMMY__DATA = [
 ];
 
 const FoodsList = () => {
-  return (
-    <Card className="full">
-      <List foods={DUMMY__DATA} />
-    </Card>
-  );
+  return <List foods={DUMMY__DATA} />;
 };
 
 export default FoodsList;

@@ -17,26 +17,24 @@ const Hero = () => {
   };
 
   return (
-    <Card className="full">
-      <header className={css.header}>
-        <div className={css.title}>
-          <h1>
-            Welcome to <br />
-            <span>ORDER IT</span>
-          </h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            tincidunt, nibh quis posuere tincidunt, quam nunc pulvinar tortor,
-            vitae placerat ligula nunc aliquet tortor.
-          </p>
-        </div>
+    <header className={css.header}>
+      <div className={css.title}>
+        <h1>
+          Welcome to <br />
+          <span>ORDER IT</span>
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          tincidunt, nibh quis posuere tincidunt, quam nunc pulvinar tortor,
+          vitae placerat ligula nunc aliquet tortor.
+        </p>
+      </div>
 
-        <div className={css.actions}>
-          <Button onClick={clickOrderHandler}>Let's Order </Button>
-          <Button onClick={clickSignupHandler}>Signup </Button>
-        </div>
-      </header>
-    </Card>
+      <div className={css.actions}>
+        <Button onClick={clickOrderHandler}>Let's Order </Button>
+        <Button onClick={clickSignupHandler}>Signup </Button>
+      </div>
+    </header>
   );
 };
 
