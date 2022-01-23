@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import Cart from "../../assests/cart.png";
 import Like from "../../assests/heart.png";
+import Card from "../Card/Card";
 
 import css from "./Navigation.module.scss";
 
@@ -10,7 +11,7 @@ const Navigation = () => {
   const [toggle, settoggle] = useState(false);
 
   return (
-    <div className={css.div}>
+    <Card className="full">
       <nav className={`${css.nav} ${toggle ? css.show : ""}`}>
         <div className={css["nav__logo"]}>
           <h2> Order It </h2>
@@ -64,7 +65,7 @@ const Navigation = () => {
       >
         <span></span>
       </div>
-    </div>
+    </Card>
   );
 };
 

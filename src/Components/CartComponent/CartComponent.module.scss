@@ -1,5 +1,8 @@
+@import "../../Scss/mixin";
+@import "../../Scss/variables";
+
 .pay {
-  background-color: rgba(#fff, 0.1);
+  background-color: rgba($white, 0.1);
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -7,23 +10,22 @@
 }
 
 .cartTitlte {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  @include flexbox(space-around);
+
   position: absolute;
   height: 8rem;
   top: 0;
   left: 0;
   right: 0;
-  color: var(--dark);
+  color: $dark;
   background-image: linear-gradient(
     45deg,
-    var(--orangeDark) 0%,
-    var(--orange) 51%,
-    var(--orangeDark) 100%
+    $orangeDark 0%,
+    $orange 51%,
+    $orangeDark 100%
   );
   background-size: 200% auto;
-  font-family: var(--SairaCondensedFonts);
+  font-family: $SairaCondensedFonts;
   font-size: 3rem;
 
   span {

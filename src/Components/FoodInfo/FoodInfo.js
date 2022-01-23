@@ -6,6 +6,7 @@ import Button from "../Button/Button";
 import CommentsList from "../CommentsList/CommentsList";
 
 import css from "./FoodInfo.module.scss";
+
 import CommentForm from "../CommentForm/CommentForm";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 

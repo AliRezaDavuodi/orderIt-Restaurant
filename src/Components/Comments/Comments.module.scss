@@ -1,10 +1,11 @@
-@import "../../Scss/mixin.scss";
+@import "../../Scss/mixin";
+@import "../../Scss/variables";
 
 .commetn-item {
   padding: 1rem;
   border-radius: 1rem;
-  border: 1px solid var(--orange);
-  background-color: var(--darkLighter);
+  border: 1px solid $orange;
+  background-color: $darkLighter;
 
   &:not(:last-child) {
     margin-bottom: 2rem;
@@ -32,7 +33,7 @@
   span {
     margin-left: 3rem;
     font-size: 1.4rem;
-    color: var(--gray);
+    color: $gray;
 
     @include media("small") {
       margin: 0;

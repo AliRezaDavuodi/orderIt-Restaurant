@@ -1,4 +1,4 @@
-@import "../../Scss/mixin.scss";
+@import "../../Scss/mixin";
 
 .form {
   position: relative;
@@ -10,10 +10,7 @@
 }
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  @include flexbox(center, center, column);
 
   padding: 0;
 }

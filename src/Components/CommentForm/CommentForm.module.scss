@@ -1,13 +1,14 @@
-@import "../../Scss/mixin.scss";
+@import "../../Scss/mixin";
+@import "../../Scss/variables";
 
 .area {
   margin: 3rem auto;
   width: 100%;
   height: 12rem;
   padding: 1.5rem;
-  border: 1px solid var(--orange);
+  border: 1px solid $orange;
   border-radius: 1rem;
-  box-shadow: 0 1rem 2rem rgba(#ff512f, 0.3);
+  box-shadow: 0 1rem 2rem rgba($orangeDark, 0.3);
   font: inherit;
 
   &:focus {

@@ -1,15 +1,16 @@
-@import "../../Scss/mixin.scss";
+@import "../../Scss/mixin";
+@import "../../Scss/variables";
 
 .food {
   display: flex;
   width: 100%;
   padding: 1rem;
   border-radius: 0.8rem;
-  background-color: var(--darkLighter);
-  color: var(--white);
-  border: 1px solid var(--orange);
-  box-shadow: rgba(#ff512f, 0.12) 0px 4px 6px 0px,
-    rgba(#ff512f, 0.32) 0px 6px 20px 0px;
+  background-color: $darkLighter;
+  color: $white;
+  border: 1px solid $orange;
+  box-shadow: rgba($orangeDark, 0.12) 0px 4px 6px 0px,
+    rgba($orangeDark, 0.32) 0px 6px 20px 0px;
   transition: all 0.35s;
 
   @include media("small") {
@@ -53,9 +54,7 @@
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox(space-between);
 
   @include media("medium") {
     margin: 1rem 0;
@@ -74,7 +73,7 @@
   .like {
     width: 5rem;
     height: 5rem;
-    background-color: var(--white);
+    background-color: $white;
     position: relative;
     border-radius: 50%;
     transition: all 0.35s;
@@ -108,7 +107,7 @@
 
     span {
       margin: 0 1rem;
-      font-family: var(--SairaCondensedFonts);
+      font-family: $SairaCondensedFonts;
 
       @include media("medium") {
         margin: 0;
@@ -131,12 +130,12 @@
   }
 
   p {
-    color: var(--gray);
+    color: $gray;
   }
 }
 
 .price {
-  font-family: var(--SairaCondensedFonts);
+  font-family: $SairaCondensedFonts;
   font-size: 3rem;
   margin-right: auto;
 

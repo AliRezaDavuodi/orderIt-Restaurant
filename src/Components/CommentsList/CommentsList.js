@@ -1,5 +1,7 @@
 import React from "react";
+
 import Comments from "../Comments/Comments";
+import Card from "../Card/Card";
 
 import css from "./CommentsList.module.scss";
 
@@ -33,13 +35,15 @@ const COMMENTS = [
 
 const CommentsList = () => {
   return (
-    <div className={css.comments}>
-      <ul>
-        {COMMENTS.map((comment) => (
-          <Comments comment={comment} key={comment.id} />
-        ))}
-      </ul>
-    </div>
+    <Card className="full">
+      <div className={css.comments}>
+        <ul>
+          {COMMENTS.map((comment) => (
+            <Comments comment={comment} key={comment.id} />
+          ))}
+        </ul>
+      </div>
+    </Card>
   );
 };
 

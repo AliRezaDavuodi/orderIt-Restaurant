@@ -1,50 +1,9 @@
 // IMPORTS
 @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Raleway:wght@200;400;700&family=Saira+Condensed:wght@300;400;600&family=Shadows+Into+Light&display=swap");
-@import "./Scss/mixin.scss";
 
-:root {
-  // FONTS
-  --RalewayFonts: "Raleway", sans-serif;
-  --MochiyPopFonts: "Mochiy Pop P One", sans-serif;
-  --SairaCondensedFonts: "Saira Condensed", sans-serif;
-  --ShadowsLightFonts: "Shadows Into Light", cursive;
-
-  // COLOSR
-
-  // purple
-  --purpleLightestColor: #e7ceff;
-  --purpleLightColor: #d9b0ff;
-  --purpleColor: #bf7bffc7;
-  --purpleDarkColor: #643d88;
-
-  // gold
-  --goldLighterColor: #f7e98e;
-  --goldLightColor: #ffdb58;
-  --goldColor: #ffcc00;
-
-  // red
-  --redLightColor: #af4261;
-
-  // blue
-  --blue: #1f51ff;
-
-  // orange
-  --orange: #f09819;
-  --orangeDark: #ff512f;
-
-  // light
-  --white: #fff;
-  --gray: #ccc;
-
-  // dark
-  --dark: #000;
-  --darkLighter: #212121;
-}
-
-::selection {
-  background-color: var(--orangeDark);
-  color: var(--white);
-}
+@import "./Scss/animation";
+@import "./Scss/mixin";
+@import "./Scss/variables";
 
 * {
   padding: 0;
@@ -72,8 +31,8 @@ html {
 body {
   font-size: 1.8rem;
   line-height: 1.6;
-  font-family: var(--RalewayFonts);
-  background-color: var(--darkLighter);
+  font-family: $RalewayFonts;
+  background-color: $darkLighter;
   box-sizing: border-box;
 }
 
@@ -102,36 +61,16 @@ button {
   }
 }
 
-.fadeIn {
-  // fade animation
-  opacity: 0;
-  animation: fade 0.35s linear forwards;
-}
-
 .title {
   text-align: center;
   padding: 2rem 0;
-  font-family: var(--MochiyPopFonts);
-  background-image: linear-gradient(
-    30deg,
-    var(--goldColor),
-    var(--redLightColor)
-  );
+  font-family: $RalewayFonts;
+  background-image: linear-gradient(30deg, $goldColor, $redLightColor);
   background-clip: text;
   color: transparent;
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+::selection {
+  background-color: $orangeDark;
+  color: $white;
 }

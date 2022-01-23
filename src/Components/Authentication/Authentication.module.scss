@@ -1,10 +1,10 @@
-@import "../../Scss/mixin.scss ";
+@import "../../Scss/mixin ";
+@import "../../Scss/variables ";
 
 .auth {
+  @include flexbox(space-between);
+
   min-height: 85vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
   @include media("small") {
     flex-direction: column;
@@ -16,10 +16,10 @@
   width: 30%;
   padding: 2rem;
   margin: 0 auto;
-  border: 1px solid var(--orange);
+  border: 1px solid $orange;
   border-radius: 0.6rem;
-  background-color: var(--darkLighter);
-  box-shadow: rgba(#ff512f, 0.35) 0px 5px 15px;
+  background-color: $darkLighter;
+  box-shadow: rgba($orangeDark, 0.35) 0px 5px 15px;
 
   @include media("medium") {
     width: 50%;

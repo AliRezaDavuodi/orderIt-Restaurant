@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../Card/Card";
 
 import List from "../List/List";
 
@@ -46,9 +47,9 @@ const DUMMY__DATA = [
 ];
 const FavoditeFoods = () => {
   return (
-    <section>
+    <Card className="full">
       <List foods={DUMMY__DATA} />
-    </section>
+    </Card>
   );
 };
 

@@ -1,17 +1,17 @@
-@import "../../scss/mixin.scss";
+@import "../../scss/mixin";
+@import "../../scss/variables";
 
 .div {
   position: relative;
 }
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox(space-between);
+
   flex-wrap: wrap;
   padding: 2rem 5rem;
   background-color: #232b2b;
-  color: var(--white);
+  color: $white;
   transition: all 0.35s;
 
   @include media("medium") {
@@ -37,22 +37,16 @@
   }
 
   h2 {
-    font-family: var(--MochiyPopFonts);
+    font-family: $MochiyPopFonts;
     font-size: 3rem;
     text-transform: uppercase;
-    background-image: linear-gradient(
-      30deg,
-      var(--goldColor),
-      var(--redLightColor)
-    );
+    background-image: linear-gradient(30deg, $goldColor, $redLightColor);
     background-clip: text;
     color: transparent;
   }
 
   .list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox(space-between);
 
     @include media("medium") {
       margin: 2rem;
@@ -77,24 +71,18 @@
     cursor: pointer;
     transition: all 0.25s;
     font-weight: 700;
-    color: var(--white);
+    color: $white;
 
     &:hover,
     &.active {
       background-clip: text;
       color: transparent;
-      background-image: linear-gradient(
-        30deg,
-        var(--goldColor),
-        var(--redLightColor)
-      );
+      background-image: linear-gradient(30deg, $goldColor, $redLightColor);
     }
   }
 
   .personal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox(space-between);
 
     &-icon {
       width: 5rem;
@@ -103,7 +91,7 @@
       .active {
         img {
           transform: scale(1.2);
-          border-bottom: 1px solid var(--gray);
+          border-bottom: 1px solid $gray;
         }
       }
 
@@ -127,13 +115,13 @@
 .humber {
   width: 4rem;
   height: 4rem;
-  background-color: var(--darkLighter);
+  background-color: $darkLighter;
   border-radius: 50%;
   position: fixed;
   top: 1rem;
   right: 1rem;
   z-index: 150;
-  border: 1px solid var(--orangeDark);
+  border: 1px solid $orangeDark;
   display: none;
   cursor: pointer;
 
@@ -161,7 +149,7 @@
     width: 2rem;
     height: 0.1rem;
     z-index: 160;
-    background-color: var(--orangeDark);
+    background-color: $orangeDark;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -174,7 +162,7 @@
       width: 2rem;
       height: 0.1rem;
       z-index: 160;
-      background-color: var(--orangeDark);
+      background-color: $orangeDark;
       position: absolute;
       top: 0.8rem;
       left: 0%;
@@ -186,7 +174,7 @@
       width: 2rem;
       height: 0.1rem;
       z-index: 160;
-      background-color: var(--orangeDark);
+      background-color: $orangeDark;
       position: absolute;
       top: -0.7rem;
       left: 0%;
