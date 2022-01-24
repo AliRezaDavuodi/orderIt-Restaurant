@@ -18,6 +18,8 @@ const Signup = () => {
   const email = useInput(validateEmail);
   const password = useInput(validateLength);
   const name = useInput(validateLength);
+  const formIsValid =
+    email.formIsValid && password.formIsValid && name.formIsValid;
 
   const goToSigninFormHandler = () => {
     history.push("/auth/signin");
@@ -60,7 +62,9 @@ const Signup = () => {
         />
 
         <Card className="btnCard">
-          <Button onClick={signupFormHandler}>Signup</Button>
+          <Button onClick={signupFormHandler} disabled={!formIsValid}>
+            Signup
+          </Button>
           <Button onClick={goToSigninFormHandler}>Signin</Button>
         </Card>
       </Form>

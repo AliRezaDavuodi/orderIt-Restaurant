@@ -17,6 +17,7 @@ const Signin = () => {
 
   const email = useInput(validateEmail);
   const password = useInput(validateLength);
+  const formIsValid = email.formIsValid && password.formIsValid;
 
   const signinFormHandler = () => {
     // send request to server for login
@@ -50,7 +51,9 @@ const Signin = () => {
         />
 
         <Card className="btnCard">
-          <Button onClick={signinFormHandler}>Signin</Button>
+          <Button onClick={signinFormHandler} disabled={!formIsValid}>
+            Signin
+          </Button>
           <Button onClick={goToSignupFormHandler}>Signup</Button>
         </Card>
       </Form>
