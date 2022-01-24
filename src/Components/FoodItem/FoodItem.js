@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
+import { useHistory } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart";
+
 import unlike from "../../assests/unlike.png";
 import like from "../../assests/like.png";
 
 import css from "./FoodItem.module.scss";
-import { useHistory } from "react-router-dom";
+
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 
@@ -12,12 +17,14 @@ const FoodItem = (props) => {
   const [likeBtn, setLikeBtn] = useState(false);
   const history = useHistory();
 
-  const removeHandler = () => {
-    alert("remove");
+  const dispatch = useDispatch();
+
+  const removeHandler = (item) => {
+    dispatch(cartActions.deleteItemFromCart(item));
   };
 
-  const addHandler = () => {
-    alert("add");
+  const addHandler = (item) => {
+    dispatch(cartActions.addItemToCart(item));
   };
 
   const changeLikeHandler = () => {
@@ -51,7 +58,7 @@ const FoodItem = (props) => {
           {props.cart && (
             <div className={css.amount}>
               <Button small="true">+</Button>
-              <span> 5X </span>
+              <span> {props.amount}X </span>
               <Button small="true">-</Button>
             </div>
           )}
@@ -63,7 +70,13 @@ const FoodItem = (props) => {
 
         <Card className="btnCard">
           <p className={css.price}> {props.price} </p>
-          <Button onClick={props.cart ? removeHandler : addHandler}>
+          <Button
+            onClick={
+              props.cart
+                ? removeHandler.bind(null, props.item)
+                : addHandler.bind(null, props.item)
+            }
+          >
             {props.cart ? "Remove" : "Add To Cart"}
           </Button>
           <Button onClick={showDetailHandler}>Comments</Button>

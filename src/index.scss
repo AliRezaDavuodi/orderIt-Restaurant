@@ -70,6 +70,10 @@ button {
   color: transparent;
 }
 
+.center {
+  margin: auto;
+}
+
 ::selection {
   background-color: $orangeDark;
   color: $white;

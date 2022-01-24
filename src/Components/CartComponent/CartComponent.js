@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 
@@ -6,50 +7,9 @@ import List from "../List/List";
 
 import css from "./CartComponent.module.scss";
 
-const DUMMY__DATA = [
-  {
-    id: 716429,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 7164291,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 71642911,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 71642922,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 71642912,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-];
-
 const CartComponent = () => {
+  const cartItems = useSelector((state) => state.cart.foods);
+
   return (
     <Card className="full">
       <Card className={`container ${css.pay}`}>
@@ -57,7 +17,7 @@ const CartComponent = () => {
           <h2>5 items</h2>
           <span> $125 </span>
         </div>
-        <List foods={DUMMY__DATA} cart="true" />
+        <List foods={cartItems} cart="true" />
         <Card className={`btnCard ${css.cartFooter}`}>
           <Button full="true"> checkOut </Button>
         </Card>
