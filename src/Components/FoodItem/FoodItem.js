@@ -27,6 +27,13 @@ const FoodItem = (props) => {
     dispatch(cartActions.addItemToCart(item));
   };
 
+  const increaseItems = (item) => {
+    dispatch(cartActions.increaseItem(item));
+  };
+  const decreaseItems = (item) => {
+    dispatch(cartActions.decreaseItem(item));
+  };
+
   const changeLikeHandler = () => {
     setLikeBtn((like) => !like);
   };
@@ -57,9 +64,19 @@ const FoodItem = (props) => {
           )}
           {props.cart && (
             <div className={css.amount}>
-              <Button small="true">+</Button>
+              <Button
+                small="true"
+                onClick={increaseItems.bind(null, props.item)}
+              >
+                +
+              </Button>
               <span> {props.amount}X </span>
-              <Button small="true">-</Button>
+              <Button
+                small="true"
+                onClick={decreaseItems.bind(null, props.item)}
+              >
+                -
+              </Button>
             </div>
           )}
         </div>

@@ -19,7 +19,7 @@ const cart = createSlice({
       const exsitsItemIndex = state.foods.indexOf(exsitsItem);
 
       if (exsitsItemIndex !== -1) {
-        // increase it's amount by one
+        // increase its amount by one
         exsitsItem.amount++;
 
         return;
@@ -29,6 +29,25 @@ const cart = createSlice({
     },
     deleteItemFromCart(state, action) {
       // filter the foods array
+      state.foods = state.foods.filter((food) => food.id !== action.payload.id);
+    },
+    increaseItem(state, action) {
+      // find the item
+      const item = state.foods.find((food) => food.id === action.payload.id);
+      // increase its amount by one
+      item.amount++;
+    },
+    decreaseItem(state, action) {
+      // find item
+      const item = state.foods.find((food) => food.id === action.payload.id);
+      // chcek its amount
+      // if it's grather than one decrease it by one
+      if (item.amount > 1) {
+        item.amount--;
+
+        return;
+      }
+      // if it's one delete it from cart
       state.foods = state.foods.filter((food) => food.id !== action.payload.id);
     },
   },
