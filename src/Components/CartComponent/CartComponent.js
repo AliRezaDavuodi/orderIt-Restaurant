@@ -10,12 +10,18 @@ import css from "./CartComponent.module.scss";
 const CartComponent = () => {
   const cartItems = useSelector((state) => state.cart.foods);
 
+  const itemsAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
+  const totalPrice = cartItems.reduce(
+    (acc, cur) => acc + cur.price * cur.amount,
+    0
+  );
+
   return (
     <Card className="full">
       <Card className={`container ${css.pay}`}>
         <div className={css.cartTitlte}>
-          <h2>5 items</h2>
-          <span> $125 </span>
+          <h2>{itemsAmount} items</h2>
+          <span> ${totalPrice} </span>
         </div>
         <List foods={cartItems} cart="true" />
         <Card className={`btnCard ${css.cartFooter}`}>

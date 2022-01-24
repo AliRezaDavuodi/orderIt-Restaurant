@@ -15,7 +15,7 @@ const FoodInfo = (props) => {
   const history = useHistory();
 
   const clickCommentHandler = () => {
-    history.push(`${location.pathname}?comments=show`);
+    history.replace(`${location.pathname}?comments=show`);
   };
 
   const clickCloseCommentHandler = () => {
