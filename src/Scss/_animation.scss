@@ -18,3 +18,20 @@
     transform: scale(1);
   }
 }
+
+.beatUp {
+  transition: all 0.35s;
+  animation: beat 0.1s linear forwards;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
