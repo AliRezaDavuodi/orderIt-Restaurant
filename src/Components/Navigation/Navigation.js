@@ -10,19 +10,34 @@ import css from "./Navigation.module.scss";
 const Navigation = () => {
   const [toggle, settoggle] = useState(false);
   const [cartBeat, setCartBeat] = useState(false);
+  const [likeBeat, setLikeBeat] = useState(false);
 
   const cartFoods = useSelector((state) => state.cart.foods);
+  const likeFoods = useSelector((state) => state.like.likes);
 
+  // beat animaion for cart section
   useEffect(() => {
     if (cartFoods.length === 0) return;
     setCartBeat(true);
     const timer = setTimeout(() => {
       setCartBeat(false);
-    }, 350);
+    }, 100);
     return () => {
       clearTimeout(timer);
     };
   }, [cartFoods]);
+
+  // beat animation for like section
+  useEffect(() => {
+    if (likeFoods.length === 0) return;
+    setLikeBeat(true);
+    const timer = setTimeout(() => {
+      setLikeBeat(false);
+    }, 100);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [likeFoods]);
 
   return (
     <section>
@@ -72,7 +87,11 @@ const Navigation = () => {
           </div>
           <div className={css["personal-icon"]}>
             <NavLink activeClassName={css.active} to="/favorite">
-              <img src={Like} alt="cart icon" />
+              <img
+                src={Like}
+                alt="cart icon"
+                className={`${likeBeat ? "beatUp" : ""}`}
+              />
             </NavLink>
           </div>
         </div>
