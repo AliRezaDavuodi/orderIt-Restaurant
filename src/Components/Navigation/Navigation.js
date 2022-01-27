@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -9,35 +9,11 @@ import css from "./Navigation.module.scss";
 
 const Navigation = () => {
   const [toggle, settoggle] = useState(false);
-  const [cartBeat, setCartBeat] = useState(false);
-  const [likeBeat, setLikeBeat] = useState(false);
 
-  const cartFoods = useSelector((state) => state.cart.foods);
-  const likeFoods = useSelector((state) => state.like.likes);
+  const cartItem = useSelector((state) => state.cart.foods);
+  const likeItemLength = useSelector((state) => state.like.likes.length);
 
-  // beat animaion for cart section
-  useEffect(() => {
-    if (cartFoods.length === 0) return;
-    setCartBeat(true);
-    const timer = setTimeout(() => {
-      setCartBeat(false);
-    }, 100);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [cartFoods]);
-
-  // beat animation for like section
-  useEffect(() => {
-    if (likeFoods.length === 0) return;
-    setLikeBeat(true);
-    const timer = setTimeout(() => {
-      setLikeBeat(false);
-    }, 100);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [likeFoods]);
+  const cartItemLength = cartItem.reduce((acc, cur) => acc + cur.amount, 0);
 
   return (
     <section>
@@ -78,20 +54,18 @@ const Navigation = () => {
         <div className={css.personal}>
           <div className={css["personal-icon"]}>
             <NavLink activeClassName={css.active} to="/cart">
-              <img
-                src={Cart}
-                alt="cart icon"
-                className={`${cartBeat ? "beatUp" : ""}`}
-              />
+              <img src={Cart} alt="cart icon" />
+              <div className={css.budget}>
+                <span> {cartItemLength} </span>
+              </div>
             </NavLink>
           </div>
           <div className={css["personal-icon"]}>
             <NavLink activeClassName={css.active} to="/favorite">
-              <img
-                src={Like}
-                alt="cart icon"
-                className={`${likeBeat ? "beatUp" : ""}`}
-              />
+              <img src={Like} alt="cart icon" />
+              <div className={css.budget}>
+                <span> {likeItemLength} </span>
+              </div>
             </NavLink>
           </div>
         </div>

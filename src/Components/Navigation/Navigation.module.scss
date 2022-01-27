@@ -83,6 +83,7 @@
 
   .personal {
     @include flexbox(space-between);
+    position: relative;
 
     &-icon {
       width: 5rem;
@@ -110,6 +111,20 @@
       cursor: pointer;
     }
   }
+}
+
+.budget {
+  position: absolute;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  font-family: $ShadowsLightFonts;
+  font-size: 1.4rem;
+  border-radius: 50%;
+  background-color: $orangeDark;
+  color: white;
+  text-align: center;
+  line-height: 2rem;
 }
 
 .humber {
