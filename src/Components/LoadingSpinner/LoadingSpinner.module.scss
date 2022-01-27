@@ -1,0 +1,90 @@
+@import "../../Scss/mixin";
+
+.box {
+  @include flexbox(center);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0%;
+  top: 0;
+}
+
+.container {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  transform: rotate(45deg);
+  animation: identifier 1s infinite;
+}
+
+.container span {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  animation: rotate 1s infinite 0.5s;
+}
+
+.container span:nth-child(1) {
+  background-color: blue;
+  top: 0;
+  left: 0;
+}
+.container span:nth-child(2) {
+  background-color: purple;
+  bottom: 0;
+  left: 0;
+}
+.container span:nth-child(3) {
+  background-color: lightgreen;
+  right: 0;
+  top: 0;
+}
+.container span:nth-child(4) {
+  background-color: tomato;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes identifier {
+  0% {
+    width: 10rem;
+    height: 10rem;
+  }
+  20% {
+    width: 10rem;
+    height: 10rem;
+  }
+  50% {
+    width: 15rem;
+    height: 15rem;
+  }
+  90% {
+    width: 15rem;
+    height: 15rem;
+  }
+  100% {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(90deg);
+  }
+  35% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  90% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
