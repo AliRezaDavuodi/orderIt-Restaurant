@@ -32,7 +32,7 @@ function App() {
           title: recipe.title,
           image: recipe.image,
           description: recipe.summary.slice(0, 120) + "...",
-          price: recipe.pricePerServing,
+          price: recipe.pricePerServing.toFixed(2),
         };
 
         suggesionFoods.push(dataObj);

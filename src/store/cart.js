@@ -9,23 +9,18 @@ const cart = createSlice({
   initialState: INITIAL__STATE,
   reducers: {
     addItemToCart(state, action) {
-      // chcek if food is already in cart
-
       const exsitsItem = state.foods.find(
-        (food) => (food.id = action.payload.id)
+        (food) => food.id === action.payload.id
       );
 
-      // find the item's index
-      const exsitsItemIndex = state.foods.indexOf(exsitsItem);
-
-      if (exsitsItemIndex !== -1) {
-        // increase its amount by one
-        exsitsItem.amount++;
+      if (!exsitsItem) {
+        // if food is new, push it to the foods
+        state.foods.push({ ...action.payload, amount: 1 });
 
         return;
       }
-      // if food is new, push it to the foods
-      state.foods.push({ ...action.payload, amount: 1 });
+      // increase its amount by one
+      exsitsItem.amount++;
     },
     deleteItemFromCart(state, action) {
       // filter the foods array
