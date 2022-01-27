@@ -23,26 +23,19 @@
 }
 
 .img {
-  min-width: 20rem;
-  height: 100%;
-
-  @include media("medium") {
-    width: 100%;
-  }
-  @include media("small") {
-    width: 100%;
-  }
+  padding: 1rem;
   img {
-    width: 100%;
+    width: 25rem;
     height: 100%;
-    object-fit: cover;
-    border-radius: 0.5rem;
     margin-right: 3rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
 
     @include media("medium") {
       margin: 0;
     }
     @include media("small") {
+      width: 100%;
       margin: 0;
     }
   }

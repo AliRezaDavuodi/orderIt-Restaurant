@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useHistory } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart";
 
 import unlike from "../../assests/unlike.png";
@@ -53,7 +53,7 @@ const FoodItem = (props) => {
   return (
     <li className={foodItemClass}>
       <div className={css.img}>
-        <img src={props.img} alt={props.description} />
+        <img src={props.img} alt={props.title} />
       </div>
 
       <div className={css.info}>
@@ -91,9 +91,10 @@ const FoodItem = (props) => {
           )}
         </div>
 
-        <div className={css.description}>
-          <p>{props.description}</p>
-        </div>
+        <div
+          className={css.description}
+          dangerouslySetInnerHTML={{ __html: props.description }}
+        ></div>
 
         <Card className="btnCard">
           <p className={css.price}> {props.price} </p>
