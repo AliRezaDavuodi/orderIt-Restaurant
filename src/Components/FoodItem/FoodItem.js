@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useHistory } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart";
 
 import unlike from "../../assests/unlike.png";
@@ -15,8 +15,9 @@ import Card from "../Card/Card";
 import { likeActions } from "../../store/favorite";
 
 const FoodItem = (props) => {
-  const [likeBtn, setLikeBtn] = useState();
   const history = useHistory();
+
+  const foodsLike = useSelector((state) => state.like.likes);
 
   const dispatch = useDispatch();
 
@@ -36,11 +37,9 @@ const FoodItem = (props) => {
   };
 
   const changeLikeHandler = (item) => {
-    setLikeBtn(true);
     dispatch(likeActions.addItem(item));
   };
   const changeUnlikeHandler = (item) => {
-    setLikeBtn(false);
     dispatch(likeActions.deleteItem(item));
   };
 
@@ -49,6 +48,9 @@ const FoodItem = (props) => {
   };
 
   const foodItemClass = `fadeIn ${css.food}`;
+
+  // check if the food is liked and convert it to a boolean
+  const isLike = !!foodsLike.find((food) => food.id === props.id);
 
   return (
     <li className={foodItemClass}>
@@ -62,9 +64,9 @@ const FoodItem = (props) => {
           {!props.cart && (
             <div className={css.like}>
               <img
-                src={likeBtn ? like : unlike}
+                src={isLike ? like : unlike}
                 onClick={
-                  likeBtn
+                  isLike
                     ? changeUnlikeHandler.bind(null, props.item)
                     : changeLikeHandler.bind(null, props.item)
                 }

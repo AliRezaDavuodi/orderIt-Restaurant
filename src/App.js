@@ -15,14 +15,12 @@ const RANDOM__FOOD__URL =
   "https://api.spoonacular.com/recipes/random?number=10&apiKey=d305e19b4ada4db5a5c275ed4480c431";
 
 function App() {
-  const { request } = useHttpRequest();
+  const { request: gettingRandomFood } = useHttpRequest();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const convertRandomFoods = (data) => {
       const { recipes } = data;
-
-      console.log(recipes);
 
       const suggesionFoods = [];
 
@@ -40,8 +38,8 @@ function App() {
       dispatch(foodsActions.replaceFoods(suggesionFoods));
     };
 
-    request({ url: RANDOM__FOOD__URL }, convertRandomFoods);
-  }, [request, dispatch]);
+    gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
+  }, [gettingRandomFood, dispatch]);
 
   return (
     <>
