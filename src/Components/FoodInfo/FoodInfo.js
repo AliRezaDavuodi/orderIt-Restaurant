@@ -27,7 +27,7 @@ const FoodInfo = (props) => {
       <Card className={`container`}>
         <div className={css.info}>
           <div className={css.img}>
-            <img src={props.food.image} alt={props.food.description} />
+            <img src={props.food.image} alt={props.food.title} />
           </div>
           <div className={css.detail}>
             <div>

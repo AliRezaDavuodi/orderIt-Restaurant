@@ -1,65 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import FoodInfo from "../Components/FoodInfo/FoodInfo";
 import Navigation from "../Components/Navigation/Navigation";
+import useHttpRequest from "../Hooks/http-request/use-http";
+import { foodInfoActions } from "../store/foodDetails";
 
-const DUMMY__DATA = [
-  {
-    id: 716429,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 7164291,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 71642911,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 71642922,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-  {
-    id: 71642912,
-    title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
-    description:
-      "We barrel ferment our Chardonnay and age it in a mix of Oak and Stainless. Giving this light bodied wine modest oak character, a delicate floral aroma, and a warming finish.",
-    price: "$25.0",
-  },
-];
 const FoodsDetails = () => {
   const params = useParams();
+  const { foodID } = params;
 
-  console.log(params);
+  const dispatch = useDispatch();
+  const foodInfo = useSelector((state) => state.info.info);
 
-  const food = DUMMY__DATA.find((food) => food.id === +params.foodID);
-  console.log(food);
+  const { request: searchToFindFoodById } = useHttpRequest();
 
-  // find the correct food and display it
+  useEffect(() => {
+    const tranformData = (data) => {
+      const { id, image, instructions, title } = data;
+
+      const foodInformation = {
+        id,
+        image,
+        title,
+        description: instructions,
+      };
+
+      dispatch(foodInfoActions.replaceFoodInfo(foodInformation));
+    };
+
+    searchToFindFoodById(
+      {
+        url: `https://api.spoonacular.com/recipes/${foodID}/information?includeNutrition=false&apiKey=d305e19b4ada4db5a5c275ed4480c431`,
+      },
+      tranformData
+    );
+  }, [searchToFindFoodById, foodID, dispatch]);
 
   return (
     <>
       <Navigation />
       <div className="fadeIn">
-        <FoodInfo food={food} />
+        <FoodInfo food={foodInfo} />
       </div>
     </>
   );
