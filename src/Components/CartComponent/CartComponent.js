@@ -11,10 +11,9 @@ const CartComponent = () => {
   const cartItems = useSelector((state) => state.cart.foods);
 
   const itemsAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
-  const totalPrice = cartItems.reduce(
-    (acc, cur) => acc + cur.price * cur.amount,
-    0
-  );
+  const totalPrice = cartItems
+    .reduce((acc, cur) => acc + cur.price * cur.amount, 0)
+    .toFixed(2);
 
   return (
     <Card className="full">

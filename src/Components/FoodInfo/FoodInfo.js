@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Card from "../Card/Card";
@@ -22,6 +22,10 @@ const FoodInfo = (props) => {
     history.push(location.pathname);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <Card className="full">
       <Card className={`container`}>
@@ -32,7 +36,10 @@ const FoodInfo = (props) => {
           <div className={css.detail}>
             <div>
               <h2> {props.food.title} </h2>
-              <p> {props.food.description} </p>
+              <div
+                className={css["detail-info"]}
+                dangerouslySetInnerHTML={{ __html: props.food.description }}
+              ></div>
             </div>
 
             <Card className={`cardBtn ${css.btn}`}>

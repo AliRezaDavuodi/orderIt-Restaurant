@@ -51,8 +51,9 @@
     width: 100%;
   }
 
-  p {
+  &-info {
     color: $gray;
+    margin-left: 1rem;
   }
 }
 

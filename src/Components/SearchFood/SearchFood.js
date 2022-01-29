@@ -1,19 +1,30 @@
-import React from "react";
+import React, { createRef } from "react";
 
 import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
 
-const SearchFood = () => {
+const SearchFood = (props) => {
+  const inputSearchRef = createRef();
+
+  const clickSearchForm = () => {
+    props.getData(inputSearchRef.current.value);
+  };
+
   return (
-    <Form>
-      <Input
-        placeholder="what do you want"
-        label="what do you want"
-        id="search"
-      />
-      <Button searchbtn="true">Search</Button>
-    </Form>
+    <>
+      <Form>
+        <Input
+          placeholder="what do you want"
+          label="what do you want"
+          id="search"
+          ref={inputSearchRef}
+        />
+        <Button searchbtn="true" onClick={clickSearchForm}>
+          Search
+        </Button>
+      </Form>
+    </>
   );
 };
 

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import css from "./Input.module.scss";
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   return (
     <div className={`${css.controller} ${props.invalid ? css.invalid : ""}`}>
       <input
@@ -10,6 +10,7 @@ const Input = (props) => {
         className={props.id === "search" ? css.search : ""}
         {...props}
         autoComplete="off"
+        ref={ref}
       />
       <label
         htmlFor={props.id}
@@ -19,6 +20,6 @@ const Input = (props) => {
       </label>
     </div>
   );
-};
+});
 
 export default Input;
