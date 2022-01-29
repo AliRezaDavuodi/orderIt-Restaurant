@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import LoadingSpinner from "./Components/LoadingSpinner/LoadingSpinner";
+import { convertFoodData } from "./Hooks/http-request/apis";
 import useHttpRequest from "./Hooks/http-request/use-http";
 
 import Auth from "./Pages/Auth";
@@ -21,21 +22,7 @@ function App() {
 
   useEffect(() => {
     const convertRandomFoods = (data) => {
-      const { recipes } = data;
-
-      const suggesionFoods = [];
-
-      recipes.forEach((recipe) => {
-        const dataObj = {
-          id: recipe.id,
-          title: recipe.title,
-          image: recipe.image,
-          description: recipe.summary.slice(0, 120) + "...",
-          price: recipe.pricePerServing.toFixed(2),
-        };
-
-        suggesionFoods.push(dataObj);
-      });
+      const suggesionFoods = convertFoodData(data);
       dispatch(foodsActions.replaceFoods(suggesionFoods));
     };
 

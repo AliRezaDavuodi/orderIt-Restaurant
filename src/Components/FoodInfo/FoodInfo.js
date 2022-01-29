@@ -1,25 +1,25 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import { useLocation } from "react-router-dom";
 
 import Card from "../Card/Card";
 import Button from "../Button/Button";
 import CommentsList from "../CommentsList/CommentsList";
+import CommentForm from "../CommentForm/CommentForm";
 
 import css from "./FoodInfo.module.scss";
 
-import CommentForm from "../CommentForm/CommentForm";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-
 const FoodInfo = (props) => {
+  const [comments, setComments] = useState(false);
+
   const location = useLocation();
-  const history = useHistory();
 
   const clickCommentHandler = () => {
-    history.replace(`${location.pathname}?comments=show`);
+    setComments(true);
   };
 
   const clickCloseCommentHandler = () => {
-    history.push(location.pathname);
+    setComments(false);
   };
 
   useEffect(() => {
@@ -46,18 +46,16 @@ const FoodInfo = (props) => {
               <Button
                 center="true"
                 onClick={
-                  !location.search
-                    ? clickCommentHandler
-                    : clickCloseCommentHandler
+                  !comments ? clickCommentHandler : clickCloseCommentHandler
                 }
               >
-                {!location.search ? "leave a comment" : "Cancel"}
+                {!comments ? "leave a comment" : "Cancel"}
               </Button>
             </Card>
           </div>
         </div>
 
-        {location.search && <CommentForm />}
+        {comments && <CommentForm />}
 
         <CommentsList />
       </Card>

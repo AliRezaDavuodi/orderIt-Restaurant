@@ -28,6 +28,7 @@
   }
   @include media("small") {
     margin: 1rem;
+    width: 100%;
   }
 
   &:hover {

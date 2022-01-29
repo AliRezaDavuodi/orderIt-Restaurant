@@ -107,9 +107,9 @@ const FoodItem = (props) => {
                 : addHandler.bind(null, props.item)
             }
           >
-            {props.cart ? "Remove" : "Add To Cart"}
+            {props.cart ? "Remove" : "Add"}
           </Button>
-          <Button onClick={showDetailHandler}>Comments</Button>
+          <Button onClick={showDetailHandler}>More</Button>
         </Card>
       </div>
     </li>

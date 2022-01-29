@@ -6,6 +6,7 @@ import FoodsList from "../Components/FoodsList/FoodsList";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import Navigation from "../Components/Navigation/Navigation";
 import SearchFood from "../Components/SearchFood/SearchFood";
+import { convertFoodData } from "../Hooks/http-request/apis";
 import useHttpRequest from "../Hooks/http-request/use-http";
 import { foodsActions } from "../store/foods";
 
@@ -18,21 +19,7 @@ const Foods = () => {
     if (query.length === 0) return;
 
     const TransformData = (data) => {
-      const { recipes } = data;
-
-      const searchedRecipes = [];
-
-      recipes.forEach((recipe) => {
-        const dataObj = {
-          id: recipe.id,
-          title: recipe.title,
-          image: recipe.image,
-          description: recipe.summary.slice(0, 120) + "...",
-          price: recipe.pricePerServing.toFixed(2),
-        };
-
-        searchedRecipes.push(dataObj);
-      });
+      const searchedRecipes = convertFoodData(data);
 
       dispatch(foodsActions.replaceFoods(searchedRecipes));
     };
