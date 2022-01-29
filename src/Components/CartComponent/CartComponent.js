@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import Card from "../Card/Card";
 
 import List from "../List/List";
+import NotFoundData from "../NotFoundData/NotFoundData";
 
 import css from "./CartComponent.module.scss";
 
@@ -18,14 +19,20 @@ const CartComponent = () => {
   return (
     <Card className="full">
       <Card className={`container ${css.pay}`}>
-        <div className={css.cartTitlte}>
-          <h2>{itemsAmount} items</h2>
-          <span> ${totalPrice} </span>
-        </div>
-        <List foods={cartItems} cart="true" />
-        <Card className={`btnCard ${css.cartFooter}`}>
-          <Button full="true"> checkOut </Button>
-        </Card>
+        {cartItems.length === 0 ? (
+          <NotFoundData> your cart is empty </NotFoundData>
+        ) : (
+          <>
+            <div className={css.cartTitlte}>
+              <h2>{itemsAmount} items</h2>
+              <span> ${totalPrice} </span>
+            </div>
+            <List foods={cartItems} cart="true" />
+            <Card className={`btnCard ${css.cartFooter}`}>
+              <Button full="true"> checkOut </Button>
+            </Card>
+          </>
+        )}
       </Card>
     </Card>
   );
