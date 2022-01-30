@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 const useHttpRequest = () => {
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(null);
+  const [data, setData] = useState(null);
 
   const request = useCallback((requestConfig, convertData) => {
     setHasError(null);
@@ -22,7 +23,8 @@ const useHttpRequest = () => {
         return res.json();
       })
       .then((data) => {
-        convertData(data);
+        const covertedData = convertData(data);
+        setData(covertedData);
       })
       .catch((err) => {
         console.log(err.message);
@@ -35,6 +37,7 @@ const useHttpRequest = () => {
     hasError,
     loading,
     request,
+    data,
   };
 };
 

@@ -42,15 +42,17 @@ const Navigation = () => {
               Home
             </NavLink>
           </li>
-          <li className={css.item}>
-            <NavLink
-              activeClassName={css.active}
-              to="/foods"
-              className={css.link}
-            >
-              Foods
-            </NavLink>
-          </li>
+          {!!auth && (
+            <li className={css.item}>
+              <NavLink
+                activeClassName={css.active}
+                to="/foods"
+                className={css.link}
+              >
+                Foods
+              </NavLink>
+            </li>
+          )}
           <li className={css.item}>
             <NavLink
               activeClassName={!!auth ? "" : css.active}
@@ -62,24 +64,26 @@ const Navigation = () => {
             </NavLink>
           </li>
         </ul>
-        <div className={css.personal}>
-          <div className={css["personal-icon"]}>
-            <NavLink activeClassName={css.active} to="/cart">
-              <img src={Cart} alt="cart icon" />
-              <div className={css.budget}>
-                <span> {cartItemLength} </span>
-              </div>
-            </NavLink>
+        {!!auth && (
+          <div className={css.personal}>
+            <div className={css["personal-icon"]}>
+              <NavLink activeClassName={css.active} to="/cart">
+                <img src={Cart} alt="cart icon" />
+                <div className={css.budget}>
+                  <span> {cartItemLength} </span>
+                </div>
+              </NavLink>
+            </div>
+            <div className={css["personal-icon"]}>
+              <NavLink activeClassName={css.active} to="/favorite">
+                <img src={Like} alt="cart icon" />
+                <div className={css.budget}>
+                  <span> {likeItemLength} </span>
+                </div>
+              </NavLink>
+            </div>
           </div>
-          <div className={css["personal-icon"]}>
-            <NavLink activeClassName={css.active} to="/favorite">
-              <img src={Like} alt="cart icon" />
-              <div className={css.budget}>
-                <span> {likeItemLength} </span>
-              </div>
-            </NavLink>
-          </div>
-        </div>
+        )}
       </nav>
       <div
         className={`${css.humber} ${toggle ? css.show : ""}`}

@@ -21,21 +21,34 @@ function App() {
   const auth = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 
-  const { request: gettingRandomFood, loading } = useHttpRequest();
+  const {
+    request: gettingRandomFood,
+    loading,
+    data: allFoods,
+  } = useHttpRequest();
 
   useEffect(() => {
     const convertRandomFoods = (data) => {
-      const suggesionFoods = convertFoodData(data);
-      dispatch(foodsActions.replaceFoods(suggesionFoods));
+      return convertFoodData(data);
     };
 
-    gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
-  }, [gettingRandomFood, dispatch]);
+    // sendig request to get food only when the user is logged in
+    if (!!auth) {
+      gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
+    }
+
+    if (allFoods) {
+      dispatch(foodsActions.replaceFoods(allFoods));
+    }
+  }, [gettingRandomFood, dispatch, auth, allFoods]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      dispatch(authActions.login(token));
+      const authInfo = {
+        token,
+      };
+      dispatch(authActions.login(authInfo));
     }
   }, [dispatch]);
 
@@ -49,10 +62,11 @@ function App() {
               <Home />
             </Route>
 
-            <Route path="/foods" exact>
-              <Foods />
-            </Route>
-
+            {!!auth && (
+              <Route path="/foods" exact>
+                <Foods />
+              </Route>
+            )}
             {!!auth && (
               <Route path="/foods/:foodID">
                 <FoodsDetails />

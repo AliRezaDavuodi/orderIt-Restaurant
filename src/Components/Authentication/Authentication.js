@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import humber from "../../assests/hamburg.svg";
 
@@ -15,11 +15,10 @@ import { authActions } from "../../store/auth";
 import css from "./Authentication.module.scss";
 
 const Authentication = () => {
-  const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { request: sendigUserInformation, loading } = useHttpRequest();
+  const { request: sendigUserInformation, loading, data } = useHttpRequest();
 
   const onSubmitHandler = (userInfo) => {
     // send data to the server
@@ -30,11 +29,7 @@ const Authentication = () => {
         expiresIn: +data.expiresIn,
       };
 
-      console.log({
-        loggedInInformation,
-        data,
-      });
-      dispatch(authActions.login(loggedInInformation));
+      return loggedInInformation;
     };
 
     sendigUserInformation(
@@ -49,6 +44,12 @@ const Authentication = () => {
       convertData
     );
   };
+
+  useEffect(() => {
+    if (data) {
+      dispatch(authActions.login(data));
+    }
+  }, [data, dispatch]);
 
   const formTtitle = location.pathname === "/auth" ? "Signup" : "Signin";
 

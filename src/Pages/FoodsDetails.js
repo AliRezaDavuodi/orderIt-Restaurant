@@ -22,7 +22,11 @@ const FoodsDetails = () => {
   const foodInfo = useSelector((state) => state.info.info);
 
   // custom hook to send HTTP request
-  const { request: searchToFindFoodById, loading } = useHttpRequest();
+  const {
+    request: searchToFindFoodById,
+    loading,
+    data: foodDetail,
+  } = useHttpRequest();
 
   useEffect(() => {
     const tranformData = (data) => {
@@ -37,8 +41,7 @@ const FoodsDetails = () => {
         description: instructions,
       };
 
-      // update food info object
-      dispatch(foodInfoActions.replaceFoodInfo(foodInformation));
+      return foodInformation;
     };
 
     // sendig request
@@ -48,7 +51,12 @@ const FoodsDetails = () => {
       },
       tranformData
     );
-  }, [searchToFindFoodById, foodID, dispatch]);
+
+    if (foodDetail) {
+      // update food info object
+      dispatch(foodInfoActions.replaceFoodInfo(foodDetail));
+    }
+  }, [searchToFindFoodById, foodID, dispatch, foodDetail]);
 
   return (
     <>

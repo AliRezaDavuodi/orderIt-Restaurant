@@ -4,13 +4,18 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import css from "./Hero.module.scss";
 
 import Button from "../Button/Button";
-import Card from "../Card/Card";
+import { useSelector } from "react-redux";
 
 const Hero = () => {
   const history = useHistory();
 
+  const auth = useSelector((state) => state.auth.token);
+
   const clickSignupHandler = () => {
     history.push("/auth");
+  };
+  const clickSigninHandler = () => {
+    history.push("/auth/signin");
   };
   const clickOrderHandler = () => {
     history.push("/foods");
@@ -31,7 +36,8 @@ const Hero = () => {
       </div>
 
       <div className={css.actions}>
-        <Button onClick={clickOrderHandler}>Let's Order </Button>
+        {!!auth && <Button onClick={clickOrderHandler}>Let's Order </Button>}
+        {!!!auth && <Button onClick={clickSigninHandler}>Signin </Button>}
         <Button onClick={clickSignupHandler}>Signup </Button>
       </div>
     </header>
