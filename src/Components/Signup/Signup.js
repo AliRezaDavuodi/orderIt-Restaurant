@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../Input/Input";
@@ -12,8 +12,14 @@ import {
   validateLength,
 } from "../../Hooks/form-validation/helper";
 
-const Signup = () => {
+const Signup = (props) => {
   const history = useHistory();
+
+  // const dispatch = useDispatch();
+
+  const inputNameRef = createRef();
+  const inputEmailRef = createRef();
+  const inputPasswordRef = createRef();
 
   const email = useInput(validateEmail);
   const password = useInput(validateLength);
@@ -21,12 +27,21 @@ const Signup = () => {
   const formIsValid =
     email.formIsValid && password.formIsValid && name.formIsValid;
 
-  const goToSigninFormHandler = () => {
+  const goToSigninFormHandler = (e) => {
+    e.preventDefault();
     history.push("/auth/signin");
   };
 
-  const signupFormHandler = () => {
-    // send data to the server
+  const signupFormHandler = (e) => {
+    e.preventDefault();
+
+    const userInformation = {
+      email: inputEmailRef.current.value,
+      password: inputPasswordRef.current.value,
+      returnSecureToken: true,
+    };
+
+    props.send(userInformation);
   };
 
   return (
@@ -38,8 +53,9 @@ const Signup = () => {
           placeholder="name"
           onChange={name.inputChangeHandler}
           onBlur={name.inputBlurHandler}
-          invalid={name.hasErr}
+          invalid={name.hasErr ? 1 : 0}
           value={name.enteredValue}
+          ref={inputNameRef}
         />
         <Input
           id="email"
@@ -47,8 +63,9 @@ const Signup = () => {
           placeholder="email"
           onChange={email.inputChangeHandler}
           onBlur={email.inputBlurHandler}
-          invalid={email.hasErr}
+          invalid={email.hasErr ? 1 : 0}
           value={email.enteredValue}
+          ref={inputEmailRef}
         />
         <Input
           id="password"
@@ -57,8 +74,9 @@ const Signup = () => {
           placeholder="pass"
           onChange={password.inputChangeHandler}
           onBlur={password.inputBlurHandler}
-          invalid={password.hasErr}
+          invalid={password.hasErr ? 1 : 0}
           value={password.enteredValue}
+          ref={inputPasswordRef}
         />
 
         <Card className="btnCard">

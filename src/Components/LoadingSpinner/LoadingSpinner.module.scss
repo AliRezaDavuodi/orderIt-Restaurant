@@ -1,4 +1,5 @@
 @import "../../Scss/mixin";
+@import "../../Scss/variables";
 
 .box {
   @include flexbox(center);
@@ -7,6 +8,8 @@
   height: 100vh;
   left: 0%;
   top: 0;
+  background-color: rgba($dark, 0.9);
+  z-index: 1000;
 }
 
 .container {

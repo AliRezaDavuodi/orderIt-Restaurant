@@ -4,6 +4,7 @@ import cart from "./cart";
 import favorite from "./favorite";
 import randomFoods from "./foods";
 import foodDetails from "./foodDetails";
+import authentication from "./auth";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     like: favorite,
     foods: randomFoods,
     info: foodDetails,
+    auth: authentication,
   },
 });
 

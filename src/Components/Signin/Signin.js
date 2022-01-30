@@ -19,11 +19,14 @@ const Signin = () => {
   const password = useInput(validateLength);
   const formIsValid = email.formIsValid && password.formIsValid;
 
-  const signinFormHandler = () => {
+  const signinFormHandler = (e) => {
+    e.preventDefault();
+
     // send request to server for login
   };
 
-  const goToSignupFormHandler = () => {
+  const goToSignupFormHandler = (e) => {
+    e.preventDefault();
     history.push("/auth");
   };
 
@@ -36,7 +39,7 @@ const Signin = () => {
           placeholder="email"
           onChange={email.inputChangeHandler}
           onBlur={email.inputBlurHandler}
-          invalid={email.hasErr}
+          invalid={email.hasErr ? 1 : 0}
           value={email.enteredValue}
         />
         <Input
@@ -46,7 +49,7 @@ const Signin = () => {
           placeholder="pass"
           onChange={password.inputChangeHandler}
           onBlur={password.inputBlurHandler}
-          invalid={password.hasErr}
+          invalid={password.hasErr ? 1 : 0}
           value={password.enteredValue}
         />
 

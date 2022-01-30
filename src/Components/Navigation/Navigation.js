@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
+import { authActions } from "../../store/auth";
 
 import Cart from "../../assests/cart.png";
 import Like from "../../assests/heart.png";
@@ -9,11 +11,19 @@ import css from "./Navigation.module.scss";
 
 const Navigation = () => {
   const [toggle, settoggle] = useState(false);
+  const auth = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
 
   const cartItem = useSelector((state) => state.cart.foods);
   const likeItemLength = useSelector((state) => state.like.likes.length);
 
   const cartItemLength = cartItem.reduce((acc, cur) => acc + cur.amount, 0);
+
+  const logoutHandler = () => {
+    if (!!auth) {
+      dispatch(authActions.logout());
+    }
+  };
 
   return (
     <section>
@@ -43,11 +53,12 @@ const Navigation = () => {
           </li>
           <li className={css.item}>
             <NavLink
-              activeClassName={css.active}
-              to="/auth"
+              activeClassName={!!auth ? "" : css.active}
               className={css.link}
+              to={!!auth ? "/" : "/auth"}
+              onClick={logoutHandler}
             >
-              sign up
+              {!!auth ? "log out" : "sign up"}
             </NavLink>
           </li>
         </ul>

@@ -5,4 +5,4 @@ export const validateEmail = (email) =>
   email.slice(-1) !== "." &&
   email.length > 5;
 
-export const validateLength = (string) => string.length > 5;
+export const validateLength = (string) => string.length >= 5;
