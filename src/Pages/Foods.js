@@ -7,6 +7,10 @@ import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import Navigation from "../Components/Navigation/Navigation";
 import SearchFood from "../Components/SearchFood/SearchFood";
 import { convertFoodData } from "../Hooks/http-request/apis";
+import {
+  spoonacularApiKey,
+  spoonacularGetFood,
+} from "../Hooks/http-request/urls";
 import useHttpRequest from "../Hooks/http-request/use-http";
 import { foodsActions } from "../store/foods";
 
@@ -26,7 +30,7 @@ const Foods = () => {
 
     getFoodBySearch(
       {
-        url: `https://api.spoonacular.com/recipes/random?number=100&tags=${query}&apiKey=d305e19b4ada4db5a5c275ed4480c431`,
+        url: `${spoonacularGetFood}number=100&tags=${query}${spoonacularApiKey}`,
       },
       TransformData
     );

@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
+import Card from "../Components/Card/Card";
 
 import FoodInfo from "../Components/FoodInfo/FoodInfo";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import Navigation from "../Components/Navigation/Navigation";
 import NotFoundData from "../Components/NotFoundData/NotFoundData";
+import { spoonacularApiKey } from "../Hooks/http-request/urls";
 
 import useHttpRequest from "../Hooks/http-request/use-http";
 import { foodInfoActions } from "../store/foodDetails";
@@ -48,7 +50,7 @@ const FoodsDetails = () => {
     // sendig request
     searchToFindFoodById(
       {
-        url: `https://api.spoonacular.com/recipes/${foodID}/information?includeNutrition=false&apiKey=d305e19b4ada4db5a5c275ed4480c431`,
+        url: `https://api.spoonacular.com/recipes/${foodID}/information?includeNutrition=false${spoonacularApiKey}`,
       },
       tranformData
     );
@@ -56,16 +58,19 @@ const FoodsDetails = () => {
     if (foodDetail) {
       // update food info object
       dispatch(foodInfoActions.replaceFoodInfo(foodDetail));
+      console.log(foodDetail);
     }
   }, [searchToFindFoodById, foodID, dispatch, foodDetail]);
 
   return (
     <>
       <Navigation />
-      {!!!foodInfo && (
-        <NotFoundData> NO Data Found Please Try Again </NotFoundData>
+      {!!!foodDetail && (
+        <Card className="container">
+          <NotFoundData> NO Data Found Please Try Again </NotFoundData>
+        </Card>
       )}
-      {!!foodInfo && (
+      {!!foodDetail && (
         <div className="fadeIn">
           {loading && <LoadingSpinner />}
           {!loading && <FoodInfo food={foodInfo} />}

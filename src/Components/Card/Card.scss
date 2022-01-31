@@ -24,11 +24,11 @@
   border: 1px solid $orange;
 
   @include media("medium") {
-    width: 100%;
+    width: 95%;
     padding-top: 5rem;
   }
   @include media("small") {
-    width: 100%;
+    width: 95%;
     padding: 1rem;
     padding-top: 5rem;
   }
@@ -38,11 +38,14 @@
   width: 100%;
   padding: 3rem 0;
   position: relative;
+  margin: auto;
 
   @include media("medium") {
     padding-bottom: 0;
+    width: 95%;
   }
   @include media("small") {
     padding-bottom: 0;
+    width: 95%;
   }
 }

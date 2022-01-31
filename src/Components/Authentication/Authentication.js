@@ -13,12 +13,15 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { authActions } from "../../store/auth";
 
 import css from "./Authentication.module.scss";
+import {
+  firebaseApiKey,
+  firebaseSignin,
+  firebaseSignup,
+} from "../../Hooks/http-request/urls";
 
-const SIGNUP__URL =
-  "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE";
+const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
 
-const SIGNIN__URL =
-  "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE";
+const SIGNIN__URL = `${firebaseSignin}${firebaseApiKey}`;
 
 const Authentication = () => {
   const location = useLocation();

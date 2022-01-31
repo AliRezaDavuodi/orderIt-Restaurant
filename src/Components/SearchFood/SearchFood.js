@@ -7,7 +7,8 @@ import Input from "../Input/Input";
 const SearchFood = (props) => {
   const inputSearchRef = createRef();
 
-  const clickSearchForm = () => {
+  const clickSearchForm = (e) => {
+    e.preventDefault();
     props.getData(inputSearchRef.current.value);
   };
 
