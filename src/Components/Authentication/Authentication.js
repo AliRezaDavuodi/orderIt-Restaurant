@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
@@ -14,13 +14,23 @@ import { authActions } from "../../store/auth";
 
 import css from "./Authentication.module.scss";
 
+const SIGNUP__URL =
+  "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE";
+
+const SIGNIN__URL =
+  "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE";
+
 const Authentication = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { request: sendigUserInformation, loading, data } = useHttpRequest();
+  const {
+    request: sendingUserAuthInfoRequest,
+    loading,
+    data,
+  } = useHttpRequest();
 
-  const onSubmitHandler = (userInfo) => {
+  const onSubmitHandler = (userInfo, type = "signup") => {
     // send data to the server
     //conver data
     const convertData = (data) => {
@@ -32,9 +42,9 @@ const Authentication = () => {
       return loggedInInformation;
     };
 
-    sendigUserInformation(
+    sendingUserAuthInfoRequest(
       {
-        url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE",
+        url: type === "signup" ? SIGNUP__URL : SIGNIN__URL,
         method: "POST",
         body: userInfo,
         headers: {
@@ -59,7 +69,9 @@ const Authentication = () => {
       <div className={css.form}>
         <h3 className="title"> {formTtitle} </h3>
         {location.pathname === "/auth" && <Signup send={onSubmitHandler} />}
-        {location.pathname === "/auth/signin" && <Signin />}
+        {location.pathname === "/auth/signin" && (
+          <Signin send={onSubmitHandler} />
+        )}
       </div>
       <div className={css.img}>
         <img src={humber} alt="humbergure" />

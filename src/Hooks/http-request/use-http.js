@@ -16,9 +16,9 @@ const useHttpRequest = () => {
       .then((res) => {
         if (!res.ok) {
           setHasError(true);
-          throw new Error(
-            "something went wrong, we could't get data from server"
-          );
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
         return res.json();
       })

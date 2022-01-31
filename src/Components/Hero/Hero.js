@@ -38,7 +38,7 @@ const Hero = () => {
       <div className={css.actions}>
         {!!auth && <Button onClick={clickOrderHandler}>Let's Order </Button>}
         {!!!auth && <Button onClick={clickSigninHandler}>Signin </Button>}
-        <Button onClick={clickSignupHandler}>Signup </Button>
+        {!!!auth && <Button onClick={clickSignupHandler}>Signup </Button>}
       </div>
     </header>
   );

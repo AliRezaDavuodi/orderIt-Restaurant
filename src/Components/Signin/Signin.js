@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../Input/Input";
@@ -12,8 +12,11 @@ import {
   validateLength,
 } from "../../Hooks/form-validation/helper";
 
-const Signin = () => {
+const Signin = (props) => {
   const history = useHistory();
+
+  const inputEmailRef = createRef();
+  const inputPasswordRef = createRef();
 
   const email = useInput(validateEmail);
   const password = useInput(validateLength);
@@ -22,7 +25,14 @@ const Signin = () => {
   const signinFormHandler = (e) => {
     e.preventDefault();
 
+    const signInInformation = {
+      email: inputEmailRef.current.value,
+      password: inputPasswordRef.current.value,
+      returnSecureToken: true,
+    };
+
     // send request to server for login
+    props.send(signInInformation, "signin");
   };
 
   const goToSignupFormHandler = (e) => {
@@ -41,6 +51,7 @@ const Signin = () => {
           onBlur={email.inputBlurHandler}
           invalid={email.hasErr ? 1 : 0}
           value={email.enteredValue}
+          ref={inputEmailRef}
         />
         <Input
           id="password"
@@ -51,6 +62,7 @@ const Signin = () => {
           onBlur={password.inputBlurHandler}
           invalid={password.hasErr ? 1 : 0}
           value={password.enteredValue}
+          ref={inputPasswordRef}
         />
 
         <Card className="btnCard">
