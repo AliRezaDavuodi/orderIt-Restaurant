@@ -77,6 +77,8 @@
   @include media("small") {
     margin: 0;
     padding: 1.2rem 3rem;
+    width: auto;
+    backface-visibility: hidden;
 
     &:hover,
     &:active {

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import FoodInfo from "../Components/FoodInfo/FoodInfo";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import Navigation from "../Components/Navigation/Navigation";
+import NotFoundData from "../Components/NotFoundData/NotFoundData";
 
 import useHttpRequest from "../Hooks/http-request/use-http";
 import { foodInfoActions } from "../store/foodDetails";
@@ -61,10 +62,15 @@ const FoodsDetails = () => {
   return (
     <>
       <Navigation />
-      <div className="fadeIn">
-        {loading && <LoadingSpinner />}
-        {!loading && <FoodInfo food={foodInfo} />}
-      </div>
+      {!!!foodInfo && (
+        <NotFoundData> NO Data Found Please Try Again </NotFoundData>
+      )}
+      {!!foodInfo && (
+        <div className="fadeIn">
+          {loading && <LoadingSpinner />}
+          {!loading && <FoodInfo food={foodInfo} />}
+        </div>
+      )}
     </>
   );
 };
