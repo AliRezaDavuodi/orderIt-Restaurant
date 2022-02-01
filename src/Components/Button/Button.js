@@ -3,6 +3,7 @@ import React from "react";
 import css from "./Button.module.scss";
 
 const Button = (props) => {
+  // switch between types of btn
   const buttonClasses = `${css.btn} ${
     props.searchbtn
       ? css.searchBtn

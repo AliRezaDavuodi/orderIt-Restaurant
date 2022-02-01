@@ -11,8 +11,9 @@ import css from "./Navigation.module.scss";
 
 const Navigation = () => {
   const [toggle, settoggle] = useState(false);
-  const auth = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth.token);
+  const isAuth = !!auth;
 
   const cartItem = useSelector((state) => state.cart.foods);
   const likeItemLength = useSelector((state) => state.like.likes.length);
@@ -20,7 +21,7 @@ const Navigation = () => {
   const cartItemLength = cartItem.reduce((acc, cur) => acc + cur.amount, 0);
 
   const logoutHandler = () => {
-    if (!!auth) {
+    if (isAuth) {
       dispatch(authActions.logout());
     }
   };
@@ -42,7 +43,7 @@ const Navigation = () => {
               Home
             </NavLink>
           </li>
-          {!!auth && (
+          {isAuth && (
             <li className={css.item}>
               <NavLink
                 activeClassName={css.active}
@@ -55,16 +56,16 @@ const Navigation = () => {
           )}
           <li className={css.item}>
             <NavLink
-              activeClassName={!!auth ? "" : css.active}
+              activeClassName={isAuth ? "" : css.active}
               className={css.link}
-              to={!!auth ? "/" : "/auth"}
+              to={isAuth ? "/" : "/auth"}
               onClick={logoutHandler}
             >
-              {!!auth ? "log out" : "sign up"}
+              {isAuth ? "log out" : "sign up"}
             </NavLink>
           </li>
         </ul>
-        {!!auth && (
+        {isAuth && (
           <div className={css.personal}>
             <div className={css["personal-icon"]}>
               <NavLink activeClassName={css.active} to="/cart">

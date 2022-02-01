@@ -11,7 +11,10 @@ import css from "./CartComponent.module.scss";
 const CartComponent = () => {
   const cartItems = useSelector((state) => state.cart.foods);
 
+  // find the amount of each food
   const itemsAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
+
+  // calculate total price of item's cart
   const totalPrice = cartItems
     .reduce((acc, cur) => acc + cur.price * cur.amount, 0)
     .toFixed(2);

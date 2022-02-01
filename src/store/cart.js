@@ -21,7 +21,6 @@ const cart = createSlice({
       }
       // increase its amount by one
       exsitsItem.amount++;
-      localStorage.setItem("Cart", state.foods);
     },
     deleteItemFromCart(state, action) {
       // filter the foods array

@@ -22,12 +22,14 @@ const Foods = () => {
   const getFoodHandler = (query) => {
     if (query.length === 0) return;
 
+    // convert data
     const TransformData = (data) => {
       const searchedRecipes = convertFoodData(data);
 
       dispatch(foodsActions.replaceFoods(searchedRecipes));
     };
 
+    // sending request ot the API
     getFoodBySearch(
       {
         url: `${spoonacularGetFood}number=100&tags=${query}${spoonacularApiKey}`,

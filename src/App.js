@@ -11,6 +11,7 @@ import useHttpRequest from "./Hooks/http-request/use-http";
 
 import { authRoutes, userRoutes } from "./router/router";
 import { authActions } from "./store/auth";
+import { cartActions } from "./store/cart";
 import { foodsActions } from "./store/foods";
 
 const RANDOM__FOOD__URL = `${spoonacularGetFood}number=10${spoonacularApiKey}`;
@@ -26,30 +27,40 @@ function App() {
   } = useHttpRequest();
 
   useEffect(() => {
+    // convert recived data
     const convertRandomFoods = (data) => {
       return convertFoodData(data);
     };
 
     // sendig request to get food only when the user is logged in
-    if (!!auth) {
-      gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
-    }
+    gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
+  }, [gettingRandomFood, dispatch]);
 
-    if (allFoods) {
-      dispatch(foodsActions.replaceFoods(allFoods));
-    }
-  }, [gettingRandomFood, dispatch, auth, allFoods]);
-
+  // get previous data that saved in localstorage
   useEffect(() => {
+    // check if user is logged in
     const token = localStorage.getItem("token");
+
+    // check the cart items of user
+    const cartItems = JSON.parse(localStorage.getItem("Cart"));
+
     if (token) {
       const authInfo = {
         token,
       };
       dispatch(authActions.login(authInfo));
     }
-  }, [dispatch]);
 
+    if (!!allFoods) {
+      dispatch(foodsActions.replaceFoods(allFoods));
+    }
+
+    if (cartItems?.length > 0) {
+      dispatch(cartActions.addItemToCart(cartItems));
+    }
+  }, [dispatch, allFoods]);
+
+  // choose which route user can see
   const routes = !!auth ? authRoutes : userRoutes;
 
   return (

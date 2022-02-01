@@ -4,20 +4,20 @@ import { useLocation } from "react-router-dom";
 
 import humber from "../../assests/hamburg.svg";
 
-import useHttpRequest from "../../Hooks/http-request/use-http";
-
 import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import { authActions } from "../../store/auth";
 
-import css from "./Authentication.module.scss";
+import useHttpRequest from "../../Hooks/http-request/use-http";
 import {
   firebaseApiKey,
   firebaseSignin,
   firebaseSignup,
 } from "../../Hooks/http-request/urls";
+
+import css from "./Authentication.module.scss";
 
 const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
 
@@ -27,6 +27,7 @@ const Authentication = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  // use Custom hook
   const {
     request: sendingUserAuthInfoRequest,
     loading,
@@ -34,9 +35,9 @@ const Authentication = () => {
   } = useHttpRequest();
 
   const onSubmitHandler = (userInfo, type = "signup") => {
-    // send data to the server
     //conver data
     const convertData = (data) => {
+      // get needed data form API response
       const loggedInInformation = {
         token: data.idToken,
         expiresIn: +data.expiresIn,
@@ -45,6 +46,7 @@ const Authentication = () => {
       return loggedInInformation;
     };
 
+    // sendig request to the API
     sendingUserAuthInfoRequest(
       {
         url: type === "signup" ? SIGNUP__URL : SIGNIN__URL,
@@ -60,10 +62,12 @@ const Authentication = () => {
 
   useEffect(() => {
     if (data) {
-      dispatch(authActions.login(data));
+      // store data about authentication in redux
+      dispatch(authActions.login({ ...data }));
     }
   }, [data, dispatch]);
 
+  // change form title for each form
   const formTtitle = location.pathname === "/auth" ? "Signup" : "Signin";
 
   return (

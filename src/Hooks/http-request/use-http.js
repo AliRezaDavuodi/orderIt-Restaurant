@@ -14,11 +14,11 @@ const useHttpRequest = () => {
       headers: requestConfig.headers ? requestConfig.headers : {},
     })
       .then((res) => {
+        // err handling
         if (!res.ok) {
           setHasError(true);
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
+          const text = res.text();
+          throw new Error(text);
         }
         return res.json();
       })

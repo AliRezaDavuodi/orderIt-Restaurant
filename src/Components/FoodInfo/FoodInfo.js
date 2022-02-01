@@ -22,6 +22,7 @@ const FoodInfo = (props) => {
     setComments(false);
   };
 
+  // start at the top of the page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);

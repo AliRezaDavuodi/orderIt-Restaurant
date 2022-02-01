@@ -15,8 +15,6 @@ import {
 const Signup = (props) => {
   const history = useHistory();
 
-  // const dispatch = useDispatch();
-
   const inputNameRef = createRef();
   const inputEmailRef = createRef();
   const inputPasswordRef = createRef();
@@ -29,18 +27,23 @@ const Signup = (props) => {
 
   const goToSigninFormHandler = (e) => {
     e.preventDefault();
+
+    // switch between signin V signup
     history.push("/auth/signin");
   };
 
   const signupFormHandler = (e) => {
     e.preventDefault();
 
+    // get user information from inputs
     const userInformation = {
       email: inputEmailRef.current.value,
       password: inputPasswordRef.current.value,
       returnSecureToken: true,
     };
 
+    // sending prepared data to Auth component
+    localStorage.setItem("name", inputNameRef.current.value);
     props.send(userInformation);
   };
 

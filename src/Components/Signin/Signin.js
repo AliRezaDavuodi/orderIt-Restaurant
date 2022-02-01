@@ -31,10 +31,11 @@ const Signin = (props) => {
       returnSecureToken: true,
     };
 
-    // send request to server for login
+    // send prepared object to the Auth component
     props.send(signInInformation, "signin");
   };
 
+  // switch between signin V signup
   const goToSignupFormHandler = (e) => {
     e.preventDefault();
     history.push("/auth");

@@ -1,5 +1,5 @@
 // apiKeys
-export const spoonacularApiKey = "&apiKey=d305e19b4ada4db5a5c275ed4480c431";
+export const spoonacularApiKey = "&apiKey=8cc208ac129d4067aca765018108052d";
 export const firebaseApiKey = "?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE";
 
 // Urls

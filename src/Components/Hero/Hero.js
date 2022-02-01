@@ -10,6 +10,9 @@ const Hero = () => {
   const history = useHistory();
 
   const auth = useSelector((state) => state.auth.token);
+  const isAuth = !!auth; // create a boolean variable
+
+  const userName = localStorage.getItem("name");
 
   const clickSignupHandler = () => {
     history.push("/auth");
@@ -24,10 +27,18 @@ const Hero = () => {
   return (
     <header className={css.header}>
       <div className={css.title}>
-        <h1>
-          Welcome to <br />
-          <span>ORDER IT</span>
-        </h1>
+        {!isAuth && (
+          <h1>
+            Welcome to <br />
+            <span>ORDER IT</span>
+          </h1>
+        )}
+        {isAuth && (
+          <h1>
+            Welcome <br />
+            <span>{userName}</span>
+          </h1>
+        )}
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
           tincidunt, nibh quis posuere tincidunt, quam nunc pulvinar tortor,
@@ -36,9 +47,13 @@ const Hero = () => {
       </div>
 
       <div className={css.actions}>
-        {!!auth && <Button onClick={clickOrderHandler}>Let's Order </Button>}
-        {!!!auth && <Button onClick={clickSigninHandler}>Signin </Button>}
-        {!!!auth && <Button onClick={clickSignupHandler}>Signup </Button>}
+        {isAuth && <Button onClick={clickOrderHandler}>Let's Order </Button>}
+        {!isAuth && (
+          <>
+            <Button onClick={clickSigninHandler}>Signin </Button>
+            <Button onClick={clickSignupHandler}>Signup </Button>
+          </>
+        )}
       </div>
     </header>
   );
