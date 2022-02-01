@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -18,6 +18,7 @@ const FoodItem = (props) => {
   const history = useHistory();
 
   const foodsLike = useSelector((state) => state.like.likes);
+  const cartItems = useSelector((state) => state.cart.foods);
 
   const dispatch = useDispatch();
 
@@ -46,6 +47,11 @@ const FoodItem = (props) => {
   const showDetailHandler = () => {
     history.push(`/foods/${props.id}`);
   };
+
+  useEffect(() => {
+    localStorage.setItem("like", JSON.stringify(foodsLike));
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [foodsLike, cartItems]);
 
   const foodItemClass = `fadeIn ${css.food}`;
 

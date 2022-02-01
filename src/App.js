@@ -12,6 +12,7 @@ import useHttpRequest from "./Hooks/http-request/use-http";
 import { authRoutes, userRoutes } from "./router/router";
 import { authActions } from "./store/auth";
 import { cartActions } from "./store/cart";
+import { likeActions } from "./store/favorite";
 import { foodsActions } from "./store/foods";
 
 const RANDOM__FOOD__URL = `${spoonacularGetFood}number=10${spoonacularApiKey}`;
@@ -38,11 +39,9 @@ function App() {
 
   // get previous data that saved in localstorage
   useEffect(() => {
-    // check if user is logged in
     const token = localStorage.getItem("token");
-
-    // check the cart items of user
-    const cartItems = JSON.parse(localStorage.getItem("Cart"));
+    const cartItems = JSON.parse(localStorage.getItem("cart"));
+    const likedFood = JSON.parse(localStorage.getItem("like"));
 
     if (token) {
       const authInfo = {
@@ -56,7 +55,11 @@ function App() {
     }
 
     if (cartItems?.length > 0) {
-      dispatch(cartActions.addItemToCart(cartItems));
+      dispatch(cartActions.replaceCartFoods(cartItems));
+    }
+
+    if (likedFood?.length > 0) {
+      dispatch(likeActions.replaceLikedFood(likedFood));
     }
   }, [dispatch, allFoods]);
 

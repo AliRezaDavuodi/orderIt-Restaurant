@@ -45,6 +45,9 @@ const cart = createSlice({
       // if it's one delete it from cart
       state.foods = state.foods.filter((food) => food.id !== action.payload.id);
     },
+    replaceCartFoods(state, action) {
+      state.foods = [...action.payload];
+    },
   },
 });
 

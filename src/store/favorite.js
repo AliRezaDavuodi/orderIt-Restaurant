@@ -14,6 +14,9 @@ const likes = createSlice({
     deleteItem(state, action) {
       state.likes = state.likes.filter((food) => food.id !== action.payload.id);
     },
+    replaceLikedFood(state, action) {
+      state.likes = [...action.payload];
+    },
   },
 });
 
