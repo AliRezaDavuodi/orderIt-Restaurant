@@ -7,6 +7,7 @@
 
 .img {
   padding: 1rem;
+  text-align: center;
 
   @include media("medium") {
     padding: 0;
@@ -16,7 +17,7 @@
   }
 
   img {
-    width: 100%;
+    width: 60%;
     height: min-content;
     object-fit: contain;
     border-radius: 1rem;

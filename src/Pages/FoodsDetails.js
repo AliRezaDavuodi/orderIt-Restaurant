@@ -31,6 +31,7 @@ const FoodsDetails = () => {
     data: foodDetail,
   } = useHttpRequest();
 
+  // sending request
   useEffect(() => {
     const tranformData = (data) => {
       // destructuring data object
@@ -54,13 +55,15 @@ const FoodsDetails = () => {
       },
       tranformData
     );
+  }, [searchToFindFoodById, foodID]);
 
+  // set data
+  useEffect(() => {
     if (foodDetail) {
       // update food info object
       dispatch(foodInfoActions.replaceFoodInfo(foodDetail));
-      console.log(foodDetail);
     }
-  }, [searchToFindFoodById, foodID, dispatch, foodDetail]);
+  }, [foodDetail, dispatch]);
 
   return (
     <>
