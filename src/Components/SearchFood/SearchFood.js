@@ -9,7 +9,7 @@ const SearchFood = (props) => {
 
   const clickSearchForm = (e) => {
     e.preventDefault();
-    props.getData(inputSearchRef.current.value);
+    props.getData(inputSearchRef.current.value.toLowerCase());
   };
 
   return (

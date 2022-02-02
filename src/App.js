@@ -33,9 +33,11 @@ function App() {
       return convertFoodData(data);
     };
 
-    // sendig request to get food only when the user is logged in
-    gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
-  }, [gettingRandomFood, dispatch]);
+    if (!!auth) {
+      // sendig request to get food only when the user is logged in
+      gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
+    }
+  }, [gettingRandomFood, dispatch, auth]);
 
   // get previous data that saved in localstorage
   useEffect(() => {
