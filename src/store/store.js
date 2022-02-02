@@ -5,6 +5,7 @@ import favorite from "./favorite";
 import randomFoods from "./foods";
 import foodDetails from "./foodDetails";
 import authentication from "./auth";
+import comments from "./comments";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     foods: randomFoods,
     info: foodDetails,
     auth: authentication,
+    comment: comments,
   },
 });
 
