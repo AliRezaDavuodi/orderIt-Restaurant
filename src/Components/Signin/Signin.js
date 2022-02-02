@@ -70,8 +70,10 @@ const Signin = (props) => {
           <Button onClick={signinFormHandler} disabled={!formIsValid}>
             Signin
           </Button>
-          <Button onClick={goToSignupFormHandler}>Signup</Button>
         </Card>
+        <button className="link" onClick={goToSignupFormHandler}>
+          create account
+        </button>
       </Form>
     </div>
   );

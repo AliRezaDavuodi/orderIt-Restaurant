@@ -48,11 +48,14 @@ const CommentsList = () => {
 
   return (
     <div className={css.comments}>
-      <ul>
-        {comments.map((comment) => (
-          <Comments comment={comment} key={comment.id} />
-        ))}
-      </ul>
+      {comments.length === 0 && <p className="title"> no comment yet</p>}
+      {comments.length > 0 && (
+        <ul>
+          {comments.map((comment) => (
+            <Comments comment={comment} key={comment.id} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

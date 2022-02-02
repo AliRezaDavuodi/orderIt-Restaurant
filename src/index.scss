@@ -74,6 +74,16 @@ button {
   margin: auto;
 }
 
+.link {
+  background-image: linear-gradient(30deg, $goldColor, $redLightColor);
+  background-clip: text;
+  color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.7rem;
+  margin-top: 1rem;
+}
+
 ::selection {
   background-color: $orangeDark;
   color: $white;

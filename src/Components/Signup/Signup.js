@@ -86,8 +86,10 @@ const Signup = (props) => {
           <Button onClick={signupFormHandler} disabled={!formIsValid}>
             Signup
           </Button>
-          <Button onClick={goToSigninFormHandler}>Signin</Button>
         </Card>
+        <button className="link" onClick={goToSigninFormHandler}>
+          i have an account
+        </button>
       </Form>
     </div>
   );
