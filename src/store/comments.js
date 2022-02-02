@@ -11,6 +11,9 @@ const comments = createSlice({
     replceComments(state, action) {
       state.comments = [...action.payload];
     },
+    addComment(state, action) {
+      state.comments.push(action.payload);
+    },
   },
 });
 

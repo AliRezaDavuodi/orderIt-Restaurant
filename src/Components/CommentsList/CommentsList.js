@@ -1,44 +1,21 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { firebaseRealDataBase } from "../../Hooks/http-request/urls";
 import useHttpRequest from "../../Hooks/http-request/use-http";
+import { commentsActions } from "../../store/comments";
 
 import Comments from "../Comments/Comments";
 
 import css from "./CommentsList.module.scss";
 
-const COMMENTS = [
-  {
-    name: "AliReza Davuodi",
-    date: "17 nov",
-    comment:
-      "this is the best this is the best this is the best this is the best this is the best this is the best this is the best this is the best this is the best this is the best this is the best ",
-    id: "1",
-  },
-  {
-    name: "AliReza Davuodi",
-    date: "17 nov",
-    comment: "this is the best",
-    id: "2",
-  },
-  {
-    name: "AliReza Davuodi",
-    date: "17 nov",
-    comment: "this is the best",
-    id: "3",
-  },
-  {
-    name: "AliReza Davuodi",
-    date: "17 nov",
-    comment: "this is the best",
-    id: "4",
-  },
-];
-
 const CommentsList = () => {
   const { foodID } = useParams();
 
-  const { request: gettingComments, loading, data } = useHttpRequest();
+  const dispatch = useDispatch();
+  const comments = useSelector((state) => state.comment.comments);
+
+  const { request: gettingComments, data } = useHttpRequest();
 
   useEffect(() => {
     const getComments = (comments) => {
@@ -63,10 +40,16 @@ const CommentsList = () => {
     );
   }, [gettingComments, foodID]);
 
+  useEffect(() => {
+    if (data?.length > 0) {
+      dispatch(commentsActions.replceComments(data));
+    }
+  }, [dispatch, data]);
+
   return (
     <div className={css.comments}>
       <ul>
-        {COMMENTS.map((comment) => (
+        {comments.map((comment) => (
           <Comments comment={comment} key={comment.id} />
         ))}
       </ul>
