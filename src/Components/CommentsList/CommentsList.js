@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { firebaseRealDataBase } from "../../Hooks/http-request/urls";
+import useHttpRequest from "../../Hooks/http-request/use-http";
 
 import Comments from "../Comments/Comments";
 
@@ -33,6 +36,33 @@ const COMMENTS = [
 ];
 
 const CommentsList = () => {
+  const { foodID } = useParams();
+
+  const { request: gettingComments, loading, data } = useHttpRequest();
+
+  useEffect(() => {
+    const getComments = (comments) => {
+      if (!comments) return;
+
+      const allComments = [];
+
+      for (const key in comments) {
+        const commentObj = {
+          id: key,
+          ...comments[key],
+        };
+        allComments.push(commentObj);
+      }
+
+      return allComments;
+    };
+
+    gettingComments(
+      { url: `${firebaseRealDataBase}/comment/${foodID}.json` },
+      getComments
+    );
+  }, [gettingComments, foodID]);
+
   return (
     <div className={css.comments}>
       <ul>

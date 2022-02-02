@@ -5,6 +5,7 @@ import useHttpRequest from "../../Hooks/http-request/use-http";
 
 import Button from "../Button/Button";
 import Form from "../Form/Form";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import css from "./CommentForm.module.scss";
 
@@ -13,7 +14,7 @@ const CommentForm = () => {
 
   const param = useParams();
 
-  const { request: sendingCommentToServer } = useHttpRequest();
+  const { request: sendingCommentToServer, loading } = useHttpRequest();
 
   const addCommentHandler = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const CommentForm = () => {
     const commentInformation = {
       name: localStorage.getItem("name"),
       comment: commentText.current.value,
-      date: new Date(),
+      date: new Date().toLocaleDateString(),
     };
 
     const response = () => {
@@ -34,7 +35,7 @@ const CommentForm = () => {
         method: "POST",
         body: commentInformation,
         Headers: {
-          "Content-Type": "applicatoin/json",
+          "Content-Type": "application/json",
         },
       },
       response
@@ -42,10 +43,15 @@ const CommentForm = () => {
   };
 
   return (
-    <Form center>
-      <textarea ref={commentText} className={css.area} />
-      <Button onClick={addCommentHandler}> add </Button>
-    </Form>
+    <>
+      {loading && <LoadingSpinner />}
+      {!loading && (
+        <Form center>
+          <textarea ref={commentText} className={css.area} />
+          <Button onClick={addCommentHandler}> add </Button>
+        </Form>
+      )}
+    </>
   );
 };
 
