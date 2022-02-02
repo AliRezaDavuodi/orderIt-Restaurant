@@ -13,11 +13,11 @@ const useHttpRequest = () => {
       body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
       headers: requestConfig.headers ? requestConfig.headers : {},
     })
-      .then((res) => {
+      .then(async (res) => {
         // err handling
         if (!res.ok) {
           setHasError(true);
-          const text = res.text();
+          const text = await res.text();
           throw new Error(text);
         }
         return res.json();

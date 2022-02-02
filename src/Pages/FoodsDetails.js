@@ -68,7 +68,7 @@ const FoodsDetails = () => {
   return (
     <>
       <Navigation />
-      {!!!foodDetail && (
+      {!!!foodDetail && !loading && (
         <Card className="container">
           <NotFoundData> NO Data Found Please Try Again </NotFoundData>
         </Card>

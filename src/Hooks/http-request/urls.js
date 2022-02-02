@@ -8,3 +8,5 @@ export const firebaseSignup =
   "https://identitytoolkit.googleapis.com/v1/accounts:signUp";
 export const firebaseSignin =
   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+export const firebaseRealDataBase =
+  "https://orderit-75ad5-default-rtdb.firebaseio.com/";
