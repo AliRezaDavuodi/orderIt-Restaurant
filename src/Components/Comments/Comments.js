@@ -2,14 +2,14 @@ import React from "react";
 
 import css from "./Comments.module.scss";
 
-import alireza from "../../assests/alireza.jpg";
+import profile from "../../assests/profile.png";
 
 const Comments = (props) => {
   return (
     <li className={css["commetn-item"]}>
       <div className={css.profile}>
         <div className={css["comment-profile"]}>
-          <img src={alireza} alt="alireza" />
+          <img src={profile} alt="alireza" />
         </div>
         <div>
           <h3> {props.comment.name} </h3>
