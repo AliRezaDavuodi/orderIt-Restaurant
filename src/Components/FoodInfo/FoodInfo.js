@@ -8,6 +8,7 @@ import CommentsList from "../CommentsList/CommentsList";
 import CommentForm from "../CommentForm/CommentForm";
 
 import css from "./FoodInfo.module.scss";
+
 import { useSelector } from "react-redux";
 import Modal from "../Modal/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";

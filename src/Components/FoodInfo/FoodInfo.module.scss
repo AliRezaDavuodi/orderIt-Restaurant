@@ -21,6 +21,13 @@
     height: min-content;
     object-fit: contain;
     border-radius: 1rem;
+
+    @include media("medium") {
+      width: 80%;
+    }
+    @include media("small") {
+      width: 100%;
+    }
   }
 }
 
