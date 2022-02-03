@@ -43,17 +43,17 @@ const Navigation = () => {
               Home
             </NavLink>
           </li>
-          {isAuth && (
-            <li className={css.item}>
-              <NavLink
-                activeClassName={css.active}
-                to="/foods"
-                className={css.link}
-              >
-                Foods
-              </NavLink>
-            </li>
-          )}
+
+          <li className={css.item}>
+            <NavLink
+              activeClassName={css.active}
+              to="/foods"
+              className={css.link}
+            >
+              Foods
+            </NavLink>
+          </li>
+
           <li className={css.item}>
             <NavLink
               activeClassName={isAuth ? "" : css.active}

@@ -1,5 +1,5 @@
 import React, { createRef } from "react";
-import { useHistory } from "react-router-dom";
+import { Prompt, useHistory } from "react-router-dom";
 
 import Input from "../Input/Input";
 import Form from "../Form/Form";
@@ -21,6 +21,7 @@ const Signin = (props) => {
   const email = useInput(validateEmail);
   const password = useInput(validateLength);
   const formIsValid = email.formIsValid && password.formIsValid;
+  const formIsTouched = email.IsTouched || password.IsTouched;
 
   const signinFormHandler = (e) => {
     e.preventDefault();
@@ -42,44 +43,52 @@ const Signin = (props) => {
   };
 
   return (
-    <div className="fadeIn">
-      <Form center>
-        <Input
-          id="email"
-          label="enter your email"
-          placeholder="email"
-          onChange={email.inputChangeHandler}
-          onBlur={email.inputBlurHandler}
-          invalid={email.hasErr ? 1 : 0}
-          value={email.enteredValue}
-          ref={inputEmailRef}
-          err={email.hasErr ? 1 : undefined}
-          message="email is invalid (includes @ & . )"
+    <>
+      {formIsTouched && (
+        <Prompt
+          when={!formIsValid}
+          message="Are you sure you want to leave? you lost all your data"
         />
-        <Input
-          id="password"
-          type="password"
-          label="enter your password"
-          placeholder="pass"
-          onChange={password.inputChangeHandler}
-          onBlur={password.inputBlurHandler}
-          invalid={password.hasErr ? 1 : 0}
-          value={password.enteredValue}
-          ref={inputPasswordRef}
-          err={password.hasErr ? 1 : undefined}
-          message="length should be grather than 5 "
-        />
+      )}
+      <div className="fadeIn">
+        <Form center>
+          <Input
+            id="email"
+            label="enter your email"
+            placeholder="email"
+            onChange={email.inputChangeHandler}
+            onBlur={email.inputBlurHandler}
+            invalid={email.hasErr ? 1 : 0}
+            value={email.enteredValue}
+            ref={inputEmailRef}
+            err={email.hasErr ? 1 : undefined}
+            message="email is invalid (includes @ & . )"
+          />
+          <Input
+            id="password"
+            type="password"
+            label="enter your password"
+            placeholder="pass"
+            onChange={password.inputChangeHandler}
+            onBlur={password.inputBlurHandler}
+            invalid={password.hasErr ? 1 : 0}
+            value={password.enteredValue}
+            ref={inputPasswordRef}
+            err={password.hasErr ? 1 : undefined}
+            message="length should be grather than 5 "
+          />
 
-        <Card className="btnCard">
-          <Button onClick={signinFormHandler} disabled={!formIsValid}>
-            Signin
-          </Button>
-        </Card>
-        <button className="link" onClick={goToSignupFormHandler}>
-          create account
-        </button>
-      </Form>
-    </div>
+          <Card className="btnCard">
+            <Button onClick={signinFormHandler} disabled={!formIsValid}>
+              Signin
+            </Button>
+          </Card>
+          <button className="link" onClick={goToSignupFormHandler}>
+            create account
+          </button>
+        </Form>
+      </div>
+    </>
   );
 };
 

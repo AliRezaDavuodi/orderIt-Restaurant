@@ -9,7 +9,7 @@ import {
 } from "./Hooks/http-request/urls";
 import useHttpRequest from "./Hooks/http-request/use-http";
 
-import { authRoutes, userRoutes } from "./router/router";
+import { privateRoute, publicRoute } from "./router/router";
 import { authActions } from "./store/auth";
 import { cartActions } from "./store/cart";
 import { likeActions } from "./store/favorite";
@@ -19,6 +19,7 @@ const RANDOM__FOOD__URL = `${spoonacularGetFood}number=10${spoonacularApiKey}`;
 
 function App() {
   const auth = useSelector((state) => state.auth.token);
+  const isAuth = !!auth;
   const dispatch = useDispatch();
 
   const {
@@ -32,19 +33,13 @@ function App() {
     const convertRandomFoods = (data) => {
       return convertFoodData(data);
     };
-
-    if (!!auth) {
-      // sendig request to get food only when the user is logged in
-      gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
-    }
-  }, [gettingRandomFood, dispatch, auth]);
+    // sendig request to get food only when the user is logged in
+    gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
+  }, [gettingRandomFood, dispatch]);
 
   // get previous data that saved in localstorage
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const cartItems = JSON.parse(localStorage.getItem("cart"));
-    const likedFood = JSON.parse(localStorage.getItem("like"));
-
     if (token) {
       const authInfo = {
         token,
@@ -56,6 +51,11 @@ function App() {
       dispatch(foodsActions.replaceFoods(allFoods));
     }
 
+    if (!isAuth) return;
+
+    const cartItems = JSON.parse(localStorage.getItem("cart"));
+    const likedFood = JSON.parse(localStorage.getItem("like"));
+
     if (cartItems?.length > 0) {
       dispatch(cartActions.replaceCartFoods(cartItems));
     }
@@ -63,10 +63,10 @@ function App() {
     if (likedFood?.length > 0) {
       dispatch(likeActions.replaceLikedFood(likedFood));
     }
-  }, [dispatch, allFoods]);
+  }, [dispatch, allFoods, isAuth]);
 
   // choose which route user can see
-  const routes = !!auth ? authRoutes : userRoutes;
+  const routes = isAuth ? [...publicRoute, ...privateRoute] : publicRoute;
 
   return (
     <>

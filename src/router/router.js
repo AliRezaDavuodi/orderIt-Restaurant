@@ -7,7 +7,20 @@ import Foods from "../Pages/Foods";
 import FoodsDetails from "../Pages/FoodsDetails";
 import Home from "../Pages/Home";
 
-export const userRoutes = [
+export const privateRoute = [
+  {
+    path: "/cart",
+    component: Cart,
+    exact: true,
+  },
+  {
+    path: "/favorite",
+    component: Favorite,
+    exact: true,
+  },
+];
+
+export const publicRoute = [
   {
     path: "/",
     component: Home,
@@ -19,19 +32,6 @@ export const userRoutes = [
     exact: false,
   },
   {
-    path: "/*",
-    component: () => <Redirect to="/" />,
-    exact: false,
-  },
-];
-
-export const authRoutes = [
-  {
-    path: "/",
-    component: Home,
-    exact: true,
-  },
-  {
     path: "/foods",
     component: Foods,
     exact: true,
@@ -40,16 +40,6 @@ export const authRoutes = [
     path: "/foods/:foodID",
     component: FoodsDetails,
     exact: false,
-  },
-  {
-    path: "/cart",
-    component: Cart,
-    exact: true,
-  },
-  {
-    path: "/favorite",
-    component: Favorite,
-    exact: true,
   },
   {
     path: "/*",

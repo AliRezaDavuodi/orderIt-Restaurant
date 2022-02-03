@@ -20,6 +20,9 @@ const FoodItem = (props) => {
   const foodsLike = useSelector((state) => state.like.likes);
   const cartItems = useSelector((state) => state.cart.foods);
 
+  const auth = useSelector((state) => state.auth.token);
+  const isAuth = !!auth;
+
   const dispatch = useDispatch();
 
   const removeHandler = (item) => {
@@ -27,6 +30,11 @@ const FoodItem = (props) => {
   };
 
   const addHandler = (item) => {
+    if (!isAuth) {
+      alert("you have to signin to add item to cart");
+      return;
+    }
+
     dispatch(cartActions.addItemToCart(item));
   };
 
@@ -38,6 +46,10 @@ const FoodItem = (props) => {
   };
 
   const changeLikeHandler = (item) => {
+    if (!isAuth) {
+      alert("you have to signin to like items");
+      return;
+    }
     dispatch(likeActions.addItem(item));
   };
   const changeUnlikeHandler = (item) => {
@@ -56,7 +68,9 @@ const FoodItem = (props) => {
   const foodItemClass = `fadeIn ${css.food}`;
 
   // check if the food is liked and convert it to a boolean
-  const isLike = !!foodsLike.find((food) => food.id === props.id);
+  const isLike = isAuth
+    ? !!foodsLike.find((food) => food.id === props.id)
+    : false;
 
   return (
     <li className={foodItemClass}>

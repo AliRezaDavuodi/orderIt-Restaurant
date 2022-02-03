@@ -8,13 +8,21 @@ import CommentsList from "../CommentsList/CommentsList";
 import CommentForm from "../CommentForm/CommentForm";
 
 import css from "./FoodInfo.module.scss";
+import { useSelector } from "react-redux";
 
 const FoodInfo = (props) => {
   const [comments, setComments] = useState(false);
 
+  const auth = useSelector((state) => state.auth.token);
+  const isAuth = !!auth;
+
   const location = useLocation();
 
   const clickCommentHandler = () => {
+    if (!isAuth) {
+      alert("you have to signin to leave a comment");
+      return;
+    }
     setComments(true);
   };
 

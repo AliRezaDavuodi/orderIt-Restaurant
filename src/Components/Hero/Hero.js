@@ -14,8 +14,8 @@ const Hero = () => {
 
   const userName = localStorage.getItem("name");
 
-  const clickSignupHandler = () => {
-    history.push("/auth");
+  const clickFoodsHandler = () => {
+    history.push("/foods");
   };
   const clickSigninHandler = () => {
     history.push("/auth/signin");
@@ -51,7 +51,7 @@ const Hero = () => {
         {!isAuth && (
           <>
             <Button onClick={clickSigninHandler}>Signin </Button>
-            <Button onClick={clickSignupHandler}>Signup </Button>
+            <Button onClick={clickFoodsHandler}>Foods </Button>
           </>
         )}
       </div>

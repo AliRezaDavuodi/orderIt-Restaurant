@@ -35,7 +35,7 @@ const useInput = (validateLogic) => {
     dispatch({ type: "VALUE", do: "" });
   };
 
-  const { enteredValue } = state;
+  const { enteredValue, IsTouched } = state;
 
   return {
     enteredValue,
@@ -44,6 +44,7 @@ const useInput = (validateLogic) => {
     inputChangeHandler,
     reset,
     formIsValid,
+    IsTouched,
   };
 };
 

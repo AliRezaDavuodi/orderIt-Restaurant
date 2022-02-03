@@ -53,6 +53,10 @@
     font-size: 1.8rem;
   }
 
+  input:placeholder-shown + label.search {
+    top: 50%;
+  }
+
   span {
     opacity: 0;
     color: $redColor;
