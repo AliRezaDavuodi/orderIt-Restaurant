@@ -59,6 +59,8 @@ const Signup = (props) => {
           invalid={name.hasErr ? 1 : 0}
           value={name.enteredValue}
           ref={inputNameRef}
+          err={name.hasErr ? 1 : undefined}
+          message="length should be grather than 5 "
         />
         <Input
           id="email"
@@ -69,6 +71,8 @@ const Signup = (props) => {
           invalid={email.hasErr ? 1 : 0}
           value={email.enteredValue}
           ref={inputEmailRef}
+          err={email.hasErr ? 1 : undefined}
+          message="email is invalid (includes @ & . )"
         />
         <Input
           id="password"
@@ -80,6 +84,8 @@ const Signup = (props) => {
           invalid={password.hasErr ? 1 : 0}
           value={password.enteredValue}
           ref={inputPasswordRef}
+          err={password.hasErr ? 1 : undefined}
+          message="length should be grather than 5 "
         />
 
         <Card className="btnCard">
