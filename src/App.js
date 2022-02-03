@@ -66,7 +66,7 @@ function App() {
   }, [dispatch, allFoods, isAuth]);
 
   // choose which route user can see
-  const routes = isAuth ? [...publicRoute, ...privateRoute] : publicRoute;
+  const routes = isAuth ? [...privateRoute, ...publicRoute] : publicRoute;
 
   return (
     <>

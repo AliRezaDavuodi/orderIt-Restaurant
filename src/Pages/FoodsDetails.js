@@ -8,6 +8,7 @@ import FoodInfo from "../Components/FoodInfo/FoodInfo";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import Navigation from "../Components/Navigation/Navigation";
 import NotFoundData from "../Components/NotFoundData/NotFoundData";
+
 import { spoonacularApiKey } from "../Hooks/http-request/urls";
 
 import useHttpRequest from "../Hooks/http-request/use-http";

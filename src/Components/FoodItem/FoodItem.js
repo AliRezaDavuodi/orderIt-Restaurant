@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -12,11 +12,15 @@ import css from "./FoodItem.module.scss";
 
 import Button from "../Button/Button";
 import Card from "../Card/Card";
+import Modal from "../Modal/Modal";
+
 import { likeActions } from "../../store/favorite";
 
 const FoodItem = (props) => {
   const history = useHistory();
 
+  const [cartModal, setCartModal] = useState(false);
+  const [likeModal, setLikeModal] = useState(false);
   const foodsLike = useSelector((state) => state.like.likes);
   const cartItems = useSelector((state) => state.cart.foods);
 
@@ -31,11 +35,20 @@ const FoodItem = (props) => {
 
   const addHandler = (item) => {
     if (!isAuth) {
-      alert("you have to signin to add item to cart");
+      setCartModal(true);
       return;
     }
 
     dispatch(cartActions.addItemToCart(item));
+  };
+
+  const closeModal = () => {
+    setCartModal(false);
+    setLikeModal(false);
+  };
+
+  const goToSignup = () => {
+    history.push("/auth");
   };
 
   const increaseItems = (item) => {
@@ -47,7 +60,7 @@ const FoodItem = (props) => {
 
   const changeLikeHandler = (item) => {
     if (!isAuth) {
-      alert("you have to signin to like items");
+      setLikeModal(true);
       return;
     }
     dispatch(likeActions.addItem(item));
@@ -73,66 +86,86 @@ const FoodItem = (props) => {
     : false;
 
   return (
-    <li className={foodItemClass}>
-      <div className={css.img}>
-        <img src={props.img} alt={props.title} />
-      </div>
-
-      <div className={css.info}>
-        <div className={css.header}>
-          <h3> {props.title} </h3>
-          {!props.cart && (
-            <div className={css.like}>
-              <img
-                src={isLike ? like : unlike}
-                onClick={
-                  isLike
-                    ? changeUnlikeHandler.bind(null, props.item)
-                    : changeLikeHandler.bind(null, props.item)
-                }
-                alt="like it"
-              />
-            </div>
-          )}
-          {props.cart && (
-            <div className={css.amount}>
-              <Button
-                small="true"
-                onClick={increaseItems.bind(null, props.item)}
-              >
-                +
-              </Button>
-              <span> {props.amount}X </span>
-              <Button
-                small="true"
-                onClick={decreaseItems.bind(null, props.item)}
-              >
-                -
-              </Button>
-            </div>
-          )}
+    <>
+      {cartModal && (
+        <Modal close={closeModal}>
+          <h3 className="title"> please first signup then add item to cart </h3>
+          <Card className="btnCard">
+            <Button onClick={goToSignup}> signup </Button>
+            <Button onClick={closeModal}> cancel </Button>
+          </Card>
+        </Modal>
+      )}
+      {likeModal && (
+        <Modal close={closeModal}>
+          <h3 className="title"> please first signup then like items </h3>
+          <Card className="btnCard">
+            <Button onClick={goToSignup}> signup </Button>
+            <Button onClick={closeModal}> cancel </Button>
+          </Card>
+        </Modal>
+      )}
+      <li className={foodItemClass}>
+        <div className={css.img}>
+          <img src={props.img} alt={props.title} />
         </div>
 
-        <div
-          className={css.description}
-          dangerouslySetInnerHTML={{ __html: props.description }}
-        ></div>
+        <div className={css.info}>
+          <div className={css.header}>
+            <h3> {props.title} </h3>
+            {!props.cart && (
+              <div className={css.like}>
+                <img
+                  src={isLike ? like : unlike}
+                  onClick={
+                    isLike
+                      ? changeUnlikeHandler.bind(null, props.item)
+                      : changeLikeHandler.bind(null, props.item)
+                  }
+                  alt="like it"
+                />
+              </div>
+            )}
+            {props.cart && (
+              <div className={css.amount}>
+                <Button
+                  small="true"
+                  onClick={increaseItems.bind(null, props.item)}
+                >
+                  +
+                </Button>
+                <span> {props.amount}X </span>
+                <Button
+                  small="true"
+                  onClick={decreaseItems.bind(null, props.item)}
+                >
+                  -
+                </Button>
+              </div>
+            )}
+          </div>
 
-        <Card className="btnCard">
-          <p className={css.price}> {props.price} </p>
-          <Button
-            onClick={
-              props.cart
-                ? removeHandler.bind(null, props.item)
-                : addHandler.bind(null, props.item)
-            }
-          >
-            {props.cart ? "Remove" : "Add"}
-          </Button>
-          <Button onClick={showDetailHandler}>More</Button>
-        </Card>
-      </div>
-    </li>
+          <div
+            className={css.description}
+            dangerouslySetInnerHTML={{ __html: props.description }}
+          ></div>
+
+          <Card className="btnCard">
+            <p className={css.price}> {props.price} </p>
+            <Button
+              onClick={
+                props.cart
+                  ? removeHandler.bind(null, props.item)
+                  : addHandler.bind(null, props.item)
+              }
+            >
+              {props.cart ? "Remove" : "Add"}
+            </Button>
+            <Button onClick={showDetailHandler}>More</Button>
+          </Card>
+        </div>
+      </li>
+    </>
   );
 };
 

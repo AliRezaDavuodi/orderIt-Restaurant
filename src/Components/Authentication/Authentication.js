@@ -18,6 +18,7 @@ import {
 } from "../../Hooks/http-request/urls";
 
 import css from "./Authentication.module.scss";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
 
@@ -25,6 +26,7 @@ const SIGNIN__URL = `${firebaseSignin}${firebaseApiKey}`;
 
 const Authentication = () => {
   const location = useLocation();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   // use Custom hook
@@ -64,8 +66,9 @@ const Authentication = () => {
     if (data) {
       // store data about authentication in redux
       dispatch(authActions.login({ ...data }));
+      history.push("/");
     }
-  }, [data, dispatch]);
+  }, [data, dispatch, history]);
 
   // change form title for each form
   const formTtitle = location.pathname === "/auth" ? "Signup" : "Signin";
