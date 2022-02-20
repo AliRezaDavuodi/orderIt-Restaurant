@@ -29,3 +29,6 @@ in this project I use:
 2. Redux to store data
 3. firebase for authentication and save food's comments.
 4. [spoonacular](https://spoonacular.com/food-api/) api to get foods
+
+
+4. [netlify](https://orderit-restaurant.netlify.app/)
