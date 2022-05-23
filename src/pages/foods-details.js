@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import Card from "../Components/Card/Card";
+import Card from "../components/card/card";
 
-import FoodInfo from "../Components/FoodInfo/FoodInfo";
-import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
-import Navigation from "../Components/Navigation/Navigation";
-import NotFoundData from "../Components/NotFoundData/NotFoundData";
+import FoodInfo from "../components/food-info/food-info";
+import LoadingSpinner from "../components/loading-spinner/loading-spinner";
+import Navigation from "../components/navigation/navigation";
+import NotFoundData from "../components/not-found-data/not-found-data";
 
-import { spoonacularApiKey } from "../Hooks/http-request/urls";
+import { spoonacularApiKey } from "../hooks/http-request/urls";
 
-import useHttpRequest from "../Hooks/http-request/use-http";
+import useHttpRequest from "../hooks/http-request/use-http";
 import { foodInfoActions } from "../store/foodDetails";
 
 const FoodsDetails = () => {

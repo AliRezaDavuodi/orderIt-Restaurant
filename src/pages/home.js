@@ -1,6 +1,6 @@
 import React from "react";
-import Hero from "../Components/Hero/Hero";
-import Navigation from "../Components/Navigation/Navigation";
+import Hero from "../components/hero/hero";
+import Navigation from "../components/navigation/navigation";
 
 const Home = () => {
   return (

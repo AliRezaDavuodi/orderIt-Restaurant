@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import List from "../list/list";
-import NotFoundData from "../notFound-data/not-foundData";
+import NotFoundData from "../not-found-data/not-found-data";
 
 const FavoditeFoods = () => {
   const likeFoods = useSelector((state) => state.like.likes);

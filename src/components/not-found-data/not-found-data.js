@@ -2,7 +2,7 @@ import React from "react";
 
 import notFound from "../../assests/notFound.svg";
 
-import css from "./NotFoundData.module.scss";
+import css from "./not-found-data.module.scss";
 
 const NotFoundData = (props) => {
   return (

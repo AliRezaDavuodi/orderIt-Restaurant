@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { firebaseRealDataBase } from "../../Hooks/http-request/urls";
-import useHttpRequest from "../../Hooks/http-request/use-http";
+import { firebaseRealDataBase } from "../../hooks/http-request/urls";
+import useHttpRequest from "../../hooks/http-request/use-http";
 import { commentsActions } from "../../store/comments";
 
-import Button from "../Button/Button";
+import Button from "../button/button";
 import Form from "../form/form";
 
-import css from "./CommentForm.module.scss";
+import css from "./comment-form.module.scss";
 
 const CommentForm = () => {
   const commentText = useRef();

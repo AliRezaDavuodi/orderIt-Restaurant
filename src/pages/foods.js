@@ -1,17 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import Card from "../Components/Card/Card";
-import FoodsList from "../Components/FoodsList/FoodsList";
-import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
-import Navigation from "../Components/Navigation/Navigation";
-import SearchFood from "../Components/SearchFood/SearchFood";
-import { convertFoodData } from "../Hooks/http-request/apis";
+import Card from "../components/card/card";
+import FoodsList from "../components/foods-list/foods-list";
+import LoadingSpinner from "../components/loading-spinner/loading-spinner";
+import Navigation from "../components/navigation/navigation";
+import SearchFood from "../components/search-food/search-food";
+import { convertFoodData } from "../hooks/http-request/apis";
 import {
   spoonacularApiKey,
   spoonacularGetFood,
-} from "../Hooks/http-request/urls";
-import useHttpRequest from "../Hooks/http-request/use-http";
+} from "../hooks/http-request/urls";
+import useHttpRequest from "../hooks/http-request/use-http";
 import { foodsActions } from "../store/foods";
 
 const Foods = () => {

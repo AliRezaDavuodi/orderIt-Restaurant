@@ -17,7 +17,7 @@ import {
   firebaseSignup,
 } from "../../hooks/http-request/urls";
 
-import css from "./Authentication.module.scss";
+import css from "./authentication.module.scss";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;

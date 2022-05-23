@@ -1,5 +1,5 @@
-@import "../../Scss/variables";
-@import "../../Scss/mixin";
+@import "../../scss/variables";
+@import "../../scss/mixin";
 
 .info {
   @include flexbox(center, stretch, column);

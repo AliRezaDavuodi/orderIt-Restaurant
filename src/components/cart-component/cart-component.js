@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Button from "../Button/Button";
-import Card from "../Card/Card";
+import Button from "../button/button";
+import Card from "../card/card";
 
 import List from "../list/list";
-import NotFoundData from "../notFound-data/not-foundData";
+import NotFoundData from "../not-found-data/not-found-data";
 
-import css from "./CartComponent.module.scss";
+import css from "./cart-component.module.scss";
 
 const CartComponent = () => {
   const cartItems = useSelector((state) => state.cart.foods);

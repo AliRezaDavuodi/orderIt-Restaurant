@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Comments.module.scss";
+import css from "./comments.module.scss";
 
 import profile from "../../assests/profile.png";
 

@@ -7,7 +7,7 @@ import { authActions } from "../../store/auth";
 import Cart from "../../assests/cart.png";
 import Like from "../../assests/heart.png";
 
-import css from "./Navigation.module.scss";
+import css from "./navigation.module.scss";
 
 const Navigation = () => {
   const [toggle, settoggle] = useState(false);

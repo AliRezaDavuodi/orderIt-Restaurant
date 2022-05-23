@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { firebaseRealDataBase } from "../../Hooks/http-request/urls";
-import useHttpRequest from "../../Hooks/http-request/use-http";
+import { firebaseRealDataBase } from "../../hooks/http-request/urls";
+import useHttpRequest from "../../hooks/http-request/use-http";
 import { commentsActions } from "../../store/comments";
 
-import Comments from "../Comments/Comments";
+import Comments from "../comments/comments";
 
-import css from "./CommentsList.module.scss";
+import css from "./comments-list.module.scss";
 
 const CommentsList = () => {
   const { foodID } = useParams();

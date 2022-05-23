@@ -1,7 +1,7 @@
 import React from "react";
-import Card from "../Components/Card/Card";
-import FavoditeFoods from "../Components/FavoditeFoods/FavoditeFoods";
-import Navigation from "../Components/Navigation/Navigation";
+import Card from "../components/card/card";
+import FavoditeFoods from "../components/favodite-foods/favodite-foods";
+import Navigation from "../components/navigation/navigation";
 
 const Favorite = () => {
   return (

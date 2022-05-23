@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-import css from "./Hero.module.scss";
+import css from "./hero.module.scss";
 
-import Button from "../Button/Button";
+import Button from "../button/button";
 import { useSelector } from "react-redux";
 
 const Hero = () => {

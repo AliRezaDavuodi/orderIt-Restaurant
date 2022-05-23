@@ -8,10 +8,10 @@ import { cartActions } from "../../store/cart";
 import unlike from "../../assests/unlike.png";
 import like from "../../assests/like.png";
 
-import css from "./FoodItem.module.scss";
+import css from "./food-item.module.scss";
 
-import Button from "../Button/Button";
-import Card from "../Card/Card";
+import Button from "../button/button";
+import Card from "../card/card";
 import Modal from "../modal/modal";
 
 import { likeActions } from "../../store/favorite";

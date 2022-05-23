@@ -1,11 +1,11 @@
 import { Redirect } from "react-router-dom";
 
-import Auth from "../Pages/Auth";
-import Cart from "../Pages/Cart";
-import Favorite from "../Pages/Favorite";
-import Foods from "../Pages/Foods";
-import FoodsDetails from "../Pages/FoodsDetails";
-import Home from "../Pages/Home";
+import Auth from "../pages/auth";
+import Cart from "../pages/cart";
+import Favorite from "../pages/favorite";
+import Foods from "../pages/foods";
+import FoodsDetails from "../pages/foods-details";
+import Home from "../pages/home";
 
 export const privateRoute = [
   {

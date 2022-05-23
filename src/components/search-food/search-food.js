@@ -1,8 +1,8 @@
 import React, { createRef } from "react";
 
-import Button from "../Button/Button";
-import Form from "../Form/Form";
-import Input from "../Input/Input";
+import Button from "../button/button";
+import Form from "../form/form";
+import Input from "../input/input";
 
 const SearchFood = (props) => {
   const inputSearchRef = createRef();

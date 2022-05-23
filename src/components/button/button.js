@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Button.module.scss";
+import css from "./button.module.scss";
 
 const Button = (props) => {
   // switch between types of btn

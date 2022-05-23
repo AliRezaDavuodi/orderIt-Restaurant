@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Card.scss";
+import "./card.scss";
 
 const Card = (props) => {
   return <div className={props.className}>{props.children}</div>;

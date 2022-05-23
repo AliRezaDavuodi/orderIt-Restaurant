@@ -1,6 +1,6 @@
 import React from "react";
 
-import css from "./Form.module.scss";
+import css from "./form.module.scss";
 
 const Form = (props) => {
   const formSubmitHandler = (e) => {

@@ -2,7 +2,7 @@ import React from "react";
 
 import FoodItem from "../food-item/food-item";
 
-import css from "./List.module.scss";
+import css from "./list.module.scss";
 
 const List = (props) => {
   const classes = `${css.list} ${props.cart ? css.cart : ""}`;

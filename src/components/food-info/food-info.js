@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
-import Card from "../Card/Card";
-import Button from "../Button/Button";
-import CommentsList from "../CommentsList/CommentsList";
-import CommentForm from "../CommentForm/CommentForm";
+import Card from "../card/card";
+import Button from "../button/button";
+import CommentsList from "../comments-list/comments-list";
+import CommentForm from "../comment-form/comment-form";
 
-import css from "./FoodInfo.module.scss";
+import css from "./food-info.module.scss";
 
 import { useSelector } from "react-redux";
 import Modal from "../modal/modal";

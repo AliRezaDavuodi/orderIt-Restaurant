@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoadingSpinner from "./Components/LoadingSpinner/LoadingSpinner";
-import { convertFoodData } from "./Hooks/http-request/apis";
+import LoadingSpinner from "./components/loading-spinner/loading-spinner";
+import { convertFoodData } from "./hooks/http-request/apis";
 import {
   spoonacularApiKey,
   spoonacularGetFood,
-} from "./Hooks/http-request/urls";
-import useHttpRequest from "./Hooks/http-request/use-http";
+} from "./hooks/http-request/urls";
+import useHttpRequest from "./hooks/http-request/use-http";
 
 import { privateRoute, publicRoute } from "./router/router";
 import { authActions } from "./store/auth";
