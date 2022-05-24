@@ -45,7 +45,14 @@ const FoodInfo = (props) => {
 
   // start at the top of the page
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
     window.scrollTo(0, 0);
+    
+    return _ => isSubscribed = false
   }, [location]);
 
   return (

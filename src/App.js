@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoadingSpinner from "./components/loading-spinner/loading-spinner";
-import { convertFoodData } from "./hooks/http-request/apis";
+import LoadingSpinner from "components/loading-spinner/loading-spinner";
+import { convertFoodData } from "hooks/http-request/apis";
 import {
   spoonacularApiKey,
   spoonacularGetFood,
 } from "./hooks/http-request/urls";
-import useHttpRequest from "./hooks/http-request/use-http";
+import useHttpRequest from "hooks/http-request/use-http";
 
 import { privateRoute, publicRoute } from "./router/router";
 import { authActions } from "./store/auth";
@@ -29,16 +29,30 @@ function App() {
   } = useHttpRequest();
 
   useEffect(() => {
+    let isSubscribed = true
+
+
+    if(!isSubscribed) return
+
     // convert recived data
     const convertRandomFoods = (data) => {
       return convertFoodData(data);
     };
     // sendig request to get food only when the user is logged in
     gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
+
+    return _ => isSubscribed = false
+
   }, [gettingRandomFood, dispatch]);
 
   // get previous data that saved in localstorage
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+
     const token = localStorage.getItem("token");
     if (token) {
       const authInfo = {
@@ -63,6 +77,10 @@ function App() {
     if (likedFood?.length > 0) {
       dispatch(likeActions.replaceLikedFood(likedFood));
     }
+
+
+    return _ => isSubscribed = false
+
   }, [dispatch, allFoods, isAuth]);
 
   // choose which route user can see

@@ -63,11 +63,22 @@ const Authentication = () => {
   };
 
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+    
+    
     if (data) {
       // store data about authentication in redux
       dispatch(authActions.login({ ...data }));
       history.push("/");
     }
+    
+    
+    return _ => isSubscribed = false
+
   }, [data, dispatch, history]);
 
   // change form title for each form

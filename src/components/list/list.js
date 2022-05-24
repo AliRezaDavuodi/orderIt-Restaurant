@@ -13,10 +13,10 @@ const List = (props) => {
         const price = "$" + food.price;
         return (
           <FoodItem
+            key={food.id}
             id={food.id}
             title={food.title}
             description={food.description}
-            key={food.id}
             img={food.image}
             price={price}
             cart={props.cart}

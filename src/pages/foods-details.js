@@ -34,10 +34,17 @@ const FoodsDetails = () => {
 
   // sending request
   useEffect(() => {
+
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+    
     const tranformData = (data) => {
       // destructuring data object
       const { id, image, instructions, title } = data;
-
+      
       // create suitable object
       const foodInformation = {
         id,
@@ -45,7 +52,7 @@ const FoodsDetails = () => {
         title,
         description: instructions,
       };
-
+      
       return foodInformation;
     };
 
@@ -55,15 +62,25 @@ const FoodsDetails = () => {
         url: `https://api.spoonacular.com/recipes/${foodID}/information?includeNutrition=false${spoonacularApiKey}`,
       },
       tranformData
-    );
+      );
+
+      return _ => isSubscribed = false
   }, [searchToFindFoodById, foodID]);
 
   // set data
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+    
     if (foodDetail) {
       // update food info object
       dispatch(foodInfoActions.replaceFoodInfo(foodDetail));
     }
+    
+    return _ => isSubscribed = false
   }, [foodDetail, dispatch]);
 
   return (

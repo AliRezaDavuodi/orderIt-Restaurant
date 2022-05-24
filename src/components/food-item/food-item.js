@@ -74,8 +74,16 @@ const FoodItem = (props) => {
   };
 
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+    
     localStorage.setItem("like", JSON.stringify(foodsLike));
     localStorage.setItem("cart", JSON.stringify(cartItems));
+    
+    return _ => isSubscribed = false
   }, [foodsLike, cartItems]);
 
   const foodItemClass = `fadeIn ${css.food}`;

@@ -18,6 +18,12 @@ const CommentsList = () => {
   const { request: gettingComments, data } = useHttpRequest();
 
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+    
     const getComments = (comments) => {
       if (!comments) return;
 
@@ -33,17 +39,27 @@ const CommentsList = () => {
 
       return allComments;
     };
-
+    
     gettingComments(
       { url: `${firebaseRealDataBase}/comment/${foodID}.json` },
       getComments
-    );
+      );
+
+      return _ => isSubscribed = false
   }, [gettingComments, foodID]);
 
   useEffect(() => {
+
+    let isSubscribed = true
+
+    if(!isSubscribed) return
+
+    
     if (data?.length > 0) {
       dispatch(commentsActions.replceComments(data));
     }
+    
+    return _ => isSubscribed = false
   }, [dispatch, data]);
 
   return (
