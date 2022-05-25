@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import humber from "../../assests/hamburg.svg";
+import humber from "../../assets/hamburg.svg";
 
 import Signin from "../signin/signin";
 import Signup from "../signup/signup";

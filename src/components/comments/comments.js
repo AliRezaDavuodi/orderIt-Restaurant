@@ -2,7 +2,7 @@ import React from "react";
 
 import css from "./comments.module.scss";
 
-import profile from "../../assests/profile.png";
+import profile from "../../assets/profile.png";
 
 const Comments = (props) => {
   return (

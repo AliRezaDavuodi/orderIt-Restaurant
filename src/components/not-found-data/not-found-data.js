@@ -1,6 +1,6 @@
 import React from "react";
 
-import notFound from "../../assests/notFound.svg";
+import notFound from "../../assets/notFound.svg";
 
 import css from "./not-found-data.module.scss";
 

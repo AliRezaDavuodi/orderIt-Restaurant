@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 
 import { authActions } from "../../store/auth";
 
-import Cart from "../../assests/cart.png";
-import Like from "../../assests/heart.png";
+import Cart from "../../assets/cart.png";
+import Like from "../../assets/heart.png";
 
 import css from "./navigation.module.scss";
 

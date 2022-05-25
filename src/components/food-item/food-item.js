@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart";
 
-import unlike from "../../assests/unlike.png";
-import like from "../../assests/like.png";
+import unlike from "../../assets/unlike.png";
+import like from "../../assets/like.png";
 
 import css from "./food-item.module.scss";
 
