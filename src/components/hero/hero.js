@@ -14,15 +14,10 @@ const Hero = () => {
 
   const userName = localStorage.getItem("name");
 
-  const clickFoodsHandler = () => {
-    history.push("/foods");
-  };
-  const clickSigninHandler = () => {
-    history.push("/auth/signin");
-  };
-  const clickOrderHandler = () => {
-    history.push("/foods");
-  };
+  const clickHandler = (route) => {
+    history.push(route);
+
+  }
 
   return (
     <header className={css.header}>
@@ -47,11 +42,11 @@ const Hero = () => {
       </div>
 
       <div className={css.actions}>
-        {isAuth && <Button onClick={clickOrderHandler}>Let's Order </Button>}
+        {isAuth && <Button onClick={clickHandler.bind(null,'/foods')}>Let's Order </Button>}
         {!isAuth && (
           <>
-            <Button onClick={clickSigninHandler}>Signin </Button>
-            <Button onClick={clickFoodsHandler}>Foods </Button>
+            <Button onClick={clickHandler.bind(null,'/auth/signin')}>Signin </Button>
+            <Button onClick={clickHandler.bind(null,'/foods')}>Foods </Button>
           </>
         )}
       </div>
