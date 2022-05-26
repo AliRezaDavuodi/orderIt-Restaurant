@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
-import css from "./hero.module.scss";
 
 import Button from "../button/button";
 import { useSelector } from "react-redux";
 
+import css from "./hero.module.scss";
+
 const Hero = () => {
+
+  const [userName, setUserName] = useState('')
+
   const history = useHistory();
 
   const auth = useSelector((state) => state.auth.token);
   const isAuth = !!auth; // create a boolean variable
 
-  const userName = localStorage.getItem("name");
+  if(isAuth) {
+    const userName = localStorage.getItem("name");
+    setUserName(userName)
+  }
 
   const clickHandler = (route) => {
     history.push(route);
