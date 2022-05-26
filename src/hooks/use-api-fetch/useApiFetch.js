@@ -11,8 +11,10 @@ const useApiFetch = (name, type, inputs={}, converter=convertFoodData) => {
 
 
     useEffect(() => {
+        let isSubscribed = true
+        if(!isSubscribed) return
 
-        setLoading(false)
+        setLoading(true)
 
         const fetchData = async () => {
 
@@ -24,17 +26,21 @@ const useApiFetch = (name, type, inputs={}, converter=convertFoodData) => {
             } 
 
             catch (error) {
+                setSuccess(false)
                 setError(error)
             }
 
             finally {
-                setLoading(true)
+                setLoading(false)
             }
         } 
 
         fetchData()
-    },[]) // should be empty to run just one time
 
+
+        return _ => isSubscribed = false
+    }, []) // should be empty to run just one time
+ 
 
     return {data, error, success, loading}
  

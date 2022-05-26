@@ -5,15 +5,17 @@ import Form from "../form/form";
 import Input from "../input/input";
 
 const SearchFood = (props) => {
+  // destructuring
+  const {getData} = props
+
   const inputSearchRef = createRef();
 
   const clickSearchForm = (e) => {
     e.preventDefault();
-    props.getData(inputSearchRef.current.value.toLowerCase());
+    getData(inputSearchRef.current.value.toLowerCase());
   };
 
   return (
-    <>
       <Form>
         <Input
           placeholder="what do you want"
@@ -25,7 +27,6 @@ const SearchFood = (props) => {
           Search
         </Button>
       </Form>
-    </>
   );
 };
 
