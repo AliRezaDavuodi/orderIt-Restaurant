@@ -41,9 +41,7 @@ const useApiFetch = (name, type, inputs={}, converter=convertFoodData) => {
         return _ => isSubscribed = false
     }, []) // should be empty to run just one time
  
-
     return {data, error, success, loading}
- 
 }
 
 export default useApiFetch

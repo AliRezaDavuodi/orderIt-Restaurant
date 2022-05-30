@@ -25,7 +25,6 @@ const Foods = () => {
     // convert data
     const TransformData = (data) => {
       const searchedRecipes = convertFoodData(data);
-
       dispatch(foodsActions.replaceFoods(searchedRecipes));
     };
 
@@ -35,6 +34,7 @@ const Foods = () => {
         url: `${spoonacularGetFood}number=100&tags=${query}${spoonacularApiKey}`,
       },
       TransformData
+      
     );
   };
 

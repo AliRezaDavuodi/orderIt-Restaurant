@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import humber from "../../assets/hamburg.svg";
 
@@ -18,7 +18,6 @@ import {
 } from "../../hooks/http-request/urls";
 
 import css from "./authentication.module.scss";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
 
@@ -36,18 +35,18 @@ const Authentication = () => {
     data,
   } = useHttpRequest();
 
-  const onSubmitHandler = (userInfo, type = "signup") => {
-    //conver data
-    const convertData = (data) => {
-      // get needed data form API response
-      const loggedInInformation = {
-        token: data.idToken,
-        expiresIn: +data.expiresIn,
-      };
-
-      return loggedInInformation;
+  //conver data
+  const convertData = (data) => {
+    // get needed data form API response
+    const loggedInInformation = {
+      token: data.idToken,
+      expiresIn: +data.expiresIn,
     };
 
+    return loggedInInformation;
+  };
+
+  const onSubmitHandler = (userInfo, type = "signup") => {
     // sendig request to the API
     sendingUserAuthInfoRequest(
       {
@@ -67,15 +66,12 @@ const Authentication = () => {
     let isSubscribed = true
 
     if(!isSubscribed) return
-
-    
     
     if (data) {
       // store data about authentication in redux
       dispatch(authActions.login({ ...data }));
       history.push("/");
     }
-    
     
     return _ => isSubscribed = false
 
