@@ -19,8 +19,7 @@ import {
 
 import css from "./authentication.module.scss";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
 
@@ -126,17 +125,6 @@ const Authentication = () => {
 
   return (
     <section className={`${css.auth} fadeIn`}>
-      <ToastContainer
-        position="top-center"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       {loading && <LoadingSpinner />}
       <div className={css.form}>
         <h3 className="title"> {titleForm} </h3>

@@ -5,6 +5,7 @@ const useHttpRequest = () => {
   const [hasError, setHasError] = useState(null);
   const [data, setData] = useState(null);
   const [err, setErr] = useState({});
+  const [success, setSuccess] = useState(false);
 
   const request = useCallback((requestConfig, convertData) => {
     setHasError(null);
@@ -27,6 +28,7 @@ const useHttpRequest = () => {
       .then((data) => {
         const covertedData = convertData(data);
         setData(covertedData);
+        setSuccess(true);
       })
       .catch((err) => {
         console.log(err.message);
@@ -42,6 +44,7 @@ const useHttpRequest = () => {
     request,
     data,
     err,
+    success,
   };
 };
 

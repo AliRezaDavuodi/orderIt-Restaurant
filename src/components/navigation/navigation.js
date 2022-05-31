@@ -8,6 +8,7 @@ import Cart from "../../assets/cart.png";
 import Like from "../../assets/heart.png";
 
 import css from "./navigation.module.scss";
+import { toast } from "react-toastify";
 
 const Navigation = () => {
   const [toggle, settoggle] = useState(false);
@@ -22,7 +23,19 @@ const Navigation = () => {
 
   const logoutHandler = () => {
     if (isAuth) {
-      dispatch(authActions.logout());
+      toast.success("you logged out successfully", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => {
+        dispatch(authActions.logout());
+      }, 3000);
     }
   };
 

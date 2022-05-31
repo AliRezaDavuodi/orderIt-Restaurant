@@ -16,6 +16,8 @@ import Modal from "../modal/modal";
 
 import { likeActions } from "../../store/favorite";
 
+import { toast } from "react-toastify";
+
 const FoodItem = (props) => {
   const history = useHistory();
 
@@ -31,6 +33,17 @@ const FoodItem = (props) => {
 
   const removeHandler = (item) => {
     dispatch(cartActions.deleteItemFromCart(item));
+
+    toast.error("item removed from your cart", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "err1",
+    });
   };
 
   const addHandler = (item) => {
@@ -40,6 +53,17 @@ const FoodItem = (props) => {
     }
 
     dispatch(cartActions.addItemToCart(item));
+
+    toast.success("item added from your cart", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "err1",
+    });
   };
 
   const closeModal = () => {
@@ -63,10 +87,33 @@ const FoodItem = (props) => {
       setLikeModal(true);
       return;
     }
+
     dispatch(likeActions.addItem(item));
+
+    toast.success("item removed from your favorite", {
+      position: "top-center",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "success1",
+    });
   };
   const changeUnlikeHandler = (item) => {
     dispatch(likeActions.deleteItem(item));
+
+    toast.error("item removed from your favorite", {
+      position: "top-center",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: "err1",
+    });
   };
 
   const showDetailHandler = () => {
@@ -74,16 +121,14 @@ const FoodItem = (props) => {
   };
 
   useEffect(() => {
+    let isSubscribed = true;
 
-    let isSubscribed = true
+    if (!isSubscribed) return;
 
-    if(!isSubscribed) return
-
-    
     localStorage.setItem("like", JSON.stringify(foodsLike));
     localStorage.setItem("cart", JSON.stringify(cartItems));
-    
-    return _ => isSubscribed = false
+
+    return (_) => (isSubscribed = false);
   }, [foodsLike, cartItems]);
 
   const foodItemClass = `fadeIn ${css.food}`;

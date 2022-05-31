@@ -9,11 +9,15 @@ import {
 } from "./hooks/http-request/urls";
 import useHttpRequest from "hooks/http-request/use-http";
 
+
 import { privateRoute, publicRoute } from "./router/router";
 import { authActions } from "./store/auth";
 import { cartActions } from "./store/cart";
 import { likeActions } from "./store/favorite";
 import { foodsActions } from "./store/foods";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RANDOM__FOOD__URL = `${spoonacularGetFood}number=10${spoonacularApiKey}`;
 
@@ -29,10 +33,9 @@ function App() {
   } = useHttpRequest();
 
   useEffect(() => {
-    let isSubscribed = true
+    let isSubscribed = true;
 
-
-    if(!isSubscribed) return
+    if (!isSubscribed) return;
 
     // convert recived data
     const convertRandomFoods = (data) => {
@@ -41,17 +44,14 @@ function App() {
     // sendig request to get food only when the user is logged in
     gettingRandomFood({ url: RANDOM__FOOD__URL }, convertRandomFoods);
 
-    return _ => isSubscribed = false
-
+    return (_) => (isSubscribed = false);
   }, [gettingRandomFood, dispatch]);
 
   // get previous data that saved in localstorage
   useEffect(() => {
+    let isSubscribed = true;
 
-    let isSubscribed = true
-
-    if(!isSubscribed) return
-
+    if (!isSubscribed) return;
 
     const token = localStorage.getItem("token");
     if (token) {
@@ -78,9 +78,7 @@ function App() {
       dispatch(likeActions.replaceLikedFood(likedFood));
     }
 
-
-    return _ => isSubscribed = false
-
+    return (_) => (isSubscribed = false);
   }, [dispatch, allFoods, isAuth]);
 
   // choose which route user can see
@@ -91,6 +89,17 @@ function App() {
       {loading && <LoadingSpinner />}
       {!loading && (
         <main>
+          <ToastContainer
+            position="top-center"
+            autoClose={6000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <Switch>
             {routes.map((route, idx) => (
               <Route
