@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 
@@ -19,6 +19,9 @@ import {
 
 import css from "./authentication.module.scss";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
 
 const SIGNIN__URL = `${firebaseSignin}${firebaseApiKey}`;
@@ -28,11 +31,14 @@ const Authentication = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [titleForm, setTitleForm] = useState("");
+
   // use Custom hook
   const {
     request: sendingUserAuthInfoRequest,
     loading,
     data,
+    hasError,
   } = useHttpRequest();
 
   //conver data
@@ -62,29 +68,78 @@ const Authentication = () => {
   };
 
   useEffect(() => {
+    let isSubscribed = true;
 
-    let isSubscribed = true
+    if (!isSubscribed) return;
 
-    if(!isSubscribed) return
-    
     if (data) {
       // store data about authentication in redux
-      dispatch(authActions.login({ ...data }));
-      history.push("/");
-    }
-    
-    return _ => isSubscribed = false
+      toast.success("welcome to ORDER IT ", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
+      setTimeout(() => {
+        dispatch(authActions.login({ ...data }));
+        history.push("/");
+      }, 2500);
+    }
+
+    return (_) => (isSubscribed = false);
   }, [data, dispatch, history]);
 
-  // change form title for each form
-  const formTtitle = location.pathname === "/auth" ? "Signup" : "Signin";
+  useEffect(() => {
+    if (hasError) {
+      toast.warning("turn on your VPN and try again", {
+        position: "top-center",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      toast.error("something went wrong please try again later", {
+        position: "top-center",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, [hasError, history]);
+
+  useEffect(() => {
+    // change form title for each form
+    location.pathname === "/auth"
+      ? setTitleForm("Signup")
+      : setTitleForm("Signin");
+  }, [location]);
 
   return (
     <section className={`${css.auth} fadeIn`}>
+      <ToastContainer
+        position="top-center"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {loading && <LoadingSpinner />}
       <div className={css.form}>
-        <h3 className="title"> {formTtitle} </h3>
+        <h3 className="title"> {titleForm} </h3>
         {location.pathname === "/auth" && <Signup send={onSubmitHandler} />}
         {location.pathname === "/auth/signin" && (
           <Signin send={onSubmitHandler} />

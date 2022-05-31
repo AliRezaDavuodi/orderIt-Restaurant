@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Button from "../button/button";
 import { useSelector } from "react-redux";
@@ -15,15 +15,17 @@ const Hero = () => {
   const auth = useSelector((state) => state.auth.token);
   const isAuth = !!auth; // create a boolean variable
 
-  if(isAuth) {
-    const userName = localStorage.getItem("name");
-    setUserName(userName)
-  }
-
   const clickHandler = (route) => {
     history.push(route);
 
   }
+
+  useEffect(() => {
+    if(isAuth) {
+      const userName = localStorage.getItem("name");
+      setUserName(userName)
+    }
+  },[]) // run just one time
 
   return (
     <header className={css.header}>
@@ -52,7 +54,7 @@ const Hero = () => {
         {!isAuth && (
           <>
             <Button onClick={clickHandler.bind(null,'/auth/signin')}>Signin </Button>
-            <Button onClick={clickHandler.bind(null,'/foods')}>Foods </Button>
+            <Button onClick={clickHandler.bind(null,'/foods')}>Menu </Button>
           </>
         )}
       </div>

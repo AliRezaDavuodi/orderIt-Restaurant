@@ -4,6 +4,7 @@ const useHttpRequest = () => {
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(null);
   const [data, setData] = useState(null);
+  const [err, setErr] = useState({});
 
   const request = useCallback((requestConfig, convertData) => {
     setHasError(null);
@@ -20,6 +21,7 @@ const useHttpRequest = () => {
           const text = await res.text();
           throw new Error(text);
         }
+
         return res.json();
       })
       .then((data) => {
@@ -29,6 +31,7 @@ const useHttpRequest = () => {
       .catch((err) => {
         console.log(err.message);
         setHasError(true);
+        setErr(err);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -38,6 +41,7 @@ const useHttpRequest = () => {
     loading,
     request,
     data,
+    err,
   };
 };
 
