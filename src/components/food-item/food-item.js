@@ -42,7 +42,6 @@ const FoodItem = (props) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      toastId: "err1",
     });
   };
 
@@ -62,7 +61,6 @@ const FoodItem = (props) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      toastId: "err1",
     });
   };
 
@@ -98,7 +96,6 @@ const FoodItem = (props) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      toastId: "success1",
     });
   };
   const changeUnlikeHandler = (item) => {
@@ -112,7 +109,6 @@ const FoodItem = (props) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      toastId: "err1",
     });
   };
 
