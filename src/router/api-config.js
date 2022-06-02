@@ -15,21 +15,54 @@ export const firebaseRealDataBase =
 
 
 const api = {
-    food : {
-        foods : data => axios.get(`${spoonacularGetFood}number=100&tags=${data.query}${spoonacularApiKey}`).then(res => res.data),
-        info : data => axios.get(`https://api.spoonacular.com/recipes/${data.foodID}/information?includeNutrition=false${spoonacularApiKey}`).then(res => res.data)
-    },
-    
-    auth : {
-        singup : data => axios.post(`${firebaseSignup}${firebaseApiKey}`,data).then(res => res.data),
-        singin : data => axios.post(`${firebaseSignin}${firebaseApiKey}`,data).then(res => res.data)
-    },
+  food: {
+    foods: data =>
+      axios
+        .get(
+          `${spoonacularGetFood}number=100&tags=${data.query}${spoonacularApiKey}`
+        )
+        .then(res => res.data),
+    info: data =>
+      axios
+        .get(
+          `https://api.spoonacular.com/recipes/${data.foodID}/information?includeNutrition=false${spoonacularApiKey}`
+        )
+        .then(res => res.data),
 
+    random: data =>
+      axios
+        .get(`${spoonacularGetFood}number=10${spoonacularApiKey}`)
+        .then(res => res.data),
+  },
 
-    comment : {
-        getComments : data => axios.get(`${firebaseRealDataBase}/comment/${data.foodID}.json` ).then(res => res.data),
-        addComment : data => axios.post(`${firebaseRealDataBase}/comment/${data.foodID}.json`, data).then(res => res.data)
-    }
+  auth: {
+    signup: data =>
+      axios
+        .post(`${firebaseSignup}${firebaseApiKey}`, data)
+        .then(res => res.data),
+    signin: data =>
+      axios
+        .post(`${firebaseSignin}${firebaseApiKey}`, data)
+        .then(res => res.data),
+    refresh: apikey =>
+      axios
+        .post(`https://securetoken.googleapis.com/v1/token?key=${apikey}`)
+        .then(res => res.data),
+  },
+
+  comment: {
+    getComments: data =>
+      axios
+        .get(`${firebaseRealDataBase}/comment/${data.foodID}.json`)
+        .then(res => res.data),
+    addComment: data =>
+      axios
+        .post(`${firebaseRealDataBase}/comment/${data.foodID}.json`, data)
+        .then(res => {
+          console.log(data.foodID)
+          return res.data
+        }),
+  },
 }
 
 
