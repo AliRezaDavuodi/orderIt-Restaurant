@@ -31,4 +31,4 @@ in this project I use:
 4. [spoonacular](https://spoonacular.com/food-api/) api to get foods
 
 
-4. [netlify](https://orderit-restaurant.netlify.app/)
+4. [netlify](https://restaurant-alireza.netlify.app/)
