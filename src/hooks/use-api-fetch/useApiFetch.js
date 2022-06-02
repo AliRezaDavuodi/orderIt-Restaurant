@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { convertFoodData } from "hooks/http-request/apis"
+import { convertFoodData } from "utilities/convert-food-data"
 import api from "router/api-config"
 
 const useApiFetch = (name, type, inputs={}, converter=convertFoodData) => {

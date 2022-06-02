@@ -1,45 +1,51 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import SendingRequest from "utilities/send-request-component"
 
-import Card from "../components/card/card";
-import FoodsList from "../components/foods-list/foods-list";
-import LoadingSpinner from "../components/loading-spinner/loading-spinner";
-import Navigation from "../components/navigation/navigation";
-import SearchFood from "../components/search-food/search-food";
-import { convertFoodData } from "../hooks/http-request/apis";
-import {
-  spoonacularApiKey,
-  spoonacularGetFood,
-} from "../hooks/http-request/urls";
-import useHttpRequest from "../hooks/http-request/use-http";
-import { foodsActions } from "../store/foods";
+import Card from "../components/card/card"
+import FoodsList from "../components/foods-list/foods-list"
+import LoadingSpinner from "../components/loading-spinner/loading-spinner"
+import Navigation from "../components/navigation/navigation"
+import SearchFood from "../components/search-food/search-food"
+import { convertFoodData } from "utilities/convert-food-data"
+import { foodsActions } from "../store/foods"
 
 const Foods = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const { request: getFoodBySearch, loading } = useHttpRequest();
+  const [sendRequest, setSendRequest] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [_, setErr] = useState()
+  const [searchQuery, setSearchQuery] = useState("")
 
-  const getFoodHandler = (query) => {
-    if (query.length === 0) return;
+  // convert data
+  const TransformData = data => {
+    const searchedRecipes = convertFoodData(data)
+    dispatch(foodsActions.replaceFoods(searchedRecipes))
+  }
 
-    // convert data
-    const TransformData = (data) => {
-      const searchedRecipes = convertFoodData(data);
-      dispatch(foodsActions.replaceFoods(searchedRecipes));
-    };
+  const getFoodHandler = query => {
+    if (query.length === 0) return
 
-    // sending request ot the API
-    getFoodBySearch(
-      {
-        url: `${spoonacularGetFood}number=100&tags=${query}${spoonacularApiKey}`,
-      },
-      TransformData
-      
-    );
-  };
+    setSearchQuery(query)
+
+    // sending request is allowed
+    setSendRequest(true)
+  }
 
   return (
     <>
+      {sendRequest && (
+        <SendingRequest
+          category="food"
+          subCategory="foods"
+          converter={TransformData}
+          data={{ query: searchQuery }}
+          setLoading={setLoading}
+          setSendRequest={setSendRequest}
+          setErr={setErr}
+        />
+      )}
       <Navigation />
       {loading && <LoadingSpinner />}
       {!loading && (
@@ -51,7 +57,7 @@ const Foods = () => {
         </Card>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Foods;
+export default Foods

@@ -16,123 +16,89 @@ import Modal from "../modal/modal";
 
 import { likeActions } from "../../store/favorite";
 
-import { toast } from "react-toastify";
+import { notif } from "utilities/toast"
 
-const FoodItem = (props) => {
-  const history = useHistory();
+const FoodItem = props => {
+  const history = useHistory()
 
-  const [cartModal, setCartModal] = useState(false);
-  const [likeModal, setLikeModal] = useState(false);
-  const foodsLike = useSelector((state) => state.like.likes);
-  const cartItems = useSelector((state) => state.cart.foods);
+  const [cartModal, setCartModal] = useState(false)
+  const [likeModal, setLikeModal] = useState(false)
+  const foodsLike = useSelector(state => state.like.likes)
+  const cartItems = useSelector(state => state.cart.foods)
 
-  const auth = useSelector((state) => state.auth.token);
-  const isAuth = !!auth;
+  const auth = useSelector(state => state.auth.token)
+  const isAuth = !!auth
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const removeHandler = (item) => {
-    dispatch(cartActions.deleteItemFromCart(item));
+  const removeHandler = item => {
+    dispatch(cartActions.deleteItemFromCart(item))
 
-    toast.error("item removed from your cart", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+    notif("error", "item removed from your cart", 3000)
+  }
 
-  const addHandler = (item) => {
+  const addHandler = item => {
     if (!isAuth) {
-      setCartModal(true);
-      return;
+      setCartModal(true)
+      return
     }
 
-    dispatch(cartActions.addItemToCart(item));
+    dispatch(cartActions.addItemToCart(item))
 
-    toast.success("item added from your cart", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+    notif("success", "item added from your cart", 3000)
+  }
 
   const closeModal = () => {
-    setCartModal(false);
-    setLikeModal(false);
-  };
+    setCartModal(false)
+    setLikeModal(false)
+  }
 
   const goToSignup = () => {
-    history.push("/auth");
-  };
+    history.push("/auth")
+  }
 
-  const increaseItems = (item) => {
-    dispatch(cartActions.increaseItem(item));
-  };
-  const decreaseItems = (item) => {
-    dispatch(cartActions.decreaseItem(item));
-  };
+  const increaseItems = item => {
+    dispatch(cartActions.increaseItem(item))
+  }
+  const decreaseItems = item => {
+    dispatch(cartActions.decreaseItem(item))
+  }
 
-  const changeLikeHandler = (item) => {
+  const changeLikeHandler = item => {
     if (!isAuth) {
-      setLikeModal(true);
-      return;
+      setLikeModal(true)
+      return
     }
 
-    dispatch(likeActions.addItem(item));
+    dispatch(likeActions.addItem(item))
 
-    toast.success("item removed from your favorite", {
-      position: "top-center",
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  const changeUnlikeHandler = (item) => {
-    dispatch(likeActions.deleteItem(item));
+    notif("success", "item added to your favorite", 6000)
+  }
+  const changeUnlikeHandler = item => {
+    dispatch(likeActions.deleteItem(item))
 
-    toast.error("item removed from your favorite", {
-      position: "top-center",
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+    notif("error", "item removed from your favorite", 6000)
+  }
 
   const showDetailHandler = () => {
-    history.push(`/foods/${props.id}`);
-  };
+    history.push(`/foods/${props.id}`)
+  }
 
   useEffect(() => {
-    let isSubscribed = true;
+    let isSubscribed = true
 
-    if (!isSubscribed) return;
+    if (!isSubscribed) return
 
-    localStorage.setItem("like", JSON.stringify(foodsLike));
-    localStorage.setItem("cart", JSON.stringify(cartItems));
+    localStorage.setItem("like", JSON.stringify(foodsLike))
+    localStorage.setItem("cart", JSON.stringify(cartItems))
 
-    return (_) => (isSubscribed = false);
-  }, [foodsLike, cartItems]);
+    return _ => (isSubscribed = false)
+  }, [foodsLike, cartItems])
 
-  const foodItemClass = `fadeIn ${css.food}`;
+  const foodItemClass = `fadeIn ${css.food}`
 
   // check if the food is liked and convert it to a boolean
-  const isLike = isAuth
-    ? !!foodsLike.find((food) => food.id === props.id)
-    : false;
+  const isLike = isAuth ? !!foodsLike.find(food => food.id === props.id) : false
 
   return (
     <>
@@ -215,7 +181,7 @@ const FoodItem = (props) => {
         </div>
       </li>
     </>
-  );
-};
+  )
+}
 
 export default FoodItem;

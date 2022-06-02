@@ -1,54 +1,61 @@
-import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { firebaseRealDataBase } from "../../hooks/http-request/urls";
-import useHttpRequest from "../../hooks/http-request/use-http";
-import { commentsActions } from "../../store/comments";
+import React, { useRef, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import SendingRequest from "utilities/send-request-component"
+import { notif } from "utilities/toast"
+import { commentsActions } from "../../store/comments"
 
-import Button from "../button/button";
-import Form from "../form/form";
+import Button from "../button/button"
+import Form from "../form/form"
 
-import css from "./comment-form.module.scss";
+import css from "./comment-form.module.scss"
 
 const CommentForm = () => {
-  const commentText = useRef();
-  const param = useParams();
-  const dispatch = useDispatch();
+  const commentText = useRef()
+  const param = useParams()
+  const dispatch = useDispatch()
 
-  const { request: sendingCommentToServer, loading } = useHttpRequest();
+  const [sendRequest, setSendRequest] = useState(false)
 
-  const addCommentHandler = (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false)
 
-    if (commentText.current.value === 0) return;
+  const [commentInfo, setCommentInfo] = useState({})
+
+  const response = data => {
+    // added toast
+    notif("success", "you added new comment.", 1000)
+
+    return data
+  }
+
+  const addCommentHandler = e => {
+    e.preventDefault()
+
+    if (commentText.current.value === 0) return
 
     const commentInformation = {
       name: localStorage.getItem("name"),
       comment: commentText.current.value,
       date: new Date().toLocaleDateString(),
-    };
-
-    dispatch(commentsActions.addComment(commentInformation));
-
-    const response = () => {
-      console.log("comment sends");
-    };
-
-    sendingCommentToServer(
-      {
-        url: `${firebaseRealDataBase}/comment/${param.foodID}.json`,
-        method: "POST",
-        body: commentInformation,
-        Headers: {
-          "Content-Type": "application/json",
-        },
-      },
-      response
-    );
-  };
+      foodID: param.foodID,
+    }
+    dispatch(commentsActions.addComment(commentInformation))
+    setCommentInfo(commentInformation)
+    setSendRequest(true)
+  }
 
   return (
     <>
+      {sendRequest && (
+        <SendingRequest
+          category="comment"
+          subCategory="addComment"
+          converter={response}
+          data={commentInfo}
+          setLoading={setLoading}
+          setSendRequest={setSendRequest}
+        />
+      )}
       {!loading && (
         <Form center>
           <textarea ref={commentText} className={css.area} />
@@ -56,7 +63,7 @@ const CommentForm = () => {
         </Form>
       )}
     </>
-  );
-};
+  )
+}
 
-export default CommentForm;
+export default CommentForm

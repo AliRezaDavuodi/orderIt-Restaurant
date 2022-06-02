@@ -8,36 +8,28 @@ import Cart from "../../assets/cart.png";
 import Like from "../../assets/heart.png";
 
 import css from "./navigation.module.scss";
-import { toast } from "react-toastify";
+import { notif } from "utilities/toast"
 
 const Navigation = () => {
-  const [toggle, settoggle] = useState(false);
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth.token);
-  const isAuth = !!auth;
+  const [toggle, settoggle] = useState(false)
+  const dispatch = useDispatch()
+  const auth = useSelector(state => state.auth.token)
+  const isAuth = !!auth
 
-  const cartItem = useSelector((state) => state.cart.foods);
-  const likeItemLength = useSelector((state) => state.like.likes.length);
+  const cartItem = useSelector(state => state.cart.foods)
+  const likeItemLength = useSelector(state => state.like.likes.length)
 
-  const cartItemLength = cartItem.reduce((acc, cur) => acc + cur.amount, 0);
+  const cartItemLength = cartItem.reduce((acc, cur) => acc + cur.amount, 0)
 
   const logoutHandler = () => {
     if (isAuth) {
-      toast.success("you logged out successfully", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      notif("success", "you logged out successfully", 1500)
 
       setTimeout(() => {
-        dispatch(authActions.logout());
-      }, 3000);
+        dispatch(authActions.logout())
+      }, 3000)
     }
-  };
+  }
 
   return (
     <section>
@@ -101,12 +93,12 @@ const Navigation = () => {
       </nav>
       <div
         className={`${css.humber} ${toggle ? css.show : ""}`}
-        onClick={() => settoggle((state) => !state)}
+        onClick={() => settoggle(state => !state)}
       >
         <span></span>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export default Navigation;

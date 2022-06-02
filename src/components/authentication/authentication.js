@@ -10,134 +10,108 @@ import LoadingSpinner from "../loading-spinner/loading-spinner";
 
 import { authActions } from "../../store/auth";
 
-import useHttpRequest from "../../hooks/http-request/use-http";
-import {
-  firebaseApiKey,
-  firebaseSignin,
-  firebaseSignup,
-} from "../../hooks/http-request/urls";
+import css from "./authentication.module.scss"
 
-import css from "./authentication.module.scss";
-
-import { toast } from "react-toastify";
-
-const SIGNUP__URL = `${firebaseSignup}${firebaseApiKey}`;
-
-const SIGNIN__URL = `${firebaseSignin}${firebaseApiKey}`;
+import SendingRequest from "utilities/send-request-component"
+import { notif } from "utilities/toast"
 
 const Authentication = () => {
-  const location = useLocation();
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const location = useLocation()
+  const history = useHistory()
+  const dispatch = useDispatch()
 
-  const [titleForm, setTitleForm] = useState("");
+  const [titleForm, setTitleForm] = useState("")
+  const [sendRequest, setSendRequest] = useState(false)
 
-  // use Custom hook
-  const {
-    request: sendingUserAuthInfoRequest,
-    loading,
-    data,
-    hasError,
-  } = useHttpRequest();
+  const [loading, setLoading] = useState(false)
+  const [err, setErr] = useState(false)
+  const [data, setData] = useState()
+  const [success, setSuccess] = useState(false)
+
+  const [userInfo, setUserInfo] = useState({})
+  const [requestSubCategory, setRequestSubCategory] = useState("")
 
   //conver data
-  const convertData = (data) => {
+  const convertData = data => {
     // get needed data form API response
     const loggedInInformation = {
       token: data.idToken,
       expiresIn: +data.expiresIn,
-    };
-
-    return loggedInInformation;
-  };
+    }
+    return loggedInInformation
+  }
 
   const onSubmitHandler = (userInfo, type = "signup") => {
-    // sendig request to the API
-    sendingUserAuthInfoRequest(
-      {
-        url: type === "signup" ? SIGNUP__URL : SIGNIN__URL,
-        method: "POST",
-        body: userInfo,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-      convertData
-    );
-  };
+    // sending request is allowed
+    setUserInfo(userInfo)
+    setRequestSubCategory(type)
+    setSendRequest(true)
+  }
 
   useEffect(() => {
-    let isSubscribed = true;
+    let isSubscribed = true
 
-    if (!isSubscribed) return;
+    if (!isSubscribed) return
 
-    if (data) {
+    if (data && success) {
       // store data about authentication in redux
-      toast.success("welcome to ORDER IT ", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      notif("success", "welcome to ORDER IT", 1000)
 
       setTimeout(() => {
-        dispatch(authActions.login({ ...data }));
-        history.push("/");
-      }, 2500);
+        dispatch(authActions.login({ ...data }))
+        history.push("/")
+      }, 2500)
     }
 
-    return (_) => (isSubscribed = false);
-  }, [data, dispatch, history]);
+    if (!data && err && !success) {
+      notif("warning", "turn on your VPN and try again", 6000)
 
-  useEffect(() => {
-    if (hasError) {
-      toast.warning("turn on your VPN and try again", {
-        position: "top-center",
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-
-      toast.error("something went wrong please try again later", {
-        position: "top-center",
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if (err && !success) {
+        notif("error", "something went wrong please try again later", 6000)
+      }
     }
-  }, [hasError, history]);
+
+    return _ => (isSubscribed = false)
+  }, [err, success, history, data, dispatch])
 
   useEffect(() => {
     // change form title for each form
     location.pathname === "/auth"
       ? setTitleForm("Signup")
-      : setTitleForm("Signin");
-  }, [location]);
+      : setTitleForm("Signin")
+  }, [location])
 
   return (
-    <section className={`${css.auth} fadeIn`}>
-      {loading && <LoadingSpinner />}
-      <div className={css.form}>
-        <h3 className="title"> {titleForm} </h3>
-        {location.pathname === "/auth" && <Signup send={onSubmitHandler} />}
-        {location.pathname === "/auth/signin" && (
-          <Signin send={onSubmitHandler} />
-        )}
-      </div>
-      <div className={css.img}>
-        <img src={humber} alt="humbergure" />
-      </div>
-    </section>
-  );
-};
+    <>
+      {sendRequest && (
+        <SendingRequest
+          category="auth"
+          subCategory={requestSubCategory}
+          converter={convertData}
+          data={userInfo}
+          setLoading={setLoading}
+          setSendRequest={setSendRequest}
+          setErr={setErr}
+          setData={setData}
+          setSuccess={setSuccess}
+        />
+      )}
 
-export default Authentication;
+      <section className={`${css.auth} fadeIn`}>
+        {loading && <LoadingSpinner />}
+        <div className={css.form}>
+          <h3 className="title"> {titleForm} </h3>
+          {location.pathname === "/auth" && <Signup send={onSubmitHandler} />}
+          {location.pathname === "/auth/signin" && (
+            <Signin send={onSubmitHandler} />
+          )}
+        </div>
+        <div className={css.img}>
+          <img src={humber} alt="humbergure" />
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default Authentication 
