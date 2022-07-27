@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
 import LoadingSpinner from "components/loading-spinner/loading-spinner"
 
-import { privateRoute, publicRoute } from "./router/router"
+import { authRoute, userRoute } from "./router/allRouter"
 import { authActions } from "./store/auth"
 import { cartActions } from "./store/cart"
 import { likeActions } from "./store/favorite"
@@ -12,6 +11,8 @@ import { foodsActions } from "./store/foods"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import useApiFetch from "hooks/use-api-fetch/useApiFetch"
+import AuthMiddleware from "router/middleware/AuthMiddleware"
+import { Switch } from "react-router-dom"
 
 function App() {
   const auth = useSelector(state => state.auth.token)
@@ -56,7 +57,7 @@ function App() {
   }, [dispatch, allFoods, isAuth])
 
   // choose which routes user can see
-  const routes = isAuth ? [...privateRoute, ...publicRoute] : publicRoute
+  // const routes = isAuth ? [...privateRoute, ...publicRoute] : publicRoute
 
   return (
     <>
@@ -75,12 +76,22 @@ function App() {
             pauseOnHover
           />
           <Switch>
-            {routes.map((route, idx) => (
-              <Route
+            {authRoute.map((route, idx) => (
+              <AuthMiddleware
                 key={idx}
                 exact={route.exact}
                 path={route.path}
                 component={route.component}
+                isAuthProtected={false}
+              />
+            ))}
+            {userRoute.map((route, idx) => (
+              <AuthMiddleware
+                key={idx}
+                exact={route.exact}
+                path={route.path}
+                component={route.component}
+                isAuthProtected={true}
               />
             ))}
           </Switch>
