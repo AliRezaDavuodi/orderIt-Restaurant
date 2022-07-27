@@ -8,8 +8,6 @@ import { cartActions } from "./store/cart"
 import { likeActions } from "./store/favorite"
 import { foodsActions } from "./store/foods"
 
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
 import useApiFetch from "hooks/use-api-fetch/useApiFetch"
 import AuthMiddleware from "router/middleware/AuthMiddleware"
 import { Switch } from "react-router-dom"
@@ -64,17 +62,6 @@ function App() {
       {loading && <LoadingSpinner />}
       {!loading && (
         <main>
-          <ToastContainer
-            position="top-center"
-            autoClose={6000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <Switch>
             {authRoute.map((route, idx) => (
               <AuthMiddleware

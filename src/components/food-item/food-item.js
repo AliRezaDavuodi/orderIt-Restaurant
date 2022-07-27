@@ -16,7 +16,6 @@ import Modal from "../modal/modal";
 
 import { likeActions } from "../../store/favorite";
 
-import { notif } from "utilities/toast"
 
 const FoodItem = props => {
   const history = useHistory()
@@ -33,8 +32,6 @@ const FoodItem = props => {
 
   const removeHandler = item => {
     dispatch(cartActions.deleteItemFromCart(item))
-
-    notif("error", "item removed from your cart", 3000)
   }
 
   const addHandler = item => {
@@ -44,8 +41,6 @@ const FoodItem = props => {
     }
 
     dispatch(cartActions.addItemToCart(item))
-
-    notif("success", "item added from your cart", 3000)
   }
 
   const closeModal = () => {
@@ -71,13 +66,9 @@ const FoodItem = props => {
     }
 
     dispatch(likeActions.addItem(item))
-
-    notif("success", "item added to your favorite", 6000)
   }
   const changeUnlikeHandler = item => {
     dispatch(likeActions.deleteItem(item))
-
-    notif("error", "item removed from your favorite", 6000)
   }
 
   const showDetailHandler = () => {

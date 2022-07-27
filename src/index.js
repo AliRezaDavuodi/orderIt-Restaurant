@@ -11,13 +11,27 @@ import App from "./App";
 
 import store from "./store/store";
 
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
+        <ToastContainer
+          position="top-center"
+          autoClose={6000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <App />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
-);
+)

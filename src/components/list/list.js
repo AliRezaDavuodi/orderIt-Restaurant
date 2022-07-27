@@ -12,19 +12,21 @@ const List = (props) => {
       {props.foods.map((food) => {
         const price = "$" + food.price;
         return (
-          <FoodItem
-            key={food.id}
-            id={food.id}
-            title={food.title}
-            description={food.description}
-            img={food.image}
-            price={price}
-            cart={props.cart}
-            item={food}
-            amount={food.amount}
-            like={props.like}
-          />
-        );
+          food.image && (
+            <FoodItem
+              key={food.id}
+              id={food.id}
+              title={food.title}
+              description={food.description}
+              img={food.image}
+              price={price}
+              cart={props.cart}
+              item={food}
+              amount={food.amount}
+              like={props.like}
+            />
+          )
+        )
       })}
     </ul>
   );

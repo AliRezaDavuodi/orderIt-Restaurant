@@ -55,7 +55,8 @@ const Authentication = () => {
 
     if (data && success) {
       // store data about authentication in redux
-      notif("success", "welcome to ORDER IT", 1000)
+      const name = localStorage.getItem("name")
+      notif("success", `welcome ${name} to ORDER IT`, 1000)
 
       setTimeout(() => {
         dispatch(authActions.login({ ...data }))

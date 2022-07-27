@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import SendingRequest from "utilities/send-request-component"
-import { notif } from "utilities/toast"
 import { commentsActions } from "../../store/comments"
 
 import Button from "../button/button"
@@ -23,7 +22,6 @@ const CommentForm = () => {
 
   const response = data => {
     // added toast
-    notif("success", "you added new comment.", 1000)
 
     return data
   }
