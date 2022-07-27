@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 
-import Button from "../button/button";
-import { useSelector } from "react-redux";
+import Button from "../button/button"
+import { useSelector } from "react-redux"
 
-import css from "./hero.module.scss";
+import css from "./hero.module.scss"
 
 const Hero = () => {
+  const [userName, setUserName] = useState("")
 
-  const [userName, setUserName] = useState('')
+  const history = useHistory()
 
-  const history = useHistory();
+  const auth = useSelector(state => state.auth.token)
+  const isAuth = !!auth // create a boolean variable
 
-  const auth = useSelector((state) => state.auth.token);
-  const isAuth = !!auth; // create a boolean variable
-
-  const clickHandler = (route) => {
-    history.push(route);
-
+  const clickHandler = route => {
+    history.push(route)
   }
 
   useEffect(() => {
-    if(isAuth) {
-      const userName = localStorage.getItem("name");
+    if (isAuth) {
+      const userName = localStorage.getItem("name")
       setUserName(userName)
     }
-  },[]) // run just one time
+  }, []) // run just one time
 
   return (
     <header className={css.header}>
@@ -50,16 +49,22 @@ const Hero = () => {
       </div>
 
       <div className={css.actions}>
-        {isAuth && <Button onClick={clickHandler.bind(null,'/foods')}>Let's Order </Button>}
+        {isAuth && (
+          <Button onClick={clickHandler.bind(null, "/foods")}>
+            Let's Order{" "}
+          </Button>
+        )}
         {!isAuth && (
           <>
-            <Button onClick={clickHandler.bind(null,'/auth/signin')}>Signin </Button>
-            <Button onClick={clickHandler.bind(null,'/foods')}>Menu </Button>
+            <Button onClick={clickHandler.bind(null, "/auth/signin")}>
+              Signin{" "}
+            </Button>
+            <Button onClick={clickHandler.bind(null, "/foods")}>Menu </Button>
           </>
         )}
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
