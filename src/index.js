@@ -13,6 +13,7 @@ import store from "./store/store";
 
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Layout from "layouts/Layout"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,7 +30,9 @@ ReactDOM.render(
           draggable
           pauseOnHover
         />
-        <App />
+        <Layout>
+          <App />
+        </Layout>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

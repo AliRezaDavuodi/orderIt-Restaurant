@@ -6,7 +6,6 @@ import SendingRequest from "utilities/send-request-component"
 import Card from "../components/card/card"
 import FoodsList from "../components/foods-list/foods-list"
 import LoadingSpinner from "../components/loading-spinner/loading-spinner"
-import Navigation from "../components/navigation/navigation"
 import SearchFood from "../components/search-food/search-food"
 import { convertFoodData } from "utilities/convert-food-data"
 import { foodsActions } from "../store/foods"
@@ -40,6 +39,7 @@ const Foods = () => {
       <MetaTags>
         <title> Order It | Foods </title>
       </MetaTags>
+
       {sendRequest && (
         <SendingRequest
           category="food"
@@ -51,7 +51,6 @@ const Foods = () => {
           setErr={setErr}
         />
       )}
-      <Navigation />
       {loading && <LoadingSpinner />}
       {!loading && (
         <Card className="fadeIn full">

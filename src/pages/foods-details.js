@@ -8,7 +8,6 @@ import Card from "../components/card/card"
 
 import FoodInfo from "../components/food-info/food-info"
 import LoadingSpinner from "../components/loading-spinner/loading-spinner"
-import Navigation from "../components/navigation/navigation"
 import NotFoundData from "../components/not-found-data/not-found-data"
 
 import { foodInfoActions } from "../store/foodDetails"
@@ -67,8 +66,6 @@ const FoodsDetails = () => {
       <MetaTags>
         <title> Order It | Food Info </title>
       </MetaTags>
-
-      <Navigation />
 
       {!success && !loading && (
         <Card className="container">
