@@ -37,6 +37,6 @@ export const authRoute = [
   {
     path: "/auth",
     component: Auth,
-    exact: true,
+    exact: false,
   },
 ]

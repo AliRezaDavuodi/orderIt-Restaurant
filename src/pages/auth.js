@@ -1,6 +1,7 @@
 import React from "react";
-import Authentication from "../components/authentication/authentication";
-import Navigation from "../components/navigation/navigation";
+
+import Authentication from "../components/authentication/authentication"
+import Navigation from "../components/navigation/navigation"
 
 const Auth = () => {
   return (
@@ -10,7 +11,7 @@ const Auth = () => {
         <Authentication />
       </div>
     </>
-  );
-};
+  )
+}
 
 export default Auth;

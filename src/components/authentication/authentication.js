@@ -14,6 +14,7 @@ import css from "./authentication.module.scss"
 
 import SendingRequest from "utilities/send-request-component"
 import { notif } from "utilities/toast"
+import { MetaTags } from "react-meta-tags"
 
 const Authentication = () => {
   const location = useLocation()
@@ -102,9 +103,21 @@ const Authentication = () => {
         {loading && <LoadingSpinner />}
         <div className={css.form}>
           <h3 className="title"> {titleForm} </h3>
-          {location.pathname === "/auth" && <Signup send={onSubmitHandler} />}
+          {location.pathname === "/auth" && (
+            <>
+              <MetaTags>
+                <title> Order It | sign up </title>
+              </MetaTags>
+              <Signup send={onSubmitHandler} />{" "}
+            </>
+          )}
           {location.pathname === "/auth/signin" && (
-            <Signin send={onSubmitHandler} />
+            <>
+              <MetaTags>
+                <title> Order It | sign in </title>
+              </MetaTags>
+              <Signin send={onSubmitHandler} />
+            </>
           )}
         </div>
         <div className={css.img}>

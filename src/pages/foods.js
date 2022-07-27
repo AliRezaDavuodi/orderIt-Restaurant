@@ -10,6 +10,7 @@ import Navigation from "../components/navigation/navigation"
 import SearchFood from "../components/search-food/search-food"
 import { convertFoodData } from "utilities/convert-food-data"
 import { foodsActions } from "../store/foods"
+import { MetaTags } from "react-meta-tags"
 
 const Foods = () => {
   const dispatch = useDispatch()
@@ -36,6 +37,9 @@ const Foods = () => {
 
   return (
     <>
+      <MetaTags>
+        <title> Order It | Foods </title>
+      </MetaTags>
       {sendRequest && (
         <SendingRequest
           category="food"
