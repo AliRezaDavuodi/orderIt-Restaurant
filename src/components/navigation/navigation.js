@@ -70,26 +70,26 @@ const Navigation = () => {
             </NavLink>
           </li>
         </ul>
-        {isAuth && (
-          <div className={css.personal}>
-            <div className={css["personal-icon"]}>
-              <NavLink activeClassName={css.active} to="/cart">
-                <img src={Cart} alt="cart icon" />
-                <div className={css.budget}>
-                  <span> {cartItemLength} </span>
-                </div>
-              </NavLink>
-            </div>
-            <div className={css["personal-icon"]}>
-              <NavLink activeClassName={css.active} to="/favorite">
-                <img src={Like} alt="cart icon" />
-                <div className={css.budget}>
-                  <span> {likeItemLength} </span>
-                </div>
-              </NavLink>
-            </div>
+        {/* {isAuth && ( */}
+        <div className={css.personal}>
+          <div className={css["personal-icon"]}>
+            <NavLink activeClassName={css.active} to="/cart">
+              <img src={Cart} alt="cart icon" />
+              <div className={css.budget}>
+                <span> {cartItemLength} </span>
+              </div>
+            </NavLink>
           </div>
-        )}
+          <div className={css["personal-icon"]}>
+            <NavLink activeClassName={css.active} to="/favorite">
+              <img src={Like} alt="cart icon" />
+              <div className={css.budget}>
+                <span> {likeItemLength} </span>
+              </div>
+            </NavLink>
+          </div>
+        </div>
+        {/* )} */}
       </nav>
       <div
         className={`${css.humber} ${toggle ? css.show : ""}`}

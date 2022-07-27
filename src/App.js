@@ -91,7 +91,7 @@ function App() {
                 exact={route.exact}
                 path={route.path}
                 component={route.component}
-                isAuthProtected={true}
+                isAuthProtected={false}
               />
             ))}
           </Switch>
