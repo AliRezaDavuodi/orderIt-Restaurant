@@ -16,6 +16,10 @@ const store = configureStore({
     auth: authentication,
     comment: comments,
   },
-});
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+})
 
 export default store;
