@@ -12,10 +12,14 @@ import useApiFetch from "hooks/use-api-fetch/useApiFetch"
 import AuthMiddleware from "router/middleware/AuthMiddleware"
 import { Switch } from "react-router-dom"
 
+import { onAuthStateChanged } from "firebase/auth"
+import { auth as authentication } from "auth/firebase-config"
+import { useHistory } from "react-router-dom"
+
 function App() {
-  const auth = useSelector(state => state.auth.token)
-  const isAuth = !!auth
+  const isAuth = useSelector(state => state.auth.isAuth)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const { data: allFoods, loading } = useApiFetch("food", "random")
 
@@ -24,14 +28,6 @@ function App() {
     let isSubscribed = true
 
     if (!isSubscribed) return
-
-    const token = localStorage.getItem("token")
-    if (token) {
-      const authInfo = {
-        token,
-      }
-      dispatch(authActions.login(authInfo))
-    }
 
     if (!!allFoods) {
       dispatch(foodsActions.replaceFoods(allFoods))
@@ -54,8 +50,19 @@ function App() {
     return _ => (isSubscribed = false)
   }, [dispatch, allFoods, isAuth])
 
-  // choose which routes user can see
-  // const routes = isAuth ? [...privateRoute, ...publicRoute] : publicRoute
+  useEffect(() => {
+    onAuthStateChanged(authentication, user => {
+      if (user) {
+        const userInfo = {
+          accessToken: user.accessToken,
+        }
+        dispatch(authActions.login(userInfo))
+        history.replace("/")
+      } else {
+        console.log("no user logged in")
+      }
+    })
+  }, [dispatch, history])
 
   return (
     <>

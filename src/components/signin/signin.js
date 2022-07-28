@@ -12,35 +12,34 @@ import {
   validateLength,
 } from "../../hooks/form-validation/helper";
 
-const Signin = (props) => {
-  const history = useHistory();
+import { userLogin } from "auth/auth-helper"
 
-  const inputEmailRef = createRef();
-  const inputPasswordRef = createRef();
+const Signin = props => {
+  const history = useHistory()
 
-  const email = useInput(validateEmail);
-  const password = useInput(validateLength);
-  const formIsValid = email.formIsValid && password.formIsValid;
-  const formIsTouched = email.IsTouched || password.IsTouched;
+  const inputEmailRef = createRef()
+  const inputPasswordRef = createRef()
 
-  const signinFormHandler = (e) => {
-    e.preventDefault();
+  const email = useInput(validateEmail)
+  const password = useInput(validateLength)
+  const formIsValid = email.formIsValid && password.formIsValid
+  const formIsTouched = email.IsTouched || password.IsTouched
 
-    const signInInformation = {
+  const signinFormHandler = async e => {
+    e.preventDefault()
+
+    const userInfo = {
       email: inputEmailRef.current.value,
       password: inputPasswordRef.current.value,
-      returnSecureToken: true,
-    };
+    }
+    await userLogin(userInfo)
+  }
 
-    // send prepared object to the Auth component
-    props.send(signInInformation, "signin");
-  };
-
-  // switch between signin V signup
-  const goToSignupFormHandler = (e) => {
-    e.preventDefault();
-    history.push("/auth");
-  };
+  // switch between signin & signup
+  const goToSignupFormHandler = e => {
+    e.preventDefault()
+    history.push("/auth")
+  }
 
   return (
     <>
@@ -89,7 +88,7 @@ const Signin = (props) => {
         </Form>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default Signin;

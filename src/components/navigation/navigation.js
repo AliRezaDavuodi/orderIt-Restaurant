@@ -1,35 +1,38 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { NavLink } from "react-router-dom"
 
-import { authActions } from "../../store/auth";
+import { authActions } from "../../store/auth"
 
-import Cart from "../../assets/cart.png";
-import Like from "../../assets/heart.png";
+import Cart from "../../assets/cart.png"
+import Like from "../../assets/heart.png"
 
-import css from "./navigation.module.scss";
-import { notif } from "utilities/toast"
+import css from "./navigation.module.scss"
+import { userLogout } from "auth/auth-helper"
 
 const Navigation = () => {
   const [toggle, settoggle] = useState(false)
   const dispatch = useDispatch()
-  const auth = useSelector(state => state.auth.token)
-  const isAuth = !!auth
+  const isAuth = useSelector(state => state.auth.isAuth)
 
   const cartItem = useSelector(state => state.cart.foods)
   const likeItemLength = useSelector(state => state.like.likes.length)
 
   const cartItemLength = cartItem.reduce((acc, cur) => acc + cur.amount, 0)
 
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
     if (isAuth) {
-      notif("success", "you logged out successfully", 1500)
+      const res = await userLogout()
 
-      setTimeout(() => {
+      if (res !== false) {
         dispatch(authActions.logout())
-      }, 3000)
+      }
     }
   }
+
+  useEffect(() => {
+    settoggle(false)
+  }, [isAuth])
 
   return (
     <section>
@@ -101,4 +104,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation;
+export default Navigation

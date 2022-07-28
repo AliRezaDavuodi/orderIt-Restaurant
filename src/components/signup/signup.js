@@ -11,42 +11,42 @@ import {
   validateEmail,
   validateLength,
 } from "../../hooks/form-validation/helper";
+import { signUp } from "auth/auth-helper"
 
-const Signup = (props) => {
-  const history = useHistory();
+const Signup = props => {
+  const history = useHistory()
 
-  const inputNameRef = createRef();
-  const inputEmailRef = createRef();
-  const inputPasswordRef = createRef();
+  const inputNameRef = createRef()
+  const inputEmailRef = createRef()
+  const inputPasswordRef = createRef()
 
-  const email = useInput(validateEmail);
-  const password = useInput(validateLength);
-  const name = useInput(validateLength);
+  const email = useInput(validateEmail)
+  const password = useInput(validateLength)
+  const name = useInput(validateLength)
   const formIsValid =
-    email.formIsValid && password.formIsValid && name.formIsValid;
-  const formIsTouched = email.IsTouched || name.IsTouched || password.IsTouched;
+    email.formIsValid && password.formIsValid && name.formIsValid
+  const formIsTouched = email.IsTouched || name.IsTouched || password.IsTouched
 
-  const goToSigninFormHandler = (e) => {
-    e.preventDefault();
+  const goToSigninFormHandler = e => {
+    e.preventDefault()
 
     // switch between signin V signup
-    history.push("/auth/signin");
-  };
+    history.push("/auth/signin")
+  }
 
-  const signupFormHandler = (e) => {
-    e.preventDefault();
+  const signupFormHandler = async e => {
+    e.preventDefault()
 
     // get user information from inputs
-    const userInformation = {
+    const userInfo = {
       email: inputEmailRef.current.value,
       password: inputPasswordRef.current.value,
-      returnSecureToken: true,
-    };
+    }
+    // sending the user to the redux
+    const res = await signUp(userInfo)
 
-    // sending prepared data to Auth component
-    localStorage.setItem("name", inputNameRef.current.value);
-    props.send(userInformation);
-  };
+    console.log({ res })
+  }
 
   return (
     <>
@@ -107,7 +107,7 @@ const Signup = (props) => {
         </Form>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default Signup;

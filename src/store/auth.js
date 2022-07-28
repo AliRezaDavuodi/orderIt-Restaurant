@@ -4,6 +4,7 @@ import { notif } from "utilities/toast"
 const INITIAL__STATE = {
   token: "",
   expiresIn: 0,
+  isAuth: false,
 }
 
 const authentication = createSlice({
@@ -11,18 +12,14 @@ const authentication = createSlice({
   initialState: INITIAL__STATE,
   reducers: {
     login(state, action) {
-      // save information
-      state.token = action.payload.token
-
-      // save token to the local storage
-      localStorage.setItem("token", state.token)
+      state.isAuth = true
+      state.token = action.payload.accessToken
     },
-    logout(state) {
-      // clear token variable
-      state.token = ""
 
-      // delete token from local storage
-      localStorage.removeItem("token")
+    logout(state) {
+      state.isAuth = false
+      state.token = ""
+      notif("success", "you logged out successfully", 1500)
     },
   },
 })
