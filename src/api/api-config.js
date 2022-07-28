@@ -1,8 +1,8 @@
 import axios from "axios"
 
 // apiKeys
-export const spoonacularApiKey = "&apiKey=8cc208ac129d4067aca765018108052d"
-export const firebaseApiKey = "?key=AIzaSyASJnoIJ35f3ZyTjKHaY9xZnP9TnKVhjaE"
+export const spoonacularApiKey = process.env.REACT_APP_FOOD_API_KEY
+export const firebaseApiKey = process.env.REACT_APP_AUTH_API_KEY
 
 // Urls
 export const spoonacularGetFood = "https://api.spoonacular.com/recipes/random?"
